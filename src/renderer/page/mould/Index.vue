@@ -1,21 +1,59 @@
 <template>
     <div style="height: 100%;padding: 10px">
-        <Modal width="600" height="800" :mask-closable=false v-model="create" :footer-hide=true class-name="vertical-center-modal">
-            <div style="font-size: 15px;padding-right: 5px">
-                显示名:<Input placeholder="如:姓名" style="width:90px"/>
-                字段名:<Input placeholder="如：name" style="width:90px"/>
-                类型: <Select v-model="modeType" style="width:100px">
-                            <Option v-for="item in modeTypes" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                只读: <Select v-model="readOnly" style="width:100px">
+        <Modal width="800" height="800" :mask-closable=false v-model="create" :footer-hide=true class-name="vertical-center-modal">
+
+            <div class="editField" style="font-size: 15px;padding-right: 5px">
+
+                <Divider orientation="left">模板</Divider>
+
+                <Row>
+                    <Col span="5">模板名:<Input placeholder="如:异常上报" style="width:90px"/></Col>
+                    <Col span="5">
+                        部门: <Select v-model="readOnly" style="width:100px">
                         <Option v-for="item in modeRadios" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                只读: <Select v-model="readOnly" style="width:100px">
-                <Option v-for="item in modeRadios" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
+                    </Select>
+                    </Col>
+                    <Col span="5">
+                        菜单: <Select v-model="readOnly" style="width:100px">
+                        <Option v-for="item in modeRadios" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
+                    </Col>
+
+                </Row>
+                <Divider orientation="left">字段</Divider>
+                <Row>
+                    <Col span="5">显示名:<Input placeholder="如:姓名" style="width:90px"/></Col>
+                    <Col span="5">字段:<Input placeholder="如：name" style="width:90px"/></Col>
+                    <Col span="5">
+                        只读: <Select v-model="readOnly" style="width:100px">
+                        <Option v-for="item in modeRadios" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
+                    </Col>
+                    <Col span="5">
+                        类型: <Select v-model="modeType" style="width:100px">
+                        <Option v-for="item in modeTypes" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
+                    </Col>
+                    <Col span="4">
+                        <Button style="" type="warning" @click="test">添加字段</Button>
+                    </Col>
+
+                </Row>
+                <Form :model="form">
+                <div class="container" v-if="modeType=='radio'||modeType=='checkbox'">
+
+                    <FormItem  v-for="(item,index) in form.optionalValue" :prop="item">
+                        <Input v-model="form.optionalValue[index]"  placeholder="输入可选值"></Input>
+                    </FormItem>
+                    <div>
+                        <Button style="width: 50px" type="success" @click="addOptinal">添加</Button>
+                        <Button style="width: 50px" type="error" v-if="form.optionalValue.length > 0" @click="form.optionalValue.pop()">删除</Button>
+                    </div>
+                </div>
+                </Form>
             </div>
             <div style="height: 380px">
-                <Divider orientation="center">预览页面</Divider>
+                <Divider orientation="left">页面预览</Divider>
             </div>
 <!--            <Button slot="footer"></Button>-->
         </Modal>
@@ -36,8 +74,17 @@
 <script>
     export default {
         name: "Index",
+        methods:{
+            test(){
+                console.log(this.form.optionalValue)
+            },
+            addOptinal(){
+                this.form.optionalValue.push("");
+            }
+        },
         data(){
             return {
+                form:{optionalValue:[]},
                 create:false,
                 modeType:'',
                 readOnly:'',
@@ -108,5 +155,13 @@
         align-items: center;
         justify-content: center;
 
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        width: 100%;
+    }
+    .editField>div{
+        margin-top: 10px;
     }
 </style>
