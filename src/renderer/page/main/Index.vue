@@ -18,7 +18,9 @@
 
                 </my-menu>
             </Sider>
-            <Content></Content>
+            <Content>
+                <router-view/>
+            </Content>
         </Layout>
     </Layout>
 </template>
@@ -27,7 +29,7 @@
     import Vue from 'vue'
     function test(h,data,index){
 
-        if (data.list){
+        if (data.list && data.list.length!=0){
 
             return h("Submenu",{props:{name:index}},[h("template",{slot:"title"},data.name),data.list.map((v,sindex)=>{
 
@@ -36,7 +38,7 @@
             })])
         }
         else {
-            return h('MenuItem',{props:{name:index}},data.name);
+            return h('MenuItem',{props:{name:index,to:data.url}},data.name);
         }
     }
     Vue.component("my-menu",{

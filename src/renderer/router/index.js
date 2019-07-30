@@ -17,7 +17,12 @@ export const constantRoutes = [
     hidden: true,
     meta:{
       requireAuth:true
-    }
+    },
+    children:[
+      { path:'/modules/sys/projectType',
+        component:require('@/page/mould/Index').default
+      }
+    ]
   },
   {
     path:'/login',
