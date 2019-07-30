@@ -11,7 +11,15 @@ Vue.use(iView);
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
+//日志输出控制
+const isDebug = true;
+let log = console.log;
+console.log = function(info){
+  if (isDebug){
+    log(info)
+  }
 
+}
 /* eslint-disable no-new */
 console.log(router);
 new Vue({

@@ -8,6 +8,7 @@ Vue.use(Router)
 export const constantRoutes = [
   {
     path:'/',
+    // component:require('@/page/Test').default,
     redirect:'/index'
   },
   {
