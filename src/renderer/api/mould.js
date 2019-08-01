@@ -9,4 +9,8 @@ export function getEmp() {
 export function saveMould(data) {
     return request.post("/sys/templatefield/save",data)
 }
-export default {getMenuList,getEmp,saveMould}
+export function queryMould() {
+    return request.post("/sys/templatefield/querytemplatelist")
+}
+
+export default {getMenuList,getEmp,queryMould,saveMould}

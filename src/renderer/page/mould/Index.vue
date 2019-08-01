@@ -57,7 +57,7 @@
             </div>
             <div style="height: 380px">
                 <Divider orientation="left">页面预览</Divider>
-                <template-form :mould-form="mould"></template-form>
+                <template-form ref="mould_form" :mould-form="mould"></template-form>
             </div>
 <!--            <Button slot="footer"></Button>-->
         </Modal>
@@ -66,12 +66,12 @@
         </div>
 
         <div style="margin-top: 20px">
-            <Table border ref="selection" :columns="headerColumn" :data="data1"></Table>
+            <Table border ref="selection" :columns="headerColumn" :data="mouldData"></Table>
 
         </div>
-        <div style="margin-top: 20px">
-            <Page style="text-align: center" :total="1000" />
-        </div>
+<!--        <div style="margin-top: 20px">-->
+<!--            <Page style="text-align: center" :total="1000" />-->
+<!--        </div>-->
     </div>
 </template>
 
@@ -81,7 +81,7 @@
     Vue.component("template-form",{
         functional: true,
         props:{
-            mouldForm:null,
+            mouldForm:null,mouldID:null
         },
         //渲染函数
         render(createElement, context) {
@@ -171,6 +171,12 @@
     export default {
         name: "Index",
         async mounted(){
+            mould.queryMould().then(resp=>{
+               console.log('得到所有模板:',resp);
+               this.mouldData = resp.data;
+            }).catch(error=>{
+                console.log('模板加载错误',error);
+            });
             try{
                 let emp = await mould.getEmp();
                 let menu = await mould.getMenuList();
@@ -250,52 +256,36 @@
                     },
                     {
                         title: '模板名称',
-                        key: 'name'
+                        key: 'id'
                     },
                     {
                         title: '所属部门',
-                        key: 'age'
+                        key: 'deptIdName'
                     },
                     {
                         title: '所属菜单',
-                        key: 'address'
+                        key: 'menuIdName'
                     },
                     {
                         title: '操作',
                         width:'120px',
                         render:(h,params)=>{
+                            let _this = this;
                             return h('div',[h('Button',{props:{type:'success',size:'small'},style:{
                                 'margin-right':'1px'
+                                },on:{
+                                click(){
+                                    //查看模板
+                                    _this.mould = JSON.parse(params.row.content);
+                                    _this.create =true;
+                                    _this.mouldTemplate.dept = params.row.deptId;
+                                    _this.mouldTemplate.menu = params.row.menuId;
+                                }
                                 }},'查看'),h('Button',{props:{type:'error',size:'small'}},'删除')])
                         }
                     }
                 ],
-                data1: [
-                    {
-                        name: 'John Brown',
-                        age: 18,
-                        address: 'New York No. 1 Lake Park',
-                        date: '2016-10-03'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 24,
-                        address: 'London No. 1 Lake Park',
-                        date: '2016-10-01'
-                    },
-                    {
-                        name: 'Joe Black',
-                        age: 30,
-                        address: 'Sydney No. 1 Lake Park',
-                        date: '2016-10-02'
-                    },
-                    {
-                        name: 'Jon Snow',
-                        age: 26,
-                        address: 'Ottawa No. 2 Lake Park',
-                        date: '2016-10-04'
-                    }
-                ]
+                mouldData: []
             }
         }
     }

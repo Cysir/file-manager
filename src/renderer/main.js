@@ -14,9 +14,9 @@ Vue.config.productionTip = false
 //日志输出控制
 const isDebug = true;
 let log = console.log;
-console.log = function(info){
+console.log = function(...info){
   if (isDebug){
-    log(info)
+    log(...info)
   }
 
 }
