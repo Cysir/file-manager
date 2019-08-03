@@ -12,5 +12,7 @@ export function saveMould(data) {
 export function queryMould() {
     return request.post("/sys/templatefield/querytemplatelist")
 }
-
-export default {getMenuList,getEmp,queryMould,saveMould}
+export function deleteMould(id) {
+    return request.get("/sys/templatefield/delete",{params:{id}})
+}
+export default {getMenuList,getEmp,queryMould,saveMould,deleteMould}

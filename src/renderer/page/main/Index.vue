@@ -2,18 +2,10 @@
     <Layout style="height: 100%">
         <Header>
             <h2 style="color: white">智能文件助手</h2>
+            <span style="float: right">刷新</span>
         </Header>
         <Layout>
             <Sider style="width: 200px;background: #fff">
-<!--                <Menu ref="menu" active-name="1-1" :open-names="['1']" style="width: 200px">-->
-<!--                    <Submenu name="1" v-for="(item,index) in navMenu">-->
-<!--                        <template slot="title">-->
-<!--                            <Icon type="ios-analytics" />-->
-<!--                            {{item.name}}-->
-<!--                        </template>-->
-<!--                            <MenuItem name="1-1" v-for="(subItem,index) in item.list"> {{subItem.name}}</MenuItem>-->
-<!--                    </Submenu>-->
-<!--                </Menu>-->
                 <my-menu ref="menu" style="width: 200px" :open-names="['0']" :menu-data="navMenu">
 
                 </my-menu>
@@ -38,7 +30,11 @@
             })])
         }
         else {
-            return h('MenuItem',{props:{name:index,to:data.url}},data.name);
+            return h('MenuItem',{props:{name:index,to:data.url},on:{
+                'click.native':function () {
+                    alert("test")
+                }
+                }},data.name);
         }
     }
     Vue.component("my-menu",{
@@ -68,7 +64,13 @@
         data(){
             return {navMenu:[]}
         },
+        methods:{
+            test(){
+                alert("asdssad")
+            },
+        },
         mounted() {
+
             getMenu().then(resp=>{
                console.log('获取菜单',resp);
                if (resp.code==0){

@@ -62,7 +62,7 @@
 <!--            <Button slot="footer"></Button>-->
         </Modal>
         <div>
-            <Button type="primary" @click="create=true">新建模板</Button>
+            <Button type="primary" @click="openCreate">新建模板</Button>
         </div>
 
         <div style="margin-top: 20px">
@@ -191,12 +191,19 @@
 
         },
         methods:{
+            openCreate(){
+                //打开创建的面板
+                this.create = true;
+                this.mouldTemplate.id = null;
+                this.restMould();
+            },
             createMould(){
                 let menuId = this.mouldTemplate.menu;
                 let deptId = this.mouldTemplate.dept;
                 let content = JSON.stringify(this.mould);
+                let id = this.mouldTemplate.id;
                 console.log(JSON.stringify(this.mould))
-                mould.saveMould({menuId,deptId,content}).then(resp=>{
+                mould.saveMould({menuId,deptId,content,id}).then(resp=>{
                     this.$Message.info({content:"模板创建成功"});
                     this.restMould();
                 }).catch(error=>{
@@ -231,6 +238,7 @@
         data(){
             return {
                 mouldTemplate:{
+                    id:null,
                     name:'',
                     dept:'',
                     menu:'',
@@ -276,12 +284,27 @@
                                 },on:{
                                 click(){
                                     //查看模板
+                                    _this.mouldTemplate.id = params.row.id;
                                     _this.mould = JSON.parse(params.row.content);
                                     _this.create =true;
                                     _this.mouldTemplate.dept = params.row.deptId;
                                     _this.mouldTemplate.menu = params.row.menuId;
                                 }
-                                }},'查看'),h('Button',{props:{type:'error',size:'small'}},'删除')])
+                                }},'查看'),h('Button',{props:{type:'error',size:'small'},on:{
+                                    click(){
+                                        _this.$Modal.confirm({content:"确定删除模板吗？",onOk(){
+                                            mould.deleteMould(params.row.id).then(resp=>{
+                                                console.log('删除模板成功');
+                                                let i = _this.mould.findIndex((value,index)=>{
+                                                    return value.id == params.row.id
+                                                });
+                                                _this.mould.splice(index,1);
+                                            }).catch(error=>{
+                                                console.log('删除模板时发生错误')
+                                            })
+                                            },onCancel(){}})
+                                    }
+                                }},'删除')])
                         }
                     }
                 ],
