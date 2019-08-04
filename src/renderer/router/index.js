@@ -19,6 +19,10 @@ export const constantRoutes = [
       requireAuth:true
     },
     children:[
+      {
+        path:'/modules/sys/role.html',
+        component:require('@/page/role/Index').default
+      },
       { path:'/modules/sys/projectType',
         component:require('@/page/mould/Index').default
       }

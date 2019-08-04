@@ -206,6 +206,12 @@
                 mould.saveMould({menuId,deptId,content,id}).then(resp=>{
                     this.$Message.info({content:"模板创建成功"});
                     this.restMould();
+                    mould.queryMould().then(resp=>{
+                        console.log('得到所有模板:',resp);
+                        this.mouldData = resp.data;
+                    }).catch(error=>{
+                        console.log('模板加载错误',error);
+                    });
                 }).catch(error=>{
                     this.$Modal.error({content:"模板创建失败"})
                 })
