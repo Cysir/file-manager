@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ccce44ae-169c-462f-8a9f-67c285bba1b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/renderer/api/role.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/page/role/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/page/mould/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/mould/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/router/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="ccce44ae-169c-462f-8a9f-67c285bba1b6" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -82,8 +76,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+            <state relative-caret-position="276">
+              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
@@ -215,85 +209,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mould" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="role" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager2" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,7 +266,7 @@
       <workItem from="1564666169866" duration="66000" />
       <workItem from="1564712799325" duration="5011000" />
       <workItem from="1564802557407" duration="9090000" />
-      <workItem from="1564892821562" duration="7209000" />
+      <workItem from="1564892821562" duration="10603000" />
     </task>
     <task id="LOCAL-00001" summary="添加模板菜单">
       <created>1564480899038</created>
@@ -380,17 +296,30 @@
       <option name="project" value="LOCAL" />
       <updated>1564821410888</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="添加模板菜单&#10;完成模板修改&#10;模板页面搞定">
+      <created>1564911893286</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1564911893286</updated>
+    </task>
+    <task id="LOCAL-00006" summary="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;123">
+      <created>1564926191361</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1564926191361</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79732000" />
+    <option name="totallyTimeSpent" value="83126000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="10" width="1233" height="823" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1916318" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1916318" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -404,7 +333,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32859176" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5012552" side_tool="true" weight="0.22475107" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49874476" visible="true" weight="0.38316402" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49874476" visible="true" weight="0.38316402" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -458,7 +387,8 @@
     <MESSAGE value="添加模板菜单" />
     <MESSAGE value="添加模板菜单&#10;完成模板修改" />
     <MESSAGE value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定" />
+    <MESSAGE value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;123" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;123" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -739,8 +669,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state relative-caret-position="276">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
           <folding>
             <element signature="n#style#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
