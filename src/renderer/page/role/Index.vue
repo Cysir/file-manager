@@ -24,6 +24,13 @@
         name: "Index",
         data(){
             return {
+                roleForm:{
+                    roleName:'',
+                    deptId:'',
+                    remark:'',
+                    menuIdList:[],
+                    deptIdList:[]
+                },
                 addRole:true,
                 roleData:[],
                 tableColumn:[{
