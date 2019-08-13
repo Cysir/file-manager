@@ -15,4 +15,20 @@ export function updateRoleApi(data) {
 export function deleteRoleApi(ids) {
     return request.delete("/sys/role/delete",{data:ids})
 }
-export default {queryRoleApi,roleInfoApi,saveRoleApi,updateRoleApi,deleteRoleApi}
+/**
+ * 选择部门
+ * @returns {AxiosPromise<any>}
+ */
+export function selectDept() {
+    return request.get("/sys/dept/select")
+}
+
+/**
+ * 选择菜单
+ * @returns {AxiosPromise<any>}
+ */
+export function selectMenu() {
+    return request.get("/sys/menu/nav")
+
+}
+export default {queryRoleApi,roleInfoApi,saveRoleApi,updateRoleApi,deleteRoleApi,selectDept,selectMenu}
