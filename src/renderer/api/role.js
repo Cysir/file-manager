@@ -20,7 +20,7 @@ export function deleteRoleApi(ids) {
  * @returns {AxiosPromise<any>}
  */
 export function selectDept() {
-    return request.get("/sys/dept/select")
+    return request.get("/sys/dept/list")
 }
 
 /**
@@ -28,7 +28,7 @@ export function selectDept() {
  * @returns {AxiosPromise<any>}
  */
 export function selectMenu() {
-    return request.get("/sys/menu/nav")
+    return request.get("/sys/menu/list")
 
 }
 export default {queryRoleApi,roleInfoApi,saveRoleApi,updateRoleApi,deleteRoleApi,selectDept,selectMenu}

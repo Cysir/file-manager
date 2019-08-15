@@ -185,37 +185,53 @@
                 this.addRole = true;
                 let dept = await roleApi.selectDept();
                 let menu = await roleApi.selectMenu();
-                this.roleForm.deptList = dept.deptList;
-                let t = dept.deptList.map((value,index)=>{
+                this.roleForm.deptList = dept.data;
+                // this.toTreeMenu(menu.data);
+                let t = dept.data.map((value,index)=>{
                     // console.log('aaaa',value.name)
                     return {title:value.name,id:value.deptId}
                 });
                 this.roleForm.deptIdListTree[0].children=t;
-                let m = menu.menuList.map((value,index)=>{
-                   return {title:value.name,id:value.menuId};
+                let m = menu.data.map((value,index)=>{
+                   return {title:value.parentName+'-'+value.name,id:value.menuId};
                 });
                 this.roleForm.menuIdListTree[0].children=m;
                 this.roleForm.remark = '';
                 this.roleForm.deptId = '';
                 this.roleForm.roleId = '';
                 this.roleForm.roleName = '';
+
+            },
+            //筛选出树形菜单数据
+            toTreeMenu(data){
+                console.log('开始拼接数据',data);
+                let treeList = {};
+                for (let v of data){
+                    if (treeList.hasOwnProperty(v.parentId)){
+                        treeList[v.parentId].push(v);
+                    }else{
+                        treeList[v.parentId] = [v];
+                    }
+                }
+                console.log('treeList',treeList);
+                //第二次处理
+                let keys = Object.getOwnPropertyNames(treeList);
+                let treeA = [];
+                for (let i in keys){
+                    if (i==0){
+                        treeA.push(treeList[i]);
+                    }
+                    else{
+
+                    }
+                }
             },
             //查看角色权限
             async viewRole(id){
+                console.log('开始运行');
+                await this.openAddRole();
                 this.addRole = true;
-                let depts = await roleApi.selectDept();
-                let menus = await roleApi.selectMenu();
-                this.roleForm.deptList = depts.deptList;
-                let t = depts.deptList.map((value,index)=>{
-                    // console.log('aaaa',value.name)
-                    return {title:value.name,id:value.deptId}
-                });
-                this.roleForm.deptIdListTree[0].children=t;
-                let m = menus.menuList.map((value,index)=>{
-                    return {title:value.name,id:value.menuId};
-                });
-                this.roleForm.menuIdListTree[0].children=m;
-                //aaaaaaaaaa
+                console.log('结束运行');
                 this.isUpdate = true;
                 let resp = await roleApi.roleInfoApi(id);
                 console.log('查询角色信息',resp);
@@ -234,24 +250,24 @@
                             return false;
                         return v.deptId == value.id
                     })!=-1){
-                        console.log('找到',value,dept)
+                        // console.log('找到',value,dept)
                         return {title:value.title,id:value.id,checked:true}
                     }
-                    console.log('重新》》',value)
+                    // console.log('重新》》',value)
                     return {title:value.title,id:value.id,checked:false}
                 });
                 //设置菜单默认选中
                 this.roleForm.menuIdListTree[0].children = this.roleForm.menuIdListTree[0].children.map((value,index)=>{
-                    if (dept.findIndex(v=>{
-                        console.log('aaa>',v,'  bbb>',value)
+                    if (menu.findIndex(v=>{
+                        // console.log('aaa>',v,'  bbb>',value)
                         if (v == null)
                             return
                         return v.menuId == value.id
                     })!=-1){
-                        console.log('找到')
+                        // console.log('找到')
                         return {title:value.title,id:value.id,checked:true}
                     }
-                    console.log('重新》》',value)
+                    // console.log('重新》》',value)
                     return {title:value.title,id:value.id,checked:false}
                 });
             },

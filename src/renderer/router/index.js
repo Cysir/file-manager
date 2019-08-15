@@ -23,6 +23,17 @@ export const constantRoutes = [
         path:'/modules/sys/role.html',
         component:require('@/page/role/Index').default
       },
+      {
+        path:'/modules/sys/user.html',
+        component:require('@/page/user/Index').default
+      },
+      {
+        path:'/modules/sys/menu.html',
+        component:require('@/page/menu/Index').default
+      },{
+        path:'/modules/sys/dept.html',
+        component:require('@/page/dept/Index').default
+      },
       { path:'/modules/sys/projectType',
         component:require('@/page/mould/Index').default
       }
