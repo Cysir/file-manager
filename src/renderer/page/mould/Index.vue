@@ -22,6 +22,17 @@
                         <Button style="float: right" type="success" @click="createMould">保存模板</Button>
                     </Col>
                 </Row>
+                <Divider orientation="left">
+                    公共字段
+                </Divider>
+                <div >
+                    <CheckboxGroup v-model="mouldTemplate.common" >
+                        <Checkbox style="font-size: 15px" label="1">附件</Checkbox>
+                        <Checkbox style="font-size: 15px" label="2">完成情况</Checkbox>
+                        <Checkbox style="font-size: 15px" label="3">等级</Checkbox>
+<!--                        <Checkbox label="西瓜"></Checkbox>-->
+                    </CheckboxGroup>
+                </div>
                 <Divider orientation="left">字段</Divider>
                 <Row>
 
@@ -62,7 +73,7 @@
 <!--            <Button slot="footer"></Button>-->
         </Modal>
         <div>
-            <Button type="primary" @click="openCreate">新建模板</Button>
+            <Button type="success" @click="openCreate">新建模板</Button>
         </div>
 
         <div style="margin-top: 20px">
@@ -174,6 +185,7 @@
             mould.queryMould().then(resp=>{
                console.log('得到所有模板:',resp);
                this.mouldData = resp.data;
+               // this.mouldTemplate.common = [resp.data]
             }).catch(error=>{
                 console.log('模板加载错误',error);
             });
@@ -199,11 +211,26 @@
             },
             createMould(){
                 let menuId = this.mouldTemplate.menu;
+                let templateName = this.mouldTemplate.name;
                 let deptId = this.mouldTemplate.dept;
                 let content = JSON.stringify(this.mould);
                 let id = this.mouldTemplate.id;
-                console.log(JSON.stringify(this.mould))
-                mould.saveMould({menuId,deptId,content,id}).then(resp=>{
+                console.log(JSON.stringify(this.mould));
+                let urls = 0;
+                let status = 0;
+                let gradeState = 0;
+                for (let v of this.mouldTemplate.common){
+                    if (v == 1){
+                        urls = 1;
+                    }
+                    if(v == 2){
+                        status = 1;
+                    }
+                    if (v==3){
+                        gradeState = 1;
+                    }
+                }
+                mould.saveMould({templateName,menuId,deptId,content,id,urls,status,gradeState}).then(resp=>{
                     this.$Message.info({content:"模板创建成功"});
                     this.restMould();
                     mould.queryMould().then(resp=>{
@@ -243,6 +270,7 @@
         },
         data(){
             return {
+
                 mouldTemplate:{
                     id:null,
                     name:'',
@@ -250,6 +278,7 @@
                     menu:'',
                     mouldDept:[],
                     mouldMenu:[],
+                    common:[],
                 },
                 form:{
                     displayName:'',
@@ -285,7 +314,7 @@
                         width:'120px',
                         render:(h,params)=>{
                             let _this = this;
-                            return h('div',[h('Button',{props:{type:'success',size:'small'},style:{
+                            return h('div',[h('Button',{props:{type:'info',size:'small'},style:{
                                 'margin-right':'1px'
                                 },on:{
                                 click(){
@@ -295,6 +324,8 @@
                                     _this.create =true;
                                     _this.mouldTemplate.dept = params.row.deptId;
                                     _this.mouldTemplate.menu = params.row.menuId;
+                                    _this.mouldTemplate.common = [params.row.urls==1?'1':'0',params.row.status==1?'2':'0',params.row.gradeState==1?'1':'0'];
+                                    console.log('加载多选按钮值：',_this.mouldTemplate.common);
                                 }
                                 }},'查看'),h('Button',{props:{type:'error',size:'small'},on:{
                                     click(){

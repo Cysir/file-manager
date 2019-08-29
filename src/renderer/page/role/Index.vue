@@ -30,7 +30,7 @@
                     </Form>
                 </div>
             </Modal>
-            <Button @click="openAddRole" type="primary" style="margin-bottom: 10px">添加角色</Button>
+            <Button @click="openAddRole" type="success" style="margin-bottom: 10px">添加角色</Button>
             <Table border :columns="tableColumn" :data="roleData">
 
             </Table>
@@ -87,7 +87,7 @@
                     title:'操作',
                         render:(h,params)=>{
                         let _this = this;
-                        return h('div',[h('Button',{props:{type:'success',size:'small'},style:{'margin-right':'2px'},on:{
+                        return h('div',[h('Button',{props:{type:'info',size:'small'},style:{'margin-right':'2px'},on:{
                             click(){
                                 _this.viewRole(params.row.roleId);
                             }

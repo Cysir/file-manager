@@ -14,15 +14,21 @@ export const constantRoutes = [
   {
     path: '/index',
     component: require('@/page/main/Index').default,
+    redirect:'/modules/sys/projectType',
     hidden: true,
     meta:{
       requireAuth:true
     },
     children:[
       {
+        path:'/custom_menu/:id',
+        component:require('@/page/custom_mould/Index').default
+      },
+      {
         path:'/modules/sys/role.html',
         component:require('@/page/role/Index').default
       },
+
       {
         path:'/modules/sys/user.html',
         component:require('@/page/user/Index').default
@@ -63,6 +69,7 @@ export function resetRouter() {
   router.matcher = newRouter.matcher // reset router
 }
 router.beforeEach((to,from,next)=>{
+
   if (to.meta.requireAuth){
     if (store.getters.token){
       next();

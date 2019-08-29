@@ -1,12 +1,12 @@
 <template>
     <Layout style="height: 100%">
         <Header>
-            <h2 style="color: white">智能文件助手</h2>
-            <span style="float: right">刷新</span>
+            <h2 style="color: white;display: inline-block">智能文件助手</h2>
+            <Button type="success" style="float: right;display: inline-block" @click="refresh">刷新</Button>
         </Header>
         <Layout>
             <Sider style="width: 200px;background: #fff">
-                <my-menu ref="menu" style="width: 200px" :open-names="['0']" :menu-data="navMenu">
+                <my-menu ref="menu" style="width: 200px" @on-select="x" :open-names="[0,1]" :menu-data="navMenu" :active-name="activeSub" >
 
                 </my-menu>
             </Sider>
@@ -30,26 +30,41 @@
             })])
         }
         else {
-            return h('MenuItem',{props:{name:index,to:data.url},on:{
-                'click.native':function () {
-                    alert("test")
-                }
-                }},data.name);
+            let path = '';
+            if (data.url && data.url.indexOf("custom_menu")!=-1) {
+                path = data.url+data.menuId;
+            }
+            else {
+                path = data.url;
+            }
+            // console.log('导航菜单路径：'+path,index)
+            return h('MenuItem',{props:{name:path,to:path},},data.name);
         }
     }
     Vue.component("my-menu",{
         functional: true,
         props:{
             menuData:null,
+            // activeMenu:0
+        },
+        methods:{
+            test(v){
+                console.log('菜单改变,',v);
+            }
+        },
+        watch:{
+            activeMenu(val){
+                console.log('组件内部改变值',val);
+            }
         },
         render(createElement, context) {
-            context.data.props = {'open-names':[0,1]}
-            // console.log('context',context.data);
+
+            // console.log('context',context);
 
             return createElement('Menu',context.data,
                 context.props.menuData.map(
                     (v,index)=>{
-                        console.log(v,index);
+                        // console.log(v,index);
                         return test(createElement,v,index);
                     }
                 )
@@ -64,24 +79,44 @@
         data(){
             return {navMenu:[]}
         },
+        computed:{
+            activeSub(){
+                // console.log('保存的值',localStorage.getItem('index/active'))
+                return this.$route.path;
+            }
+        },
         methods:{
+            refresh(){
+                location.reload();
+            },
+            x(x){
+
+            },
             test(){
                 alert("asdssad")
             },
         },
         mounted() {
-
+            console.log('首页路由',this.$route.path);
             getMenu().then(resp=>{
-               console.log('获取菜单',resp);
+               // console.log('获取菜单',resp);
                if (resp.code==0){
                    this.navMenu = resp.menuList;
                    this.$nextTick(()=>{
                        this.$refs.menu.updateOpened();
+                       this.$refs.menu.updateActiveName();
                    })
                }
             }).catch(err=>{
                 console.log('发生错误',err);
             });
+            this.$store.dispatch("mine/getInfo").then(resp=>{
+                // console.log('用户数据得到》》》')
+                let userInfo = this.$store.getters["mine/info"];
+                // console.log('用户数据>>>>',userInfo)
+            }).catch(error=>{
+                this.$Modal.error({content:'获取用户信息出错'})
+            })
         }
     }
 </script>

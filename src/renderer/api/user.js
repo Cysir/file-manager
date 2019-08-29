@@ -8,11 +8,10 @@ export function login(data) {
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
-    url: '/sys/logout',
-    method: 'get',
-    params: { token }
+    url: '/sys/user/queryuser',
+    method: 'post'
   })
 }
 
@@ -22,3 +21,16 @@ export function logout() {
     method: 'post'
   })
 }
+export function roleListApi() {
+  return request({
+    url:'/sys/role/list',
+    method:'get',
+    params:{pageSize:100}
+  })
+}
+export function userListApi() {
+  return request.get('/sys/user/list')
+}
+
+
+export default {login,getInfo,logout,userListApi,roleListApi}

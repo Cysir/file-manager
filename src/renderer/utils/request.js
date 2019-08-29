@@ -12,9 +12,9 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: "http://10.30.18.157:8080", // url = base url + request url
+  baseURL: "http://192.168.0.154:8080", // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  timeout: 10000 // request timeout
 })
 
 // request interceptor
@@ -68,11 +68,11 @@ service.interceptors.response.use(
         })
       }
       else{
-        Modal.info({content:"发生未知错误,请联系管理员。错误码:"+res.code});
+        Modal.info({title:'错误码:'+res.code,content:"错误信息:"+res.msg});
       }
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
-      Message.success({content:"操作成功"});
+      // Message.success({content:"操作成功"});
       return res
     }
   },
