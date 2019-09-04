@@ -1,6 +1,7 @@
 <template>
     <div class="dept_content">
-        <Button type="success">
+        <CreateDeptForm ref="myform" @update="init"/>
+        <Button type="success" @click="openPanel">
             添加部门
         </Button>
         <Table style="margin-top: 5px" border :columns="table.tabHeader" :data="table.deptData">
@@ -12,8 +13,10 @@
 
 <script>
     import deptApi from '../../api/dept'
+    import CreateDeptForm from "./CreateDeptForm";
     export default {
         name: "Index",
+        components: {CreateDeptForm},
         data() {
             return {
                 table: {
@@ -35,6 +38,7 @@
                             title: '操作',
                             width: 120,
                             render: (h, params) => {
+                                let self = this;
                                 return h('div', {
                                     props: {
                                         // class:'opt_menu'
@@ -46,11 +50,25 @@
                                         },
                                         style: {
                                             'margin-right': '2px'
+                                        },on:{
+                                            click(){
+                                                self.$refs.myform.update(params.row);
+                                            }
                                         }
                                     }, '查看'),
                                     h('Button', {
                                             props: {
                                                 size: 'small', type: 'error'
+                                            },on:{
+                                                click(){
+                                                    self.$Modal.confirm({content:`确认删除部门[${params.row.name}]吗?`,onOk(){
+                                                            deptApi.deptDeleteApi(params.row.deptId).then(resp=>{
+                                                                self.init();
+                                                            }).catch(err=>{
+                                                                console.error(err);
+                                                            })
+                                                        }})
+                                                }
                                             }
                                         },
                                         '删除')])
@@ -64,6 +82,9 @@
             this.init();
         },
         methods:{
+            openPanel(){
+                this.$refs.myform.insert();
+            },
             init(){
                 deptApi.deptListApi().then(resp=>{
                     console.log('部门列表',resp);

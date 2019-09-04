@@ -99,7 +99,7 @@
         props:['publish','mouldContent','saveContent'],
         data(){
             return {
-                token:'http://192.168.0.154:8080/sys/file/upload?token='+getToken(),
+                token:'http://192.168.0.144:8081/sys/file/upload?token='+getToken(),
                 extraField:{
                     status:'',
                     statusO:['已完成','进行中','未开始'],

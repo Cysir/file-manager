@@ -32,5 +32,13 @@ export function userListApi() {
   return request.get('/sys/user/list')
 }
 
-
-export default {login,getInfo,logout,userListApi,roleListApi}
+export function userSaveApi(data) {
+  return request.post('/sys/user/save',data)
+}
+export function userUpdateApi(data) {
+  return request.put('/sys/user/update',data)
+}
+export function userDeleteApi(data) {
+  return request.post('/sys/user/delete',data)
+}
+export default {login,getInfo,logout,userListApi,roleListApi,userSaveApi,userUpdateApi,userDeleteApi}

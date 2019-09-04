@@ -13,6 +13,6 @@ export function deptUpdateApi(data) {
     return request.post("/sys/dept/update",data);
 }
 export function deptDeleteApi(deptId) {
-    return request.post("/sys/dept/delete",{deptId})
+    return request.get("/sys/dept/delete",{params:{deptId}})
 }
 export default {deptDeleteApi,deptSelectApi,deptSaveApi,deptUpdateApi,deptListApi}

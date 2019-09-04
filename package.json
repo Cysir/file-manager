@@ -27,11 +27,12 @@
   "dependencies": {
     "axios": "^0.18.0",
     "iview": "^3.4.2",
+    "js-cookie": "2.2.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
+    "vue-socket.io": "^3.0.7",
     "vuex": "^3.0.1",
-    "js-cookie": "2.2.0",
     "vuex-electron": "^1.0.0"
   },
   "devDependencies": {

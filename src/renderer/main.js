@@ -6,6 +6,9 @@ import store from './store/index'
 //iview
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import VueSocketio from 'vue-socket.io'
+import socketio from 'socket.io-client'
+Vue.use(VueSocketio,socketio(''))
 Vue.use(iView);
 //
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
