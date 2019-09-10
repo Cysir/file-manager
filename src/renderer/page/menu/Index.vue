@@ -20,6 +20,12 @@
                     <Input v-model="form.orderNum" style="width: 300px"></Input>
                 </Col>
             </Row>
+           <!-- <Row>
+                <Col span="4">部门名称</Col>
+                <Col span="20">
+                    <Input v-model="form.deptId" style="width: 300px"></Input>
+                </Col>
+            </Row>-->
 <!--            <Row>-->
 <!--                <Col span="4">地址url</Col>-->
 <!--                <Col span="20">-->
@@ -66,6 +72,7 @@
             return {
                 create:false,
                 form:{
+                  /*  deptId:0,*/
                     type:'',
                     name:'',
                     perms:'',

@@ -259,15 +259,15 @@
                 //设置菜单默认选中
                 this.roleForm.menuIdListTree[0].children = this.roleForm.menuIdListTree[0].children.map((value,index)=>{
                     if (menu.findIndex(v=>{
-                        // console.log('aaa>',v,'  bbb>',value)
+                        console.log('查看菜单aaa>',v,'  bbb>',value)
                         if (v == null)
-                            return
+                            return false;
                         return v.menuId == value.id
                     })!=-1){
-                        // console.log('找到')
+                        console.log('找到')
                         return {title:value.title,id:value.id,checked:true}
                     }
-                    // console.log('重新》》',value)
+                    console.log('重新》》',value)
                     return {title:value.title,id:value.id,checked:false}
                 });
             },
