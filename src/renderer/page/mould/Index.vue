@@ -299,7 +299,7 @@
                     },
                     {
                         title: '模板名称',
-                        key: 'id'
+                        key: 'templateName'
                     },
                     {
                         title: '所属部门',
