@@ -23,7 +23,7 @@
             </FormItem>
 
             <FormItem label="角色" prop="roleIdList" >
-                <Select v-model="userContent.roleIdList" :multiple="true" @on-open-change="loadRole">
+                <Select v-model="userContent.roleIdList" @on-open-change="loadRole">
                     <Option v-for="item in defaultParam.roles" :label="item.roleName" :value="item.roleId"></Option>
                 </Select>
             </FormItem>
@@ -96,7 +96,7 @@
                         {required: true, message: '请输入电话', trigger: 'blur'}
                     ],
                     roleIdList: [
-                        {required: true,type:'array', message: '请选择角色', trigger: 'change'}
+                        {required: true,type:'number', message: '请选择角色', trigger: 'change'}
                     ],
                     status: [
                         {required: true,type:'number', message: '请选择用户状态', trigger: 'change'}
@@ -124,15 +124,18 @@
             },
             ok(){
                 console.log('提交的数据',this.userContent)
+                let content = this.userContent;
                 if(this.isUpdate){
-                    userApi.userUpdateApi(this.userContent).then(resp=>{
+                    content.roleIdList = [content.roleIdList];
+                    userApi.userUpdateApi(content).then(resp=>{
                         console.log('修改成功');
                         this.isCreate = false;
                     }).catch(err=>{
                         console.log('修改失败');
                     })
                 }else{
-                    userApi.userSaveApi(this.userContent).then(resp=>{
+                    content.roleIdList = [content.roleIdList];
+                    userApi.userSaveApi(content).then(resp=>{
                         console.log('保存成功');
                         this.isCreate = false;
                     }).catch(err=>{
