@@ -122,8 +122,14 @@
                 this.loadDept(true)
                 this.loadRole(true)
             },
-            ok(){
-                console.log('提交的数据',this.userContent)
+            async ok(){
+                console.log('提交的数据',this.userContent);
+                let isOk = await this.$refs.formInline.validate();
+                console.log('校验结果：',isOk);
+                if (!isOk){
+                    this.$Message.info({content:'请检查表单是否填写完整'});
+                    return;
+                }
                 let content = this.userContent;
                 if(this.isUpdate){
                     content.roleIdList = [content.roleIdList];

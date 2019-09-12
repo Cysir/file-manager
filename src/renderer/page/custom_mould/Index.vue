@@ -21,10 +21,12 @@
                 </Select>
                 开始时间:
                 <DatePicker @on-clear="clear" v-model="queryParam.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
+                <Button type="info" STYLE="float: right;margin-left: 5px" @click="exportData">导出报表</Button>
                 <Button type="primary" @click="insert" style="float: right">下发任务</Button>
                 <Button type="info" STYLE="float: right;margin-right: 5px" @click="search">查询</Button>
+
             </div>
-            <Table :columns="tableCol" border :data="recData.list">
+            <Table ref="table" :columns="tableCol" border :data="recData.list">
 
             </Table>
             <div style="margin-top: 20px">
@@ -40,54 +42,22 @@
     import customeApi from "../../api/custom";
 
 
-
     export default {
         name: "Index",
         components: { PublishModal},
         data() {
             return {
-                mouldContent: null,
-                queryParam:{
-                    startTime:'',
-                    endTime:0,
-                    status:'',
-                    gradeState:'',
-                },
-                settingParam:{
-                    status:[
-                        {label:'未开始',value:'未开始'},
-                        {label:'进行中',value:'进行中'},
-                        {label:'已完成',value:'已完成'},
-                        {label:'全部',value:'全部'},
-                    ],
-                    gradeState:[
-                        {label:'一级',value:'一级'},
-                        {label:'二级',value:'二级'},
-                        {label:'三级',value:'三级'},
-                        {label:'全部',value:'全部'},
-                    ]
-                },
-                recData: {
-                    total: 0,
-                    currPage: 0,
-                    list: [],
-                    totalPage: 0
-                },
-                tableCol: [
+                my_data:{},
+                my_col :[
                     {
-                        type: 'index',
-                        width: 60,
-                        align: 'center'
+                        title: '接收人',
+                        key: 'sysName'
                     },
-                    {
-                        title: '等级',
-                        key: 'gradeState'
-                    },
-                    {
-                        title: '内容',
-                        key: 'templateData',
-                        tooltip: true
-                    },
+                    // {
+                    //     title: '内容',
+                    //     key: 'templateData',
+                    //     tooltip: true
+                    // },
                     {
                         title: '创建人',
                         key: 'creationPerson'
@@ -148,6 +118,45 @@
                         }
                     }
                 ],
+                mouldContent: null,
+                queryParam:{
+                    startTime:'',
+                    endTime:0,
+                    status:'',
+                    gradeState:'',
+                },
+                settingParam:{
+                    status:[
+                        {label:'未开始',value:'未开始'},
+                        {label:'进行中',value:'进行中'},
+                        {label:'已完成',value:'已完成'},
+                        {label:'全部',value:'全部'},
+                    ],
+                    gradeState:[
+                        {label:'一级',value:'一级'},
+                        {label:'二级',value:'二级'},
+                        {label:'三级',value:'三级'},
+                        {label:'全部',value:'全部'},
+                    ]
+                },
+                recData: {
+                    total: 0,
+                    currPage: 0,
+                    list: [],
+                    totalPage: 0
+                },
+                tableCol: [
+                    {
+                        type: 'index',
+                        width: 60,
+                        align: 'center'
+                    },
+                    {
+                        title: '等级',
+                        key: 'gradeState'
+                    },
+
+                ],
                 path: '未定义', isPublish: false, total: 0, mouldForm: {
                     page: '0', limit: '10', templateFieldId: 0, menuId: 0
                 }
@@ -164,6 +173,12 @@
             console.log('进入下一步方法')
             this.init();
         }, methods: {
+            exportData(){
+
+                this.$refs.table.exportCsv({
+                    filename:this.mouldContent.templateName
+                });
+            },
             clear(){
                 console.log('清楚时间',this.queryParam.startTime);
                 // this.queryParam.startTime = {};
@@ -188,6 +203,17 @@
                 console.log("加载的模板数据", mouldList);
                 this.recData.total = mouldList.object.page.totalCount;
                 this.recData.list = mouldList.object.page.list;
+                console.log('数据内容：',this.recData.list);
+                let allContent = this.recData.list.map(v=>{
+                    let arr = JSON.parse(v.templateData);
+                    for (let i = 0; i < arr.length; i++) {
+                        for(let key in arr[i]){
+                            v[key] = arr[i][key];
+                        }
+                    }
+                    return v
+                });
+                console.log('处理后的数据内容',allContent);
                 this.recData.currPage = mouldList.object.page.currPage;
                 this.recData.totalPage = mouldList.object.page.totalPage;
             },
@@ -234,7 +260,12 @@
                 console.log(this.$route);
                 // console.log("加载的参数id",this.$route.params.id);
                 let mouldTemp = await customeApi.mouldListApi(this.$route.params.id);
-                console.log(mouldTemp);
+                console.log('数据模板',mouldTemp);
+                let coustom_col = JSON.parse(mouldTemp.data.content).map(v=>{
+                    return {title:v.displayName,key:v.fieldName};
+                });
+                console.log('啊啊》',coustom_col)
+                this.tableCol.push(...coustom_col,...this.my_col);
                 this.mouldForm.menuId = mouldTemp.data.menuId;
                 this.mouldForm.templateFieldId = mouldTemp.data.id;
                 mouldTemp.data.content = JSON.parse(mouldTemp.data.content);

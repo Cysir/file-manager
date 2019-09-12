@@ -20,4 +20,8 @@ export function mouldUpdateApi(data) {
     return request.post("/sys/Templatedata/update",data)
 
 }
-export default {mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi}
+export function mouldDownload(filePath) {
+    return request.get("sys/file/download",{params:filePath})
+}
+
+export default {mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi}

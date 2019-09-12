@@ -84,6 +84,12 @@
                     </Upload>
                 </Col>
             </Row>
+            <Row :gutter="gutter" class="my-row">
+                <Col span="3">下载附件</Col>
+                <Col span="18">
+                        <Button icon="ios-cloud-upload-outline" @click="downloadFile">点击下载</Button>
+                </Col>
+            </Row>
         </div>
         <Button type="primary" @click="sendData" ref="testForm">发送</Button>
     </Modal>
@@ -99,7 +105,7 @@
         props:['publish','mouldContent','saveContent'],
         data(){
             return {
-                token:'http://192.168.0.144:8081/sys/file/upload?token='+getToken(),
+                token:'http://10.30.18.157:8081/sys/file/upload?token='+getToken(),
                 extraField:{
                     status:'',
                     statusO:['已完成','进行中','未开始'],
@@ -116,6 +122,14 @@
                 selectUser:[],testContent:this.saveContent?this.saveContent:{}}
         },
         methods:{
+            downloadFile(){
+                if (this.extraField.url!==""){
+                    window.location.href="http://10.30.18.157:8081/sys/file/download?"+"token="+getToken()+"&filePath="+this.extraField.url
+                    this.$Message.info('下载成功！');
+                }else {
+                    this.$Message.info('没有附件！');
+                }
+            },
             insert(){
                 this.type.isCreate = true;
                 this.extraField.status='';
@@ -130,6 +144,7 @@
                 this.type.isCreate = false;
                 this.type.id = id;
                 console.log('查看操作',userIds);
+                console.log('内容',testContent,'额外字段',extraField)
                 this.testContent = testContent;
                 this.extraField.status = extraField.status;
                 this.extraField.url = extraField.url;
