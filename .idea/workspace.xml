@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccce44ae-169c-462f-8a9f-67c285bba1b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/page/main/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/main/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/page/menu/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/menu/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/page/role/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/role/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/utils/request.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,98 +19,118 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Index.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/main/Index.vue">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="225" column="107" selection-start-line="225" selection-start-column="107" selection-end-line="225" selection-end-column="107" />
+            <state relative-caret-position="225">
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
               <folding>
-                <element signature="n#style#0;n#h2#0;n#Col#0;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Badge#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Avatar#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#my-menu#0;n#Sider#0;n#Layout#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#150#176#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.vue" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/utils/request.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="130" column="10" selection-start-line="130" selection-start-column="10" selection-end-line="130" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Button#0;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Button#1;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Button#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/page/user/Index.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="80" column="85" selection-start-line="80" selection-start-column="85" selection-end-line="80" selection-end-column="85" />
+              <folding>
+                <element signature="n#style#0;n#Table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97">
+              <caret line="65" column="36" lean-forward="true" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/page/user/model.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/page/dept/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1007">
+            <state relative-caret-position="795">
               <caret line="54" column="85" selection-start-line="54" selection-start-column="85" selection-end-line="54" selection-end-column="85" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/custom_mould/Index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2983">
-              <caret line="158" column="10" lean-forward="true" selection-start-line="158" selection-start-column="10" selection-end-line="158" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginForm.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/components/LoginForm.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LandingPage.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage.vue">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="Index.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.vue" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/page/mould/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6004">
-              <caret line="316" column="73" selection-start-line="316" selection-start-column="73" selection-end-line="316" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/menu/Index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1387">
-              <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+            <state relative-caret-position="219">
+              <caret line="301" column="43" lean-forward="true" selection-start-line="301" selection-start-column="43" selection-end-line="301" selection-end-column="43" />
               <folding>
-                <element signature="n#style#0;n#Input#0;n#Col#1;n#Row#2;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#Modal#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Checkbox#0;n#CheckboxGroup#0;n#div#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Checkbox#1;n#CheckboxGroup#0;n#div#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Checkbox#2;n#CheckboxGroup#0;n#div#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/utils/index.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/api/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6612">
-              <caret line="350" selection-start-line="350" selection-end-line="350" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="request.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/utils/request.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="615">
+              <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -134,10 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$emit</find>
-      <find>模板加载错误</find>
-      <find>resetRouter</find>
-      <find>getters</find>
       <find>content</find>
       <find>testContent</find>
       <find>custom_form</find>
@@ -164,6 +173,10 @@
       <find>拥有部门</find>
       <find>deptIdListTree</find>
       <find>children</find>
+      <find>getCheckedNodes</find>
+      <find>deptIdList</find>
+      <find>roleIdList</find>
+      <find>menuIdList</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -171,6 +184,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="IdeDocumentHistory">
@@ -203,7 +221,6 @@
         <option value="$PROJECT_DIR$/src/renderer/page/mould/Index.vue" />
         <option value="$PROJECT_DIR$/src/renderer/page/user/model.js" />
         <option value="$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue" />
         <option value="$PROJECT_DIR$/src/renderer/api/custom.js" />
         <option value="$PROJECT_DIR$/src/renderer/api/user.js" />
         <option value="$PROJECT_DIR$/src/renderer/page/user/Index.vue" />
@@ -215,26 +232,16 @@
         <option value="$PROJECT_DIR$/src/renderer/page/menu/Index.vue" />
         <option value="$PROJECT_DIR$/src/renderer/utils/request.js" />
         <option value="$PROJECT_DIR$/src/renderer/page/main/Index.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue" />
         <option value="$PROJECT_DIR$/src/renderer/page/role/Index.vue" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
-    <package-json value="$PROJECT_DIR$/package.json" />
-  </component>
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="140" />
-    <option name="y" value="145" />
-    <option name="width" value="1235" />
-    <option name="height" value="645" />
+    <option name="x" value="-49" />
+    <option name="y" value="152" />
+    <option name="width" value="1280" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -252,47 +259,13 @@
             <path>
               <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="file-manager" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="LandingPage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -300,46 +273,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="custom_mould" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="dept" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mould" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -348,6 +281,14 @@
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="role" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -514,37 +455,51 @@
       <option name="project" value="LOCAL" />
       <updated>1567086902564</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/main.js">
+      <created>1568118980797</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1568118980797</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/main.js">
+      <created>1568182970477</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1568182970477</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255549000" />
+    <option name="totallyTimeSpent" value="259633000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="18" y="56" width="1233" height="645" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6577061" visible="true" weight="0.19140625" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="调试" order="7" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5012552" side_tool="true" weight="0.22475107" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32859176" />
-      <window_info id="npm" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6577061" visible="true" weight="0.18069308" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49874476" visible="true" weight="0.13835616" />
-      <window_info anchor="bottom" id="运行" order="7" />
+      <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.34229392" side_tool="true" weight="0.19141914" />
-      <window_info anchor="bottom" id="TypeScript" order="11" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.24539007" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.24539007" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="运行" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="调试" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32859176" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5012552" side_tool="true" weight="0.22475107" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.49874476" visible="true" weight="0.3381555" />
+      <window_info anchor="bottom" id="TypeScript" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,9 +530,20 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="添加模板菜单" />
@@ -587,7 +553,8 @@
     <MESSAGE value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;角色管理完成" />
     <MESSAGE value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;角色管理完成&#10;菜单样式完成" />
     <MESSAGE value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;角色管理完成&#10;菜单样式完成&#10;基本功能完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;角色管理完成&#10;菜单样式完成&#10;基本功能完成" />
+    <MESSAGE value="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/main.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/main.js" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.electron-vue/dev-client.js">
@@ -682,13 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/api/custom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -700,20 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
           <caret line="101" column="48" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/Index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="80" column="85" selection-start-line="80" selection-start-column="85" selection-end-line="80" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="97" column="33" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -744,28 +690,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/store/modules/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
+        <state relative-caret-position="990">
           <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/utils/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
+        <state relative-caret-position="60">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/store/modules/mine.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
+        <state relative-caret-position="285">
           <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/api/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
+        <state relative-caret-position="615">
           <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
         </state>
       </provider>
@@ -779,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+        <state relative-caret-position="225">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -793,8 +742,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        <state relative-caret-position="180">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
             <element signature="e#150#176#0" expanded="true" />
@@ -837,17 +786,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/utils/request.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/page/mould/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6004">
-          <caret line="316" column="73" selection-start-line="316" selection-start-column="73" selection-end-line="316" selection-end-column="73" />
+        <state relative-caret-position="219">
+          <caret line="301" column="43" lean-forward="true" selection-start-line="301" selection-start-column="43" selection-end-line="301" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Modal#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Checkbox#0;n#CheckboxGroup#0;n#div#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Checkbox#1;n#CheckboxGroup#0;n#div#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Checkbox#2;n#CheckboxGroup#0;n#div#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -863,7 +814,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/page/dept/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
+        <state relative-caret-position="795">
           <caret line="54" column="85" selection-start-line="54" selection-start-column="85" selection-end-line="54" selection-end-column="85" />
         </state>
       </provider>
@@ -899,10 +850,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/utils/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/Index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="80" column="85" selection-start-line="80" selection-start-column="85" selection-end-line="80" selection-end-column="85" />
+          <folding>
+            <element signature="n#style#0;n#Table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="65" column="36" lean-forward="true" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+        <state relative-caret-position="80">
+          <caret line="130" column="10" selection-start-line="130" selection-start-column="10" selection-end-line="130" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Button#0;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Button#1;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Button#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
