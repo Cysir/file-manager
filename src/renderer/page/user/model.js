@@ -3,7 +3,6 @@ export class userModel {
         this.username = '';
         this.deptId = '';
         this.name = '';
-        this.deptName = '';
         this.password = '';
         this.email = '';
         this.mobile = '';

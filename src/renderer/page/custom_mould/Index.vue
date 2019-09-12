@@ -21,10 +21,12 @@
                 </Select>
                 开始时间:
                 <DatePicker @on-clear="clear" v-model="queryParam.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
+                <Button type="info" STYLE="float: right;margin-left: 5px" @click="exportData">导出报表</Button>
                 <Button type="primary" @click="insert" style="float: right">下发任务</Button>
                 <Button type="info" STYLE="float: right;margin-right: 5px" @click="search">查询</Button>
+
             </div>
-            <Table :columns="tableCol" border :data="recData.list">
+            <Table ref="table" :columns="tableCol" border :data="recData.list">
 
             </Table>
             <div style="margin-top: 20px">
@@ -46,6 +48,7 @@
         components: { PublishModal},
         data() {
             return {
+                my_data:{},
                 mouldContent: null,
                 queryParam:{
                     startTime:'',
@@ -84,10 +87,14 @@
                         key: 'gradeState'
                     },
                     {
-                        title: '内容',
-                        key: 'templateData',
-                        tooltip: true
+                        title: '接收人',
+                        key: 'sysName'
                     },
+                    // {
+                    //     title: '内容',
+                    //     key: 'templateData',
+                    //     tooltip: true
+                    // },
                     {
                         title: '创建人',
                         key: 'creationPerson'
@@ -164,6 +171,12 @@
             console.log('进入下一步方法')
             this.init();
         }, methods: {
+            exportData(){
+
+                this.$refs.table.exportCsv({
+                    filename:this.mouldContent.templateName
+                });
+            },
             clear(){
                 console.log('清楚时间',this.queryParam.startTime);
                 // this.queryParam.startTime = {};
@@ -235,6 +248,7 @@
                 // console.log("加载的参数id",this.$route.params.id);
                 let mouldTemp = await customeApi.mouldListApi(this.$route.params.id);
                 console.log(mouldTemp);
+
                 this.mouldForm.menuId = mouldTemp.data.menuId;
                 this.mouldForm.templateFieldId = mouldTemp.data.id;
                 mouldTemp.data.content = JSON.parse(mouldTemp.data.content);
