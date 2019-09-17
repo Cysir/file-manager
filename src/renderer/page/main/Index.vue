@@ -1,6 +1,6 @@
 <template>
     <Layout style="height: 100%">
-        <Header>
+        <Header style="background: rgba(1,157,141,0.87)">
             <Row type="flex" justify="space-between" class="code-row-bg">
                 <Col span="6">
                     <h2 style="color: white;">智能文件助手</h2>
@@ -10,15 +10,30 @@
 
                 <Col span="4">
                     <div style="position:relative;">
-                        <Icon type="md-exit" color="white" size="26" @click="logout"></Icon>
-                        <Icon type="md-refresh" color="white" size="26" @click="refresh"></Icon>
-                        <Badge :count="number" style="position: absolute;right: 50px;top:0px;" :offset="[20,0]">
+
+                        <Icon type="md-refresh" color="white" size="26" @click="refresh"  style="margin-left: 20px"></Icon>
+                        <Badge :count="number" style="margin-left: 20px" :offset="[20,0]">
                             <Icon type="ios-notifications-outline" color="white" size="30"></Icon>
                         </Badge>
 
-                        <Avatar style="color: #f56a00;background-color: #fde3cf;position: absolute;right: 0px;top:15px">
-                            {{userModel.name}}
-                        </Avatar>
+                        <!--<Avatar style="color: #f56a00;background-color: #fde3cf;position: absolute;right: 0px;top:15px">-->
+                            <!--{{userModel.name}}-->
+                        <!--</Avatar>-->
+                        <Dropdown  trigger="click" style="margin-left: 20px"  @on-click="userClick">
+                            <a href="javascript:void(0)">
+                                <Avatar style="color: #f56a00;background-color: #fde3cf">
+                                    U
+                                </Avatar>
+                                <!--<Icon type="ios-arrow-down"></Icon>-->
+                            </a>
+                            <DropdownMenu slot="list">
+                                <DropdownItem>姓名：{{userModel.name}}</DropdownItem>
+                                <DropdownItem>账号：{{userModel.username}}</DropdownItem>
+                                <DropdownItem disabled>部门：{{userModel.deptName}}</DropdownItem>
+                                <DropdownItem>邮箱：{{userModel.email}}</DropdownItem>
+                                <DropdownItem name="logout" divided>退出登录</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
 
                         <!--                        <Button type="success" style="float: right;display: inline-block" @click="refresh">刷新</Button>-->
                     </div>
@@ -237,6 +252,12 @@
             this.onbeforeunload()
         },
         methods: {
+            userClick(event){
+                // alert(event);
+                if (event == 'logout'){
+                    this.logout()
+                }
+            },
             /*消息提醒弹出框内容*/
             renderFunc () {
                 let _this = this
@@ -354,6 +375,24 @@
 </script>
 
 <style scoped>
+    /deep/.ivu-btn-info{
+        background-color: rgba(1,157,141,0.87);
+        border-color:rgba(1,157,141,0.87);
+    }
+    /deep/.ivu-btn-success{
+        background-color: rgba(1,157,141,0.87);
+        border-color:rgba(1,157,141,0.87);
+    }
+    /deep/.ivu-btn-primary{
+        background-color: rgba(1,157,141,0.87);
+        border-color:rgba(1,157,141,0.87);
+    }
+    /deep/.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu){
+        color: rgba(1,157,141,0.87);
+    }
+    /deep/.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):after{
+        background: rgba(1,157,141,0.87);
+    }
     .demo-badge {
         width: 36px;
         height: 36px;
