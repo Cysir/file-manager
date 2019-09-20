@@ -239,7 +239,7 @@
                 console.log('用户数据>>>>', userInfo)
                 if ('WebSocket' in window) {
                     console.log("bbbbbbbbbbbbbbbbb")
-                    this.websocket = new WebSocket('ws://10.30.18.157:8081/myWebSocket/websocket/'+userInfo.userId);
+                    this.websocket = new WebSocket('ws://'+localStorage.getItem("serverIp")+':8081/myWebSocket/websocket/'+userInfo.userId);
                     this.initWebSocket();
                     console.log("aaaaaaaaaaaaaaaaa")
                 } else {
