@@ -3,7 +3,7 @@
         <Header style="background: rgba(1,157,141,0.87)">
             <Row type="flex" justify="space-between" class="code-row-bg">
                 <Col span="6">
-                    <h2 style="color: white;">智能文件助手</h2>
+                    <h2 style="color: white;">重点工作任务智能助手</h2>
 
 
                 </Col>
@@ -178,6 +178,7 @@
                                     console.log(templatedata[i])
                                 }
                                 let data=JSON.parse(strnew[0])
+                                console.log(strnew[0])
                                 this.creationPerson=data.creationPerson
                                 this.informationgradeState=data.gradeState
                                 this.informationstatus=data.status
