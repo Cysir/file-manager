@@ -1,5 +1,15 @@
 <template>
   <div class="layout" id="login-main">
+    <Modal v-model="showIp"  @on-ok="setIp">
+      <Form>
+        <FormItem label="服务器IP地址">
+          <Input v-model="serverIp"/>
+        </FormItem>
+      </Form>
+    </Modal>
+    <Affix>
+      <span class="demo-affix" style="float: right;margin: 10px;position: fixed;top:20px;right: 20px;" @click="showIp=!showIp">设置ip</span>
+    </Affix>
     <Layout>
       <Header id="header">
         <h1>{{welcome}}</h1>
@@ -26,9 +36,21 @@
   export default {
         name: "Login",
         data(){
-          return {copyright,author,welcome}
+          return {copyright,author,welcome,showIp:false,serverIp:''}
         },
+      mounted(){
+          this.serverIp = localStorage.getItem("serverIp");
+      },
         methods:{
+            setIp(){
+                if (this.serverIp == ''){
+                    this.$Message.error({
+                        content:"请输入IP地址"
+                    });
+                    return;
+                }
+                localStorage.setItem("serverIp",this.serverIp)
+            },
           testOne(){
               // alert("TEST");
               this.$store.dispatch("user/login",{username:this.$refs.loginForm.account,password:this.$refs.loginForm.password})

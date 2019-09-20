@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ccce44ae-169c-462f-8a9f-67c285bba1b6" name="Default Changelist" comment="">
+    <list default="true" id="ccce44ae-169c-462f-8a9f-67c285bba1b6" name="Default Changelist" comment="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/src/renderer/main.js.bak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/page/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/page/custom_mould/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/custom_mould/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/page/main/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/page/main/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/utils/request.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,78 +29,79 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/utils/request.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="130" column="10" selection-start-line="130" selection-start-column="10" selection-end-line="130" selection-end-column="10" />
-              <folding>
-                <element signature="n#style#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Button#0;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Button#1;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Button#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/user/Index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="80" column="85" selection-start-line="80" selection-start-column="85" selection-end-line="80" selection-end-column="85" />
-              <folding>
-                <element signature="n#style#0;n#Table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="65" column="36" lean-forward="true" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/page/user/model.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="126" column="83" selection-start-line="126" selection-start-column="83" selection-end-line="126" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/page/custom_mould/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="123">
-              <caret line="267" column="58" selection-start-line="267" selection-start-column="58" selection-end-line="267" selection-end-column="58" />
+              <caret line="268" column="58" selection-start-line="268" selection-start-column="58" selection-end-line="268" selection-end-column="58" />
+              <folding>
+                <element signature="n#style#0;n#Select#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Select#1;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#DatePicker#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#STYLE#0;n#Button#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Button#1;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#STYLE#0;n#Button#2;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#1687#1729#0" expanded="true" />
+              </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="49" column="32" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/page/main/Index.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1606">
+              <caret line="241" column="59" lean-forward="true" selection-start-line="241" selection-start-column="59" selection-end-line="241" selection-end-column="91" />
+              <folding>
+                <element signature="n#style#0;n#h2#0;n#Col#0;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Badge#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#my-menu#0;n#Sider#0;n#Layout#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/page/Login.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-996">
+              <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.electron-vue/build.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-740" />
           </provider>
         </entry>
       </file>
@@ -108,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/src/renderer/page/mould/Index.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3450">
-              <caret line="301" column="43" lean-forward="true" selection-start-line="301" selection-start-column="43" selection-end-line="301" selection-end-column="43" />
+              <caret line="301" column="43" selection-start-line="301" selection-start-column="43" selection-end-line="301" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#Modal#0;n#div#0;n#template#0;n#!!top" />
@@ -215,7 +225,6 @@
         <option value="$PROJECT_DIR$/src/renderer/store/modules/mine.js" />
         <option value="$PROJECT_DIR$/src/renderer/page/mould/Index.vue" />
         <option value="$PROJECT_DIR$/src/renderer/page/user/model.js" />
-        <option value="$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue" />
         <option value="$PROJECT_DIR$/src/renderer/api/custom.js" />
         <option value="$PROJECT_DIR$/src/renderer/api/user.js" />
         <option value="$PROJECT_DIR$/src/renderer/page/user/Index.vue" />
@@ -226,10 +235,11 @@
         <option value="$PROJECT_DIR$/src/renderer/main.js" />
         <option value="$PROJECT_DIR$/src/renderer/page/menu/Index.vue" />
         <option value="$PROJECT_DIR$/src/renderer/utils/request.js" />
-        <option value="$PROJECT_DIR$/src/renderer/page/main/Index.vue" />
         <option value="$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue" />
         <option value="$PROJECT_DIR$/src/renderer/page/role/Index.vue" />
         <option value="$PROJECT_DIR$/src/renderer/page/custom_mould/Index.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/page/main/Index.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue" />
       </list>
     </option>
   </component>
@@ -252,6 +262,53 @@
             <path>
               <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="custom_mould" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="file-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="file-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -340,6 +397,7 @@
       <workItem from="1568008107001" duration="5374000" />
       <workItem from="1568099609293" duration="3940000" />
       <workItem from="1568280545186" duration="1754000" />
+      <workItem from="1568954353832" duration="648000" />
     </task>
     <task id="LOCAL-00001" summary="添加模板菜单">
       <created>1564480899038</created>
@@ -439,14 +497,22 @@
       <option name="project" value="LOCAL" />
       <updated>1568282219690</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;asd&#10;asdas11111">
+      <created>1568954373794</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1568954373794</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="261387000" />
+    <option name="totallyTimeSpent" value="262035000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6577061" visible="true" weight="0.17394757" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -524,16 +590,10 @@
     <MESSAGE value="添加模板菜单&#10;完成模板修改&#10;模板页面搞定&#10;角色管理完成&#10;菜单样式完成&#10;基本功能完成" />
     <MESSAGE value="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/renderer/main.js" />
     <MESSAGE value="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;asd" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;asd" />
+    <MESSAGE value="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;asd&#10;asdas11111" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'kc' of https://github.com/Cysir/file-manager into kc&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;asd&#10;asdas11111" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.electron-vue/dev-client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-460">
-          <caret line="4" column="65" lean-forward="true" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -644,13 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/Login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/store/modules/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
@@ -744,27 +797,6 @@
     <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/main/Index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="225" column="107" selection-start-line="225" selection-start-column="107" selection-end-line="225" selection-end-column="107" />
-          <folding>
-            <element signature="n#style#0;n#h2#0;n#Col#0;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Badge#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Avatar#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#my-menu#0;n#Sider#0;n#Layout#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -786,6 +818,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1950">
+          <caret line="130" column="10" selection-start-line="130" selection-start-column="10" selection-end-line="130" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Button#0;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Button#1;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Button#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/page/user/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
@@ -793,6 +839,20 @@
           <folding>
             <element signature="n#style#0;n#Table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -806,7 +866,7 @@
     <entry file="file://$PROJECT_DIR$/src/renderer/page/mould/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3450">
-          <caret line="301" column="43" lean-forward="true" selection-start-line="301" selection-start-column="43" selection-end-line="301" selection-end-column="43" />
+          <caret line="301" column="43" selection-start-line="301" selection-start-column="43" selection-end-line="301" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#Modal#0;n#div#0;n#template#0;n#!!top" />
@@ -826,45 +886,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/role/Index.vue">
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/custom_mould/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="130" column="10" selection-start-line="130" selection-start-column="10" selection-end-line="130" selection-end-column="10" />
+        <state relative-caret-position="123">
+          <caret line="268" column="58" selection-start-line="268" selection-start-column="58" selection-end-line="268" selection-end-column="58" />
           <folding>
-            <element signature="n#style#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Button#0;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Button#1;n#Form#0;n#div#0;n#Modal#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Button#0;n#Content#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Select#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Select#1;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#DatePicker#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#STYLE#0;n#Button#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Button#1;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#STYLE#0;n#Button#2;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1687#1729#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/CreateUserForm.vue">
+    <entry file="file://$PROJECT_DIR$/.electron-vue/build.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="65" column="36" lean-forward="true" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+        <state relative-caret-position="-740" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="49" column="32" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/user/model.js">
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/main/Index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        <state relative-caret-position="-1606">
+          <caret line="241" column="59" lean-forward="true" selection-start-line="241" selection-start-column="59" selection-end-line="241" selection-end-column="91" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#Col#0;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Badge#0;n#div#0;n#Col#1;n#Row#0;n#Header#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#my-menu#0;n#Sider#0;n#Layout#0;n#Layout#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/page/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-996">
+          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/page/custom_mould/PublishModal.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/page/custom_mould/Index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="267" column="58" selection-start-line="267" selection-start-column="58" selection-end-line="267" selection-end-column="58" />
+        <state relative-caret-position="354">
+          <caret line="126" column="83" selection-start-line="126" selection-start-column="83" selection-end-line="126" selection-end-column="83" />
         </state>
       </provider>
     </entry>

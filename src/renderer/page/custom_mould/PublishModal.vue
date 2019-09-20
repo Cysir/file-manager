@@ -105,7 +105,7 @@
         props:['publish','mouldContent','saveContent'],
         data(){
             return {
-                token:'http://10.30.18.157:8081/sys/file/upload?token='+getToken(),
+                token:'http://'+localStorage.getItem("serverIp")+':8081/sys/file/upload?token='+getToken(),
                 extraField:{
                     status:'',
                     statusO:['已完成','进行中','未开始'],
@@ -124,7 +124,7 @@
         methods:{
             downloadFile(){
                 if (this.extraField.url!==""){
-                    window.location.href="http://10.30.18.157:8081/sys/file/download?"+"token="+getToken()+"&filePath="+this.extraField.url
+                    window.location.href="http://"+localStorage.getItem("serverIp")+":8081/sys/file/download?"+"token="+getToken()+"&filePath="+this.extraField.url
                     this.$Message.info('下载成功！');
                 }else {
                     this.$Message.info('没有附件！');

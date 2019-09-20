@@ -2,7 +2,6 @@
     <div class="custom_content">
 
         <div>
-
             <PublishModal ref="alert" :publish="isPublish" @new_data="newData" @change="x=>isPublish =x"
                           :mould-content="mouldContent"/>
         </div>
@@ -49,6 +48,15 @@
             return {
                 my_data:{},
                 my_col :[
+                    {
+                        type: 'index',
+                        width: 60,
+                        align: 'center'
+                    },
+                    {
+                        title: '等级',
+                        key: 'gradeState'
+                    },
                     {
                         title: '接收人',
                         key: 'sysName'
@@ -146,15 +154,7 @@
                     totalPage: 0
                 },
                 tableCol: [
-                    {
-                        type: 'index',
-                        width: 60,
-                        align: 'center'
-                    },
-                    {
-                        title: '等级',
-                        key: 'gradeState'
-                    },
+
 
                 ],
                 path: '未定义', isPublish: false, total: 0, mouldForm: {
@@ -265,6 +265,7 @@
                     return {title:v.displayName,key:v.fieldName};
                 });
                 console.log('啊啊》',coustom_col)
+                this.tableCol = [];
                 this.tableCol.push(...coustom_col,...this.my_col);
                 this.mouldForm.menuId = mouldTemp.data.menuId;
                 this.mouldForm.templateFieldId = mouldTemp.data.id;
