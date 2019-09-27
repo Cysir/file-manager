@@ -11,7 +11,7 @@
                         <FormItem label="备注" prop="remark">
                             <Input v-model="roleForm.remark"></Input>
                         </FormItem>
-                        <FormItem label="角色分类" prop="grade">
+                        <FormItem v-if="false" label="角色分类" prop="grade">
                             <Select v-model="roleForm.grade">
                                 <Option v-for="grade in roleForm.gradeList" :value="grade.id" :key="grade.id">{{grade.name}}</Option>
                             </Select>
@@ -21,12 +21,11 @@
                                 <Option v-for="dept in roleForm.deptList" :value="dept.deptId" :key="dept.deptId">{{dept.name}}</Option>
                             </Select>
                         </FormItem>
-                        <FormItem v-if="false" label="拥有部门" prop="deptId">
 
+                        <FormItem label="拥有部门">
                             <Tree ref="o_dept" :data="roleForm.deptIdListTree" show-checkbox></Tree>
-
-
                         </FormItem>
+
                         <FormItem label="拥有菜单" prop="deptId">
                             <Tree ref="o_menu" :data="roleForm.menuIdListTree" show-checkbox></Tree>
                         </FormItem>
@@ -122,27 +121,30 @@
             //创建角色
             saveRole(){
                 console.log('角色表单',this.roleForm);
-                // let dept = this.$refs.o_dept.getCheckedNodes()
+                let dept = this.$refs.o_dept.getCheckedNodes()
                 let menu = this.$refs.o_menu.getCheckedNodes()
+                console.log('部门，',dept);
                 let menuIdList = menu.map((value)=>{
                     if (value.title == '全部'){
                         return -1;
                     }
                     return value.id;
                 })
-                // let deptIdList = dept.map((value)=>{
-                //     if (value.title == '全部'){
-                //         return -1;
-                //     }
-                //     return value.id;
-                // });
-                // menuIdList.splice(menuIdList.findIndex(value => {return value == -1}),1)
+                let deptIdList = dept.map((value)=>{
+                    if (value.title == '全部'){
+                        return -1;
+                    }
+                    return value.id;
+                });
+                menuIdList.splice(menuIdList.findIndex(value => {return value == -1}),1)
+
+
                 if (menuIdList.findIndex(v=>{return v == -1})!=-1){
                     menuIdList.splice(menuIdList.findIndex(value => {return value == -1}),1)
                 }
-                // deptIdList.splice(deptIdList.findIndex(value => {return value == -1}),1)
-
-                roleApi.saveRoleApi({grade:this.roleForm.grade,roleName:this.roleForm.roleName,deptId:this.roleForm.deptId,remark:this.roleForm.remark,
+                deptIdList.splice(deptIdList.findIndex(value => {return value == -1}),1)
+                console.log('aaaaaaaaaaaaaaaaaa>',deptIdList)
+                roleApi.saveRoleApi({deptIdList,roleName:this.roleForm.roleName,deptId:this.roleForm.deptId,remark:this.roleForm.remark,
                 menuIdList
                 }).then(resp=>{
                     console.log('角色创建成功');
@@ -155,7 +157,7 @@
             //创建角色
             updateRole(){
                 console.log('角色表单',this.roleForm);
-                // let dept = this.$refs.o_dept.getCheckedNodes()
+                let dept = this.$refs.o_dept.getCheckedNodes()
                 let menu = this.$refs.o_menu.getCheckedNodes()
                 let menuIdList = menu.map((value)=>{
                     if (value.title == '全部'){
@@ -163,22 +165,23 @@
                     }
                     return value.id;
                 });
-                // let deptIdList = dept.map((value)=>{
-                //     if (value.title == '全部'){
-                //         return -1;
-                //     }
-                //     return value.id;
-                // });
+                let deptIdList = dept.map((value)=>{
+                    if (value.title == '全部'){
+                        return -1;
+                    }
+                    return value.id;
+                });
                 console.log('更新角色,>>>>>>>>',menuIdList);
                 if (menuIdList.findIndex(v=>{return v == -1})!=-1){
                     menuIdList.splice(menuIdList.findIndex(value => {return value == -1}),1)
                 }
-                // if (deptIdList.findIndex(v=>{return v == -1})!=-1){
-                //     deptIdList.splice(deptIdList.findIndex(value => {return value == -1}),1)
-                // }
+                if (deptIdList.findIndex(v=>{return v == -1})!=-1){
+                    deptIdList.splice(deptIdList.findIndex(value => {return value == -1}),1);
+
+                }
 
 
-                roleApi.updateRoleApi({grade:this.roleForm.grade,roleId:this.roleForm.roleId,roleName:this.roleForm.roleName,deptId:this.roleForm.deptId,remark:this.roleForm.remark,
+                roleApi.updateRoleApi({deptIdList,roleId:this.roleForm.roleId,roleName:this.roleForm.roleName,deptId:this.roleForm.deptId,remark:this.roleForm.remark,
                     menuIdList
                 }).then(resp=>{
                     console.log('角色修改成功');
