@@ -2,7 +2,7 @@
 
     <Modal v-model="isCreate" :closable="false" :footer-hide="true">
         <Form :model="userContent" :rules="ruleInline" ref="formInline" :label-width="80" style="width: 400px">
-            <FormItem label="用户名" prop="username" :rules="ruleInline.user">
+            <FormItem label="账号" prop="username" :rules="ruleInline.user">
                 <Input type="text" v-model="userContent.username"></Input>
             </FormItem>
             <FormItem label="姓名" prop="name">

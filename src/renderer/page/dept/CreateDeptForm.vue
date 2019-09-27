@@ -69,7 +69,7 @@
         },
         methods: {
             init() {
-                deptApi.deptListApi().then(resp=>{
+                deptApi.deptSelectApi().then(resp=>{
                     this.deptList = resp.data;
                 }).catch(err=>{
 

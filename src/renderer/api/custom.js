@@ -7,7 +7,7 @@ export function mouldDataList(data) {
     return request.post("/sys/Templatedata/list",data)
 }
 export function userListApi() {
-    return request.get("/sys/user/list");
+    return request.get("/sys/user/querylist");
 
 }
 export function uploadFile() {
