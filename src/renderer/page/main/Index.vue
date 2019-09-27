@@ -22,7 +22,7 @@
                         <Dropdown  trigger="click" style="margin-left: 20px"  @on-click="userClick">
                             <a href="javascript:void(0)">
                                 <Avatar style="color: #f56a00;background-color: #fde3cf">
-                                    U
+                                    {{userModel.name.charAt(userModel.name.length-1)}}
                                 </Avatar>
                                 <!--<Icon type="ios-arrow-down"></Icon>-->
                             </a>
@@ -74,7 +74,9 @@
 
         if (data.list && data.list.length != 0) {
 
-            return h("Submenu", {props: {name: index}}, [h("template", {slot: "title"}, data.name), data.list.map((v, sindex) => {
+            return h("Submenu", {props: {name: index},style:{
+                background:'#515a6e'
+                }}, [h("template", {slot: "title"}, data.name), data.list.map((v, sindex) => {
 
                 return test(h, v, index + '-' + (sindex));
 
@@ -87,7 +89,9 @@
                 path = data.url;
             }
             // console.log('导航菜单路径：'+path,index)
-            return h('MenuItem', {props: {name: path, to: path},}, data.name);
+            return h('MenuItem', {props: {name: path, to: path},style:{
+                backgroundColor:'#363e4f'
+                }}, data.name);
         }
     }
 
@@ -109,8 +113,8 @@
         },
         render(createElement, context) {
 
-            // console.log('context',context);
-
+            console.log('context',context);
+            context.data.props = {theme:'dark'};
             return createElement('Menu', context.data,
                 context.props.menuData.map(
                     (v, index) => {
@@ -217,11 +221,11 @@
 
                     }
             },
-        mounted() {
+        async mounted() {
 
             console.log('首页路由', this.$route.path);
-            getMenu().then(resp => {
-                // console.log('获取菜单',resp);
+            try{
+                let resp =await getMenu();
                 if (resp.code == 0) {
                     this.navMenu = resp.menuList;
                     this.$nextTick(() => {
@@ -229,9 +233,14 @@
                         this.$refs.menu.updateActiveName();
                     })
                 }
-            }).catch(err => {
-                console.log('发生错误', err);
-            });
+            }
+            catch (e) {
+                if (e.message.includes("timeout")){
+                    this.$router.replace("/login");
+                }
+                console.log('读取菜单时发生错误',e.message)
+                return ;
+            }
             this.$store.dispatch("mine/getInfo").then(resp => {
                 // console.log('用户数据得到》》》')
                 let userInfo = this.$store.getters["mine/info"];

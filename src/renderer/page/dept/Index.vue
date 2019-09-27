@@ -88,7 +88,9 @@
             init(){
                 deptApi.deptListApi().then(resp=>{
                     console.log('部门列表',resp);
-                    this.table.deptData = resp.data;
+                    this.table.deptData = resp.data.sort((a,b)=>{
+                       return a.orderNum - b.orderNum;
+                    });
                 }).catch(error=>{
                    console.log('error',error);
                 });

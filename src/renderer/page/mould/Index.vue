@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 100%;padding: 10px">
+    <div style="height: 100%;margin: 10px">
         <Modal width="800" :mask-closable=false v-model="create" :footer-hide=true class-name="vertical-center-modal">
 
             <div class="editField" style="font-size: 15px;padding-right: 5px">

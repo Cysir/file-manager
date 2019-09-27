@@ -20,6 +20,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
+    service.baseURL ="http://"+ localStorage.getItem("serverIp")+":8081";
     Spin.show();
     // do something before request is sent
     // console.log('发送请求成功拦截');

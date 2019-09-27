@@ -104,7 +104,12 @@
                 }
                 //更新数据
                 else {
+                    deptApi.deptUpdateApi(this.deptContent).then(resp=>{
+                        this.sign.isShow = false;
+                        this.$emit('update');
+                    }).catch(error=>{
 
+                    });
                 }
             }
 
