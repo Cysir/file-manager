@@ -157,7 +157,8 @@
 
 
                 ],
-                path: '未定义', isPublish: false, total: 0, mouldForm: {
+                path: '未定义', isPublish: false, total: 0,
+                mouldForm: {
                     page: '0', limit: '10', templateFieldId: 0, menuId: 0
                 }
             }

@@ -38,6 +38,9 @@
             <Table border :columns="tableColumn" :data="roleData">
 
             </Table>
+            <div style="margin-top: 20px">
+                <Page :total="recData.total" show-sizer @on-change="pageChange" @on-page-size-change="limitChange"/>
+            </div>
         </Content>
     </Layout>
 </template>
@@ -51,6 +54,15 @@
         data(){
             return {
                 isUpdate:false,
+                mouldForm: {
+                    page: '0', limit: '10'
+                },
+                recData: {
+                    total: 0,
+                    currPage: 0,
+                    list: [],
+                    totalPage: 0
+                },
                 roleForm:{
                     roleName:'',
                     deptId:'',
@@ -284,11 +296,22 @@
                     return {title:value.title,id:value.id,checked:false}
                 });
             },
+            pageChange(page) {
+                this.mouldForm.page = page.toString();
+                this.loadRoles();
+            },
+            limitChange(limit) {
+                this.mouldForm.limit = limit.toString();
+                this.loadRoles();
+            },
             loadRoles(){
 
-                roleApi.queryRoleApi().then(resp=>{
-                    this.roleData = resp.list;
+                roleApi.queryRoleApi(this.mouldForm).then(resp=>{
+                    this.roleData = resp.page.list;
                     console.log(TAG,resp)
+                    this.recData.total = resp.page.totalCount;
+                    this.recData.currPage = resp.page.currPage;
+                    this.recData.totalPage = resp.page.totalPage;
                 }).catch(error=>{
                     console.log(TAG,error)
                 })
