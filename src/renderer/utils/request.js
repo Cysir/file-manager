@@ -12,7 +12,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: "http://"+ localStorage.getItem("serverIp")+":8081", // url = base url + request url
+  baseURL: "http://"+ localStorage.getItem("serverIp")+":8088", // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 10000 // request timeout
 })
@@ -20,7 +20,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    service.baseURL ="http://"+ localStorage.getItem("serverIp")+":8081";
+    service.baseURL ="http://"+ localStorage.getItem("serverIp")+":8088";
     Spin.show();
     // do something before request is sent
     // console.log('发送请求成功拦截');
@@ -81,6 +81,9 @@ service.interceptors.response.use(
     Spin.hide()
     Message.error({content:"与服务器失去连接"});
     // Modal.$Modal.error({);
+    Modal.confirm({title:"与服务器失去连接,是否回到登录页面",onOk(){
+      router.replace('/login')
+    }});
     console.log('err' + error) // for debug
     return Promise.reject(error)
   }

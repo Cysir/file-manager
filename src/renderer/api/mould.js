@@ -1,7 +1,7 @@
 import request from '../utils/request'
 
 export function getMenuList() {
-    return request.post("/sys/templatefield/querymenulist")
+    return request.post("/sys/menu/menulist")
 }
 export function getEmp() {
     return request.get("/sys/dept/list")
