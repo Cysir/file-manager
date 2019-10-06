@@ -16,7 +16,10 @@ const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 10000 // request timeout
 })
-
+service.reload = function(){
+  service.defaults.baseURL = "http://"+ localStorage.getItem("serverIp")+":8088";
+  console.log("重新加载url",service.defaults.baseURL)
+}
 // request interceptor
 service.interceptors.request.use(
   config => {

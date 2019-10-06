@@ -28,8 +28,8 @@ export function roleListApi() {
     params:{pageSize:100}
   })
 }
-export function userListApi() {
-  return request.get('/sys/user/list')
+export function userListApi(data) {
+  return request.get('/sys/user/list',{params: data})
 }
 
 export function userSaveApi(data) {

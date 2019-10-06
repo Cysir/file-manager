@@ -69,7 +69,7 @@
         },
         methods: {
             init() {
-                deptApi.deptListApi().then(resp=>{
+                deptApi.deptSelectApi().then(resp=>{
                     this.deptList = resp.data;
                 }).catch(err=>{
 
@@ -84,8 +84,8 @@
             update(data) {
                 this.sign.isCreate = false;
                 this.sign.isShow = true;
-                this.init();
                 this.deptContent = data;
+                this.init();
             },
             async submit(){
                 console.log('部门表单数据',this.deptContent);
