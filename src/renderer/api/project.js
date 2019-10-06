@@ -3,7 +3,7 @@ export function applySaveApi(data){
     return request.post("/sys/applyfor/save",data)
 }
 export function applyListApi(param){
-    return request.get("/sys/applyfor/list")
+    return request.get("/sys/applyfor/list",{params:param})
 }
 export function applyInfoApi(id){
     return request.get("/sys/applyfor/info/"+id)
