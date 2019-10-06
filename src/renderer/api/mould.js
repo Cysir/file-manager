@@ -1,10 +1,10 @@
 import request from '../utils/request'
 
 export function getMenuList() {
-    return request.post("/sys/templatefield/querymenulist")
+    return request.post("/sys/menu/menulist")
 }
 export function getEmp() {
-    return request.get("/sys/dept/list")
+    return request.get("/sys/dept/deptlist")
 }
 export function saveMould(data) {
     return request.post("/sys/templatefield/save",data)

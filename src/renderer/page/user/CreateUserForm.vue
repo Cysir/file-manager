@@ -2,7 +2,7 @@
 
     <Modal v-model="isCreate" :closable="false" :footer-hide="true">
         <Form :model="userContent" :rules="ruleInline" ref="formInline" :label-width="80" style="width: 400px">
-            <FormItem label="用户名" prop="username" :rules="ruleInline.user">
+            <FormItem label="账号" prop="username" :rules="ruleInline.user">
                 <Input type="text" v-model="userContent.username"></Input>
             </FormItem>
             <FormItem label="姓名" prop="name">
@@ -23,7 +23,7 @@
             </FormItem>
 
             <FormItem label="角色" prop="roleIdList" >
-                <Select v-model="userContent.roleIdList" @on-open-change="loadRole">
+                <Select v-model="userContent.roleIdList" @on-open-change="loadRole" multiple>
                     <Option v-for="item in defaultParam.roles" :label="item.roleName" :value="item.roleId"></Option>
                 </Select>
             </FormItem>
@@ -96,7 +96,7 @@
                         {required: true, message: '请输入电话', trigger: 'blur'}
                     ],
                     roleIdList: [
-                        {required: true,type:'number', message: '请选择角色', trigger: 'change'}
+                        {required: true,type:'array', message: '请选择角色', trigger: 'change'}
                     ],
                     status: [
                         {required: true,type:'number', message: '请选择用户状态', trigger: 'change'}
@@ -132,7 +132,7 @@
                 }
                 let content = this.userContent;
                 if(this.isUpdate){
-                    content.roleIdList = [content.roleIdList];
+                    content.roleIdList = [...content.roleIdList];
                     userApi.userUpdateApi(content).then(resp=>{
                         console.log('修改成功');
                         this.isCreate = false;
@@ -140,7 +140,7 @@
                         console.log('修改失败');
                     })
                 }else{
-                    content.roleIdList = [content.roleIdList];
+                    content.roleIdList = [...content.roleIdList];
                     userApi.userSaveApi(content).then(resp=>{
                         console.log('保存成功');
                         this.isCreate = false;
@@ -155,7 +155,7 @@
                 if (open && this.defaultParam.roles.length<=0){
                     roleApi.queryRoleApi().then(resp=>{
                         console.log('角色列表',resp)
-                        this.defaultParam.roles = resp.list;
+                        this.defaultParam.roles = resp.page.list;
                     }).catch(err=>{
                         console.log('加载角色失败',err);
                     })

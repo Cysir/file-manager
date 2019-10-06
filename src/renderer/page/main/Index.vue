@@ -1,20 +1,29 @@
 <template>
     <Layout style="height: 100%">
+        <ApplyProject ref="myApply"> </ApplyProject>
         <Header style="background: rgba(1,157,141,0.87)">
             <Row type="flex" justify="space-between" class="code-row-bg">
-                <Col span="6">
+                <Col span="16">
                     <h2 style="color: white;">重点工作任务智能助手</h2>
 
 
                 </Col>
 
-                <Col span="4">
-                    <div style="position:relative;">
+                <Col span="8">
+                    <div style="float: right">
+                        <Tooltip placement="top"  offset="10" content="申请项目">
+<!--                            <Icon type="md-add-circle" />-->
+                            <Icon type="md-add-circle" @click="toApply" color="white" size="26" style="margin-left: 20px"></Icon>
+                        </Tooltip>
+                        <Tooltip placement="top" offset="10" content="刷新">
+                            <Icon type="md-refresh" color="white" size="26" @click="refresh"  style="margin-left: 20px"></Icon>
+                        </Tooltip>
 
-                        <Icon type="md-refresh" color="white" size="26" @click="refresh"  style="margin-left: 20px"></Icon>
-                        <Badge :count="number" style="margin-left: 20px" :offset="[20,0]">
-                            <Icon type="ios-notifications-outline" color="white" size="30"></Icon>
-                        </Badge>
+                        <Tooltip placement="top" offset="10" content="提醒">
+                            <Badge :count="number" style="margin-left: 20px" :offset="[20,0]">
+                                <Icon type="ios-notifications-outline" color="white" size="30"></Icon>
+                            </Badge>
+                        </Tooltip>
 
                         <!--<Avatar style="color: #f56a00;background-color: #fde3cf;position: absolute;right: 0px;top:15px">-->
                             <!--{{userModel.name}}-->
@@ -69,16 +78,18 @@
 
 <script>
     import Vue from 'vue'
-
-    function test(h, data, index) {
+    import ApplyProject from './component/ApplyProject'
+    // var aplha = 1;
+    function test(h, data, index,aplha) {
 
         if (data.list && data.list.length != 0) {
 
             return h("Submenu", {props: {name: index},style:{
-                background:'#515a6e'
+                background:'#515a6e',
+                    // background: "rgba(1,157,141,0.87)"
                 }}, [h("template", {slot: "title"}, data.name), data.list.map((v, sindex) => {
-
-                return test(h, v, index + '-' + (sindex));
+                let a = aplha - 0.2;
+                return test(h, v, index + '-' + (sindex),a);
 
             })])
         } else {
@@ -90,7 +101,7 @@
             }
             // console.log('导航菜单路径：'+path,index)
             return h('MenuItem', {props: {name: path, to: path},style:{
-                backgroundColor:'#363e4f'
+                backgroundColor:'rgba(1,157,141,'+aplha+')'
                 }}, data.name);
         }
     }
@@ -115,13 +126,16 @@
 
             console.log('context',context);
             context.data.props = {theme:'dark'};
-            return createElement('Menu', context.data,
-                context.props.menuData.map(
+            // context.data.style={
+            //
+            // }
+            return createElement('Menu', context.data,[context.props.menuData.map(
                     (v, index) => {
                         // console.log(v,index);
-                        return test(createElement, v, index);
+                        return test(createElement, v, index,1);
                     }
-                )
+                )]
+
             );
 
         }
@@ -131,6 +145,7 @@
 
     export default {
         name: "Index",
+              components: {ApplyProject},
         data() {
             return {
                 number:0,
@@ -229,8 +244,10 @@
                 if (resp.code == 0) {
                     this.navMenu = resp.menuList;
                     this.$nextTick(() => {
-                        this.$refs.menu.updateOpened();
-                        this.$refs.menu.updateActiveName();
+                        // console.log(this.$refs['menu']);
+                        // console.log('aaaaaaa>>>>>>',this.$refs.menu);
+                        // this.$refs.menu.updateOpened();
+                        // this.$refs.menu.updateActiveName();
                     })
                 }
             }
@@ -241,14 +258,17 @@
                 console.log('读取菜单时发生错误',e.message)
                 return ;
             }
+            let resp =await this.$store.dispatch("role/getRole");
+            console.log('权限数据信息',resp);
             this.$store.dispatch("mine/getInfo").then(resp => {
                 // console.log('用户数据得到》》》')
                 let userInfo = this.$store.getters["mine/info"];
                 this.userModel = userInfo;
                 console.log('用户数据>>>>', userInfo)
+                console.log('getters获得数据',this.$store.getters.token)
                 if ('WebSocket' in window) {
                     console.log("bbbbbbbbbbbbbbbbb")
-                    this.websocket = new WebSocket('ws://'+localStorage.getItem("serverIp")+':8081/myWebSocket/websocket/'+userInfo.userId);
+                    this.websocket = new WebSocket('ws://'+localStorage.getItem("serverIp")+':8088/myWebSocket/websocket/'+userInfo.userId);
                     this.initWebSocket();
                     console.log("aaaaaaaaaaaaaaaaa")
                 } else {
@@ -262,6 +282,10 @@
             this.onbeforeunload()
         },
         methods: {
+            toApply(){
+                console.log("aaaaaaaaaaa>点击申请项目");
+                this.$refs.myApply.insert();
+            },
             userClick(event){
                 // alert(event);
                 if (event == 'logout'){
@@ -402,6 +426,20 @@
     }
     /deep/.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):after{
         background: rgba(1,157,141,0.87);
+    }
+    /*打开子菜单时的色彩*/
+    /deep/ .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title{
+        background: rgba(1,157,141,1);
+    }
+    /*/deep/ .ivu-menu-dark,.ivu-menu-submenu,.ivu-menu{*/
+    /*    background: rgba(1,157,141,0.87);*/
+    /*}*/
+    /*选中时的色彩*/
+    /deep/ .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover{
+        background: rgba(1,157,141,0.5)!important;
+    }
+    /deep/ .ivu-menu-item:hover{
+        background: red;
     }
     .demo-badge {
         width: 36px;
