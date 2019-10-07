@@ -14,4 +14,7 @@ export function applyUpdateApi(data){
 export function applyDeleteApi(id){
     return request.get("/sys/applyfor/delete",{params:{id}})
 }
-export default{applySaveApi,applyListApi,applyInfoApi,applyDeleteApi,applyUpdateApi}
+export function applyMenuApi() {
+    return request.get("/sys/menu/list");
+}
+export default{applySaveApi,applyListApi,applyInfoApi,applyDeleteApi,applyUpdateApi,applyMenuApi}

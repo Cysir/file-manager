@@ -39,7 +39,10 @@ let tray = null;
 function createTray() {
 console.log("加载图片地址")
   // tray = new Tray('C:\\Users\\zcy\\Documents\\ZCY_Project\\B\\file-manager\\build\\icons\\icon.ico');
-  let mpath = path.resolve(__dirname,'icons/icon.ico')
+  let mpath = path.join(__dirname, '../../static/icons/icon.ico')
+  if(process.env.NODE_ENV !== 'development'){
+    mpath = path.join(__dirname,'./static/icons/icon.ico')
+  }
   console.log("测试地址,",mpath)
   tray = new Tray(mpath);
 
@@ -49,6 +52,7 @@ console.log("加载图片地址")
   tray.setToolTip('重点工作任务智能助手')
   tray.setContextMenu(contextMenu)
   tray.on('click', () => {
+
     if (mainWindow.isVisible()) {
       mainWindow.hide();
       mainWindow.setSkipTaskbar(false);
@@ -70,4 +74,11 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+//接收弹窗
+const { ipcMain } = require('electron')
+ipcMain.on('indexMessage', (event, arg) => {
+  console.log('aaa',arg) // prints "ping"
+  tray.displayBalloon({title:"您有一条新信息",content:arg})
+  // event.reply('asynchronous-reply', 'pong')
 })
