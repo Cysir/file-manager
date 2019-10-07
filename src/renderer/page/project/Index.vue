@@ -60,8 +60,8 @@
                             render:(h,params)=>{
                                 let status = '';
                                 switch (params.row.status) {
-                                    case "1":status = "拒绝";break;
-                                    case "0":status = "同意";break;
+                                    case 1:status = "拒绝";break;
+                                    case 0:status = "同意";break;
                                     default:status = "未处理";break;
                                 }
                                 return h('div',status)

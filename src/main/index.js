@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow,Menu,Tray } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -28,8 +28,32 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  mainWindow.on('close', (event) => {
+    mainWindow.hide();
+    mainWindow.setSkipTaskbar(true);
+    event.preventDefault();
+  });
+  createTray()
 }
+let tray = null;
+function createTray() {
 
+  tray = new Tray('C:\\Users\\zcy\\Documents\\ZCY_Project\\B\\file-manager\\build\\icons\\icon.ico');
+  const contextMenu = Menu.buildFromTemplate([
+    { label: '退出', click: () => { mainWindow.destroy(); app.quit(); } },
+  ])
+  tray.setToolTip('重点工作任务智能助手')
+  tray.setContextMenu(contextMenu)
+  tray.on('click', () => {
+    if (mainWindow.isVisible()) {
+      mainWindow.hide();
+      mainWindow.setSkipTaskbar(false);
+    } else {
+      mainWindow.show();
+      mainWindow.setSkipTaskbar(true);
+    }
+  })
+}
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
