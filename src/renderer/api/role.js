@@ -1,6 +1,6 @@
 import request from '../utils/request'
 export function queryRoleApi() {
-    return request.get("/sys/role/select")
+    return request.get("/sys/role/list")
 }
 export function roleInfoApi(id) {
     return request.get('/sys/role/info/'+id)

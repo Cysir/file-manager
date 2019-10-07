@@ -155,7 +155,7 @@
                 if (open && this.defaultParam.roles.length<=0){
                     roleApi.queryRoleApi().then(resp=>{
                         console.log('角色列表',resp)
-                        this.defaultParam.roles = resp.list;
+                        this.defaultParam.roles = resp.page.list;
                     }).catch(err=>{
                         console.log('加载角色失败',err);
                     })

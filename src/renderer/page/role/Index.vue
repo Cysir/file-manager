@@ -287,7 +287,7 @@
             loadRoles(){
 
                 roleApi.queryRoleApi().then(resp=>{
-                    this.roleData = resp.list;
+                    this.roleData = resp.page.list;
                     console.log(TAG,resp)
                 }).catch(error=>{
                     console.log(TAG,error)
