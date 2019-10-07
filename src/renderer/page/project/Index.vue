@@ -103,25 +103,22 @@
                                         },on:{
                                             click(){
                                                 console.log('当前点击的数据',params.row);
-                                                self.$Modal.confirm({title:"提示：此操作为 同意",content:'确认同意用户['+params.row.applyForIdName+']申请项目['+params.row.name+']吗?',onOk(){
-                                                        // let id = params.row.userId;
-                                                        // let userId = [id];
-                                                        // console.log('啊啊啊',param);
-                                                        // userApi.userDeleteApi({userId}).then(resp=>{
-                                                        //     console.log('删除成功');
-                                                        //     self.$Message.success({content:'删除成功'})
-                                                        //     self.init()
-                                                        // }).catch(err=>{
-                                                        //     self.$Message.success({content:'删除失败'})
-                                                        // })
-                                                        params.row.status = 0;
-                                                        projectApi.applyUpdateApi(params.row).then(resp=>{
-                                                            self.$Message.success({content:"操作成功"})
-                                                            self.loadData()
-                                                        }).catch(error=>{
-                                                            self.$Modal.error({title:"操作失败",content:JSON.stringify(error)})
-                                                        })
-                                                    }})
+                                                self.$Modal.confirm({render:h=>{
+                                                    return h('div',[h('div',[h('Icon',{prop:{
+                                                        type:'md-add-circle'
+                                                        },
+                                                        type:'md-add-circle'
+                                                    }),h('span',{style: {'font-size':'16px'}},'确认同意用户['+params.row.applyForIdName+']申请项目['+params.row.name+']吗?')])])
+                                                    }});
+                                                // self.$Modal.confirm({title:"提示：此操作为 同意",content:'确认同意用户['+params.row.applyForIdName+']申请项目['+params.row.name+']吗?',onOk(){
+                                                //         params.row.status = 0;
+                                                //         projectApi.applyUpdateApi(params.row).then(resp=>{
+                                                //             self.$Message.success({content:"操作成功"})
+                                                //             self.loadData()
+                                                //         }).catch(error=>{
+                                                //             self.$Modal.error({title:"操作失败",content:JSON.stringify(error)})
+                                                //         })
+                                                //     }})
                                             }
                                         }
                                     },'同意'),
@@ -130,16 +127,6 @@
                                             },on:{
                                                 click(){
                                                     self.$Modal.confirm({title:"提示：此操作为 拒绝",content:'确认拒绝用户['+params.row.applyForIdName+']申请项目['+params.row.name+']吗?',onOk(){
-                                                            // let id = params.row.userId;
-                                                            // let userId = [id];
-                                                            // console.log('啊啊啊',param);
-                                                            // userApi.userDeleteApi({userId}).then(resp=>{
-                                                            //     console.log('删除成功');
-                                                            //     self.$Message.success({content:'删除成功'})
-                                                            //     self.init()
-                                                            // }).catch(err=>{
-                                                            //     self.$Message.success({content:'删除失败'})
-                                                            // })
                                                             params.row.status = 1;
                                                             projectApi.applyUpdateApi(params.row).then(resp=>{
                                                                 self.$Message.success({content:"操作成功"})

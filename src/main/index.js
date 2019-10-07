@@ -1,5 +1,5 @@
 import { app, BrowserWindow,Menu,Tray } from 'electron'
-
+let path = require('path')
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -37,8 +37,12 @@ function createWindow () {
 }
 let tray = null;
 function createTray() {
+console.log("加载图片地址")
+  // tray = new Tray('C:\\Users\\zcy\\Documents\\ZCY_Project\\B\\file-manager\\build\\icons\\icon.ico');
+  let mpath = path.resolve(__dirname,'icons/icon.ico')
+  console.log("测试地址,",mpath)
+  tray = new Tray(mpath);
 
-  tray = new Tray('C:\\Users\\zcy\\Documents\\ZCY_Project\\B\\file-manager\\build\\icons\\icon.ico');
   const contextMenu = Menu.buildFromTemplate([
     { label: '退出', click: () => { mainWindow.destroy(); app.quit(); } },
   ])
