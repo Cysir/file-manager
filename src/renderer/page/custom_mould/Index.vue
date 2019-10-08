@@ -81,7 +81,16 @@
                     {
                         title: '完成状态',
                         key: 'status'
-                    }, {
+                    },
+                    {
+                        title: '是否草稿',
+                        key: 'taskType',
+                        render:(h,param)=>{
+                            let text = param.row.taskType == 'temporary'?"草稿":"已送达"
+                            return h('div',text)
+                        }
+                    },
+                    {
                         title: '操作',
                         width: 100,
                         render: (h, params) => {
@@ -157,7 +166,8 @@
 
 
                 ],
-                path: '未定义', isPublish: false, total: 0, mouldForm: {
+                path: '未定义', isPublish: false, total: 0,
+                mouldForm: {
                     page: '0', limit: '10', templateFieldId: 0, menuId: 0
                 }
             }

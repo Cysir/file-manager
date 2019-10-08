@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <h2>菜单管理</h2>
-        <Modal class="my_modal" v-model="create" :mask-closable=false :footer-hide=true>
+    <div style="margin: 30px">
+         <Modal class="my_modal" v-model="create" :mask-closable=false :footer-hide=true>
             <Row>
                 <Col span="4">名称</Col>
                 <Col span="20">

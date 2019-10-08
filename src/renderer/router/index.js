@@ -24,11 +24,15 @@ export const constantRoutes = [
         path:'/custom_menu/:id',
         component:require('@/page/custom_mould/Index').default
       },
+
       {
         path:'/modules/sys/role.html',
         component:require('@/page/role/Index').default
       },
-
+      {
+        path:'/modules/sys/review.html',
+        component:require('@/page/project/Index').default
+      },
       {
         path:'/modules/sys/user.html',
         component:require('@/page/user/Index').default

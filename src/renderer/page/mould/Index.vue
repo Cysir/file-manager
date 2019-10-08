@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 100%;padding: 10px">
+    <div style="height: 100%;margin: 10px">
         <Modal width="800" :mask-closable=false v-model="create" :footer-hide=true class-name="vertical-center-modal">
 
             <div class="editField" style="font-size: 15px;padding-right: 5px">
@@ -324,7 +324,9 @@
                                     _this.create =true;
                                     _this.mouldTemplate.dept = params.row.deptId;
                                     _this.mouldTemplate.menu = params.row.menuId;
-                                    _this.mouldTemplate.common = [params.row.urls==1?'1':'0',params.row.status==1?'2':'0',params.row.gradeState==1?'1':'0'];
+                                    _this.mouldTemplate.name = params.row.templateName;
+                                    console.log("前置多选框值",params.row);
+                                    _this.mouldTemplate.common = [params.row.urls==1?'1':'0',params.row.status==1?'2':'0',params.row.gradeState==1?'3':'0'];
                                     console.log('加载多选按钮值：',_this.mouldTemplate.common);
                                 }
                                 }},'查看'),h('Button',{props:{type:'error',size:'small'},on:{

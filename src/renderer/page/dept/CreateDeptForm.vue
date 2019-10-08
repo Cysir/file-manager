@@ -84,8 +84,8 @@
             update(data) {
                 this.sign.isCreate = false;
                 this.sign.isShow = true;
-                this.init();
                 this.deptContent = data;
+                this.init();
             },
             async submit(){
                 console.log('部门表单数据',this.deptContent);
@@ -104,7 +104,12 @@
                 }
                 //更新数据
                 else {
+                    deptApi.deptUpdateApi(this.deptContent).then(resp=>{
+                        this.sign.isShow = false;
+                        this.$emit('update');
+                    }).catch(error=>{
 
+                    });
                 }
             }
 

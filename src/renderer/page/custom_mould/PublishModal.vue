@@ -75,7 +75,7 @@
             </Row>
             </FormItem>
         </Form>
-        <div v-if="dataContent.urls == 1">
+        <div v-if="dataContent.urls == 1" style="margin-bottom: 10px">
             <Row :gutter="gutter" class="my-row">
                 <Col span="3">附件</Col>
                 <Col span="18">
@@ -92,6 +92,7 @@
             </Row>
         </div>
         <Button type="primary" @click="sendData" ref="testForm">发送</Button>
+        <Button type="info" @click="saveData" ref="saveForm">保存草稿</Button>
     </Modal>
 </template>
 
@@ -105,7 +106,7 @@
         props:['publish','mouldContent','saveContent'],
         data(){
             return {
-                token:'http://'+localStorage.getItem("serverIp")+':8081/sys/file/upload?token='+getToken(),
+                token:'http://'+localStorage.getItem("serverIp")+':8088/sys/file/upload?token='+getToken(),
                 extraField:{
                     status:'',
                     statusO:['已完成','进行中','未开始'],
@@ -118,13 +119,15 @@
                 isCreate:true,
                 id:'',
             },
+                //任务类型【默认other】：temporary 不发送 临时任务； other 发送 非临时任务
+                taskType:"other",
                 gutter:10,this_publish:this.publish,dataContent:this.mouldContent?this.mouldContent:{},userList:null,
                 selectUser:[],testContent:this.saveContent?this.saveContent:{}}
         },
         methods:{
             downloadFile(){
                 if (this.extraField.url!==""){
-                    window.location.href="http://"+localStorage.getItem("serverIp")+":8081/sys/file/download?"+"token="+getToken()+"&filePath="+this.extraField.url
+                    window.location.href="http://"+localStorage.getItem("serverIp")+":8088/sys/file/download?"+"token="+getToken()+"&filePath="+this.extraField.url
                     this.$Message.info('下载成功！');
                 }else {
                     this.$Message.info('没有附件！');
@@ -176,7 +179,17 @@
                     this.userList = resp.page.list;
                 });
             },
+            async saveData(){
+                alert("保存到草稿")
+                this.taskType = "temporary"
+                await this.realSendData()
+            },
             async sendData(){
+                this.taskType = "other"
+                await this.realSendData()
+            },
+            //发送数据
+            async realSendData(){
                 console.log('模板内容',this.dataContent);
                 console.log('选择用户',this.selectUser);
                 let isValidate1 = await this.$refs.myform.validate();
@@ -211,7 +224,7 @@
                 console.log(userIds)
                 let menuId = this.dataContent.menuId;
                 let templateFieldId = this.dataContent.id;
-                let formData = {menuId,templateFieldId,userIds,templateData:JSON.stringify(data)};
+                let formData = {taskType:this.taskType,menuId,templateFieldId,userIds,templateData:JSON.stringify(data)};
 
                 if (this.dataContent.status==1){
                     formData.status = this.extraField.status
