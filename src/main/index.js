@@ -1,5 +1,5 @@
-import { app, BrowserWindow } from 'electron'
-
+import { app, BrowserWindow,Menu,Tray } from 'electron'
+let path = require('path')
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -28,8 +28,40 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  mainWindow.on('close', (event) => {
+    mainWindow.hide();
+    mainWindow.setSkipTaskbar(true);
+    event.preventDefault();
+  });
+  createTray()
 }
+let tray = null;
+function createTray() {
+console.log("加载图片地址")
+  // tray = new Tray('C:\\Users\\zcy\\Documents\\ZCY_Project\\B\\file-manager\\build\\icons\\icon.ico');
+  let mpath = path.join(__dirname, '../../static/icons/icon.ico')
+  if(process.env.NODE_ENV !== 'development'){
+    mpath = path.join(__dirname,'./static/icons/icon.ico')
+  }
+  console.log("测试地址,",mpath)
+  tray = new Tray(mpath);
 
+  const contextMenu = Menu.buildFromTemplate([
+    { label: '退出', click: () => { mainWindow.destroy(); app.quit(); } },
+  ])
+  tray.setToolTip('重点工作任务智能助手')
+  tray.setContextMenu(contextMenu)
+  tray.on('click', () => {
+
+    if (mainWindow.isVisible()) {
+      mainWindow.hide();
+      mainWindow.setSkipTaskbar(false);
+    } else {
+      mainWindow.show();
+      mainWindow.setSkipTaskbar(true);
+    }
+  })
+}
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
@@ -42,4 +74,11 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+//接收弹窗
+const { ipcMain } = require('electron')
+ipcMain.on('indexMessage', (event, arg) => {
+  console.log('aaa',arg) // prints "ping"
+  tray.displayBalloon({title:"您有一条新信息",content:arg})
+  // event.reply('asynchronous-reply', 'pong')
 })

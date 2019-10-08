@@ -1,5 +1,21 @@
 <template>
     <div class="user-content">
+        <Modal  v-model="project.isShow" :mask-closable="false" :footer-hide="true" @on-visible-change="visibleChange">
+            <div style="margin:0px 20px">
+                <div style="display: inline-block;position: relative;top:-3px">
+                    <Icon size="20" type="md-checkmark-circle" color="green"/>
+                </div>
+                <div style="font-size: 16px;line-height: 20px;display: inline-block">提示：确定同意用户【{{project.name}}】申请项目【{{project.projectName}}】吗</div>
+                <div style="font-size: 14px;margin-top: 20px">
+                    请选择项目所属菜单：
+                </div>
+                <Select v-model="project.menuIds" multiple style="margin-bottom: 20px">
+                    <Option v-for="item in project.allMenus" :value="item.menuId" :key="item.menuId">{{item.parentName+'--'+item.name}}</Option>
+                </Select>
+                <Button type="primary" @click="agreeApply">确认</Button>
+            </div>
+
+        </Modal>
         <Table style="margin-top: 5px" border :columns="table.tabHeader" :data="table.userData">
 
         </Table>
@@ -15,6 +31,14 @@
         name: "Index",
         data(){
             return {
+                project:{
+                    data:null,
+                    allMenus:[],
+                    isShow:false,
+                    menuIds:[],
+                    name:'',
+                    projectName:''
+                },
                 mouldForm: {
                     page: '0', limit: '10'
                 },
@@ -60,8 +84,8 @@
                             render:(h,params)=>{
                                 let status = '';
                                 switch (params.row.status) {
-                                    case "1":status = "拒绝";break;
-                                    case "0":status = "同意";break;
+                                    case 1:status = "拒绝";break;
+                                    case 0:status = "同意";break;
                                     default:status = "未处理";break;
                                 }
                                 return h('div',status)
@@ -103,25 +127,16 @@
                                         },on:{
                                             click(){
                                                 console.log('当前点击的数据',params.row);
-                                                self.$Modal.confirm({title:"提示：此操作为 同意",content:'确认同意用户['+params.row.applyForIdName+']申请项目['+params.row.name+']吗?',onOk(){
-                                                        // let id = params.row.userId;
-                                                        // let userId = [id];
-                                                        // console.log('啊啊啊',param);
-                                                        // userApi.userDeleteApi({userId}).then(resp=>{
-                                                        //     console.log('删除成功');
-                                                        //     self.$Message.success({content:'删除成功'})
-                                                        //     self.init()
-                                                        // }).catch(err=>{
-                                                        //     self.$Message.success({content:'删除失败'})
-                                                        // })
-                                                        params.row.status = 0;
-                                                        projectApi.applyUpdateApi(params.row).then(resp=>{
-                                                            self.$Message.success({content:"操作成功"})
-                                                            self.loadData()
-                                                        }).catch(error=>{
-                                                            self.$Modal.error({title:"操作失败",content:JSON.stringify(error)})
-                                                        })
-                                                    }})
+                                                self.openAlert(params.row);
+                                                // self.$Modal.confirm({title:"提示：此操作为 同意",content:'确认同意用户['+params.row.applyForIdName+']申请项目['+params.row.name+']吗?',onOk(){
+                                                //         params.row.status = 0;
+                                                //         projectApi.applyUpdateApi(params.row).then(resp=>{
+                                                //             self.$Message.success({content:"操作成功"})
+                                                //             self.loadData()
+                                                //         }).catch(error=>{
+                                                //             self.$Modal.error({title:"操作失败",content:JSON.stringify(error)})
+                                                //         })
+                                                //     }})
                                             }
                                         }
                                     },'同意'),
@@ -130,16 +145,6 @@
                                             },on:{
                                                 click(){
                                                     self.$Modal.confirm({title:"提示：此操作为 拒绝",content:'确认拒绝用户['+params.row.applyForIdName+']申请项目['+params.row.name+']吗?',onOk(){
-                                                            // let id = params.row.userId;
-                                                            // let userId = [id];
-                                                            // console.log('啊啊啊',param);
-                                                            // userApi.userDeleteApi({userId}).then(resp=>{
-                                                            //     console.log('删除成功');
-                                                            //     self.$Message.success({content:'删除成功'})
-                                                            //     self.init()
-                                                            // }).catch(err=>{
-                                                            //     self.$Message.success({content:'删除失败'})
-                                                            // })
                                                             params.row.status = 1;
                                                             projectApi.applyUpdateApi(params.row).then(resp=>{
                                                                 self.$Message.success({content:"操作成功"})
@@ -151,7 +156,27 @@
 
                                                 }
                                             }},
-                                        '拒绝')])
+                                        '拒绝'), h('Button',{props:{
+                                                size:'small',type:'info'
+                                            },
+                                            style: {
+                                                'margin-right':'2px'
+                                            }
+                                            ,on:{
+                                                click(){
+
+
+                                                }
+                                            }},
+                                        '查看'),h('Button',{props:{
+                                                size:'small',type:'warning'
+                                            },on:{
+                                                click(){
+
+
+                                                }
+                                            }},
+                                        '延期')])
                             }
                         },
                     ],
@@ -162,6 +187,36 @@
             this.loadData()
         },
         methods:{
+            agreeApply(){
+                        this.project.data.status = 0
+                this.project.data.menuId = this.project.menuIds;
+                        projectApi.applyUpdateApi(this.project.data).then(resp=>{
+                            this.$Message.success({content:"操作成功"})
+                            this.project.isShow = false
+                            this.loadData()
+                        }).catch(error=>{
+                            this.$Modal.error({title:"操作失败",content:JSON.stringify(error)})
+                        })
+            },
+            openAlert(data){
+                this.project.data = data
+                this.project.isShow = true
+                console.log("data:",data)
+                this.project.name = data.applyForIdName
+                this.project.projectName = data.name
+            },
+            visibleChange(isShow){
+                if (isShow){
+                    projectApi.applyMenuApi().then(resp=>{
+                        this.project.allMenus = resp.data
+
+                    }).catch(error=>{
+                        this.$Modal.error({title:"获取菜单时发生错误",content:JSON.stringify(error)});
+                    })
+                }
+                this.project.isShow = isShow
+
+            },
             pageChange(page) {
                 this.mouldForm.page = page.toString();
                 this.loadData();

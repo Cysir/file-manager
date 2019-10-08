@@ -6,12 +6,14 @@
  */
 
 /* eslint-disable */
-
+const {app, BrowserWindow,Notification, Tray, Menu} = require('electron')
 // Install `electron-debug` with `devtron`
 require('electron-debug')({ showDevTools: true })
-
+let tray = null;
 // Install `vue-devtools`
 require('electron').app.on('ready', () => {
+
+
   let installExtension = require('electron-devtools-installer')
   installExtension.default(installExtension.VUEJS_DEVTOOLS)
     .then(() => {})
@@ -19,6 +21,8 @@ require('electron').app.on('ready', () => {
       console.log('Unable to install `vue-devtools`: \n', err)
     })
 })
+// BrowserWindow.setSkipTaskbar(true)
 
 // Require `main` process to boot app
+
 require('./index')

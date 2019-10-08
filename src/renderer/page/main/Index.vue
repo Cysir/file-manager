@@ -80,6 +80,7 @@
     import Vue from 'vue'
     import ApplyProject from './component/ApplyProject'
     // var aplha = 1;
+    const { ipcRenderer } = require('electron')
     function test(h, data, index,aplha) {
 
         if (data.list && data.list.length != 0) {
@@ -366,6 +367,13 @@
             },
             setOnmessageMessage(event) {
                 this.informationdata= event.data;
+                console.log("收到一条socket消息",event)
+                //消息提醒
+                let msg = JSON.parse(event.data)
+                if(Array.isArray(msg)){
+                    ipcRenderer.send("indexMessage",msg[0].message)
+                }
+
             },
             setOncloseMessage() {
                 this.data = "WebSocket连接关闭" + '   状态码：' + this.websocket.readyState;
