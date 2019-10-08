@@ -31,6 +31,12 @@ export function roleListApi() {
 export function userListApi(data) {
   return request.get('/sys/user/list',{params: data})
 }
+export function departmentApi() {
+      return request.post('/sys/dept/querydeptlist')
+}
+export function departmentPersonnelApi(data) {
+    return request.get('/sys/user/deptqueryuser',{params: data})
+}
 
 export function userSaveApi(data) {
   return request.post('/sys/user/save',data)
@@ -41,4 +47,4 @@ export function userUpdateApi(data) {
 export function userDeleteApi(data) {
   return request.post('/sys/user/delete',data)
 }
-export default {login,getInfo,logout,userListApi,roleListApi,userSaveApi,userUpdateApi,userDeleteApi}
+export default {login,getInfo,logout,userListApi,departmentApi,departmentPersonnelApi,roleListApi,userSaveApi,userUpdateApi,userDeleteApi}

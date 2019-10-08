@@ -4,6 +4,13 @@
     <Button type="success" @click="toCreate">
         添加管理员
     </Button>
+    <Button type="success" >
+        选择部门：
+    </Button>
+        <Select v-model="model1"  type="success" style="width:200px" @on-open-change="recipientlick" @on-change="uploadingdata" >
+            <Option v-for="item in cityList" :value="item.deptId" :key="item.deptId">{{ item.label }}</Option>
+        </Select>
+
     <Table style="margin-top: 5px" border :columns="table.tabHeader" :data="table.userData">
 
     </Table>
@@ -23,7 +30,8 @@
         components: {CreateUserForm},
         data(){
             return {
-
+                cityList:[],
+                model1:'',
                 table:{
                     userData:[],
                     tabHeader:[      {
@@ -159,6 +167,55 @@
                 }).catch(error=>{
                     console.log('发生错误')
                 });
+            },
+            recipientlick(){
+                    console.log("www")
+                userApi.departmentApi().then(resp=>{
+                            console.log(resp.data)
+                            this.cityList=resp.data
+                    console.log(this.cityList)
+                    console.log(this.model1)
+                }).catch(error=>{
+                    console.log('发生错误')
+                });
+            },
+            uploadingdata(){
+                console.log("测试选择框内容")
+                console.log(this.model1)
+                let data1=this.mouldForm
+                let page= '0'
+                let limit= '10'
+                let deptId=this.model1
+                let data={page,limit,deptId}
+                userApi.departmentPersonnelApi(data).then(resp=>{
+                    console.log(resp.page)
+                    console.log('用户列表',resp);
+                    this.recData.totalPage = resp.page.totalPage;
+                    this.recData.currPage = resp.page.currPage;
+                    this.recData.total = resp.page.totalCount;
+                    let role = [...this.$store.getters['role/roleList']];
+                    console.log('权限查看，',role);
+                    this.table.userData = resp.page.list.map(v=>{
+                        console.log('缺陷列表,',v.roleIdList);
+                        v.roleIdList = v.roleIdList.map(_v=>{
+                            let name = null;
+                            role.forEach(vv=>{
+                                if (vv.roleId == _v) {
+                                    name =  vv.roleName;
+                                }
+                            })
+                            return name
+                        });
+                        let q = '';
+                        v.roleIdList.forEach(vv=>{
+                            q += vv+"\n"
+                        })
+                        v.roleIdList = q
+                        return v;
+                    });
+                }).catch(error=>{
+                    console.log("发生错误")
+                })
             },
             init(){
                 this.loadData();
