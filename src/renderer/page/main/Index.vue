@@ -162,6 +162,7 @@
                 informationstatus:'',
                 newList:[],
                 newListtem:[],
+                informationTime:''
             }
         },
         computed: {
@@ -181,57 +182,105 @@
                         }else {
 
                             console.log("标记"+this.informationdata)
-                            let data=[]
-                            data=this.informationdata
-                            let str=data.replace(/=/g,":")
-                            let strnew=str.split('(:)')
+                           /* let data=this.informationdata
 
-                            console.log(strnew)
-                            for (let i=0;i<strnew.length;i++){
-                                console.log(strnew[i])
-                                /* let str1=strnew[i].split('{')
-                                 let  str2=strnew[i].split('}')
-                                 console.log(str2)*/
-                                let templatedata=JSON.parse(strnew[1])
-                                console.log(templatedata)
-                                for (let i=0;i<templatedata.length;i++) {
-                                    console.log(templatedata[i])
-                                }
-                                let data=JSON.parse(strnew[0])
-                                console.log(strnew[0])
-                                this.creationPerson=data.creationPerson
-                                this.informationgradeState=data.gradeState
-                                this.informationstatus=data.status
-                                console.log(data)
-                                console.log(this.creationPerson)
-                                console.log(this.informationgradeState)
-                                console.log(this.informationstatus)
-                                this.newList.push(data)
-                                console.log(data)
-                                this.deteleObject(this.newList)
-                                console.log(this.newList)
-                                console.log(this.newList.length)
-                                /*localStorage.setItem()*/
+                           let  data1=data.replace('{','')
+                           let  data2=data1.replace('{','')
+                            console.log(data2)
+                            let data3=data2.replace('}','')
+                            let data4=data3.replace('}','')
+                            console.log(data4)
+                            let data5=data4.replace('[','{')
+                            let data6=data5.replace(']','}')
+                            let data7=JSON.parse(data6)
+                            console.log(data7)
+                            console.log(data7.label)
+                            console.log(data7.message)
 
-                            }
-                          /*  if (this.oldList.length>0){
-                                console.log(this.oldList)
-                                for (let i=0;i<this.oldList.length;i++){
-                                    this.newList.push(this.oldList[i])
-                                }
+                            if (data7.label==1){
+                                this.informationTime=data7.message
+                                console.log(this.informationTime)
+                                this.renderFuncTime()
                             }*/
+                            let datat=this.informationdata
+                            let lable=datat.substr(0,1)
+                            console.log(lable)
+                            console.log(datat)
+                            datat=datat.substr(1)
+                            console.log(datat+"测试")
+                            if (lable==1){
+                                let  data1=datat.replace('{','')
+                                let  data2=data1.replace('{','')
+                                console.log(data2+"测试一")
+                                let data3=data2.replace('}','')
+                                let data4=data3.replace('}','')
+                                console.log(data4+"测试二")
+                                let data5=data4.replace('[','{')
+                                let data6=data5.replace(']','}')
+                                let data7=JSON.parse(data6)
+                                console.log(data7)
+                                console.log(data7.label)
+                                console.log(data7.message)
 
-                          localStorage.setItem('newList',JSON.stringify(this.newList))
-                            this.newListtem=JSON.parse(localStorage.getItem('newList'))
-                                    this.number=this.newListtem.length
-                            /*  console.log("测试333")
-                            let newList1=JSON.parse(localStorage.getItem('newList'))
-                            console.log(newList1)
-                            console.log(newList1.length)
-                            this.number=newList1.length
-                            console.log(this.number)*/
-                            this.renderFunc()
-                            console.log("测试444")
+                                if (data7.label==1){
+                                    this.informationTime=data7.message
+                                    console.log(this.informationTime)
+                                    this.renderFuncTime()
+                                }
+                            } else {
+
+                                let data=[]
+                                data=datat
+                                let str=data.replace(/=/g,":")
+                                let strnew=str.split('(:)')
+
+                                console.log(strnew)
+                                for (let i=0;i<strnew.length;i++){
+                                    console.log(strnew[i])
+                                    /* let str1=strnew[i].split('{')
+                                     let  str2=strnew[i].split('}')
+                                     console.log(str2)*/
+                                    let templatedata=JSON.parse(strnew[1])
+                                    console.log(templatedata)
+                                    for (let i=0;i<templatedata.length;i++) {
+                                        console.log(templatedata[i])
+                                    }
+                                    let data=JSON.parse(strnew[0])
+                                    console.log(strnew[0])
+                                    this.creationPerson=data.creationPerson
+                                    this.informationgradeState=data.gradeState
+                                    this.informationstatus=data.status
+                                    console.log(data)
+                                    console.log(this.creationPerson)
+                                    console.log(this.informationgradeState)
+                                    console.log(this.informationstatus)
+                                    this.newList.push(data)
+                                    console.log(data)
+                                    this.deteleObject(this.newList)
+                                    console.log(this.newList)
+                                    console.log(this.newList.length)
+                                    /*localStorage.setItem()*/
+
+                                }
+                                /*  if (this.oldList.length>0){
+                                      console.log(this.oldList)
+                                      for (let i=0;i<this.oldList.length;i++){
+                                          this.newList.push(this.oldList[i])
+                                      }
+                                  }*/
+
+                                localStorage.setItem('newList',JSON.stringify(this.newList))
+                                this.newListtem=JSON.parse(localStorage.getItem('newList'))
+                                this.number=this.newListtem.length
+                                /*  console.log("测试333")
+                                let newList1=JSON.parse(localStorage.getItem('newList'))
+                                console.log(newList1)
+                                console.log(newList1.length)
+                                this.number=newList1.length
+                                console.log(this.number)*/
+                                this.renderFunc()
+                                console.log("测试444")
+                            }
 
                         }
 
@@ -294,6 +343,32 @@
                 }
             },
             /*消息提醒弹出框内容*/
+            renderFuncTime () {
+                let _this = this
+                this.$Notice.success({
+                    title: "新消息：管理员角色到期提醒",
+                    desc: 'The desc will hide when you set render.',
+                    render: function (h, params) {
+                        let test='内容：'+_this.informationTime
+                        return h('div', [
+                            h('span', {
+                                props: {
+                                    type: 'primary',
+                                    size: 'small'
+                                },
+                                style: {
+                                    marginRight: '8px'
+                                },
+
+                            }, test)
+                        ]);
+                    },
+                    duration:0,
+                    onClose:e=>{
+                        this.number=this.number-1
+                    }
+                });
+            },
             renderFunc () {
                 let _this = this
                 this.$Notice.success({
@@ -369,10 +444,10 @@
                 this.informationdata= event.data;
                 console.log("收到一条socket消息",event)
                 //消息提醒
-                let msg = JSON.parse(event.data)
+               /* let msg = JSON.parse(event.data)
                 if(Array.isArray(msg)){
                     ipcRenderer.send("indexMessage",msg[0].message)
-                }
+                }*/
 
             },
             setOncloseMessage() {
