@@ -16,10 +16,10 @@
     </Affix>
     <Layout>
       <Header id="header">
-        <h1>{{welcome}}</h1>
+        <img src="../../../static/icon_logo.png" />
       </Header>
-      <Content id="content">
-        <LoginForm ref="loginForm" @toLogin="testOne"></LoginForm>
+      <Content id="content" style="background-image: url('../../../static/bg_main.jpg');height: 450px;padding: 20px">
+        <LoginForm ref="loginForm" @toLogin="testOne" style="width: 344px;height: 350px;border-radius: 6px;"></LoginForm>
       </Content>
       <Footer id="footer">
         <div>{{copyright}}</div>
@@ -108,8 +108,6 @@ export default {
 
 <style scoped>
 #login-main {
-  padding-top: 100px;
-  text-align: center;
 }
 div {
   background-color: rgba(255, 255, 255, 0);
@@ -120,22 +118,16 @@ h1 {
 }
 
 #header {
+  margin-bottom: 20px;
+  margin-top: 20px;
   background-color: #fff;
 }
 #content {
 }
 #footer {
   width: 100%;
-  margin-top: 37px;
-  bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
 }
-@media all and (min-height: 380px) {
-  #footer {
-    position: fixed;
-    width: 100%;
-    bottom: 10px;
-    left: 0px;
-    right: 0px;
-  }
-}
+
 </style>
