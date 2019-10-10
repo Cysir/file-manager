@@ -319,7 +319,7 @@
                 console.log('getters获得数据',this.$store.getters.token)
                 if ('WebSocket' in window) {
                     console.log("bbbbbbbbbbbbbbbbb")
-                    this.websocket = new WebSocket('ws://'+localStorage.getItem("serverIp")+':8088/myWebSocket/websocket/'+userInfo.userId);
+                    this.websocket = new WebSocket('ws://'+localStorage.getItem("serverIp")+'/myWebSocket/websocket/'+userInfo.userId);
                     this.initWebSocket();
                     console.log("aaaaaaaaaaaaaaaaa")
                 } else {
