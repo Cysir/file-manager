@@ -17,4 +17,7 @@ export function applyDeleteApi(id){
 export function applyMenuApi() {
     return request.get("/sys/menu/list");
 }
-export default{applySaveApi,applyListApi,applyInfoApi,applyDeleteApi,applyUpdateApi,applyMenuApi}
+export function applyUpdateTimeApi(data) {
+    return request.post("/sys/applyfor/updateendTime",data)
+}
+export default{applySaveApi,applyListApi,applyInfoApi,applyDeleteApi,applyUpdateApi,applyMenuApi,applyUpdateTimeApi}

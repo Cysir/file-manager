@@ -16,6 +16,26 @@
             </div>
 
         </Modal>
+<!--        延期弹窗-->
+        <Modal v-model="updateTime.isShow" :mask-closable="false" :footer-hide="true" @on-visible-change="">
+            <div style="margin:0px 20px">
+                <div style="display: inline-block;position: relative;top:-3px">
+                    <Icon size="20" type="md-checkmark-circle" color="green"/>
+                </div>
+                <div style="font-size: 16px;line-height: 20px;display: inline-block">提示：请选择延期时间</div>
+                <p style="margin-top: 30px">项目名：{{updateTime.data.name}}</p>
+                <p style="margin-top: 20px">负责人：{{updateTime.data.applyForIdName}}</p>
+                <div style="margin-top: 20px">
+                    项目开始时间：
+                    <DatePicker :value="new Date(updateTime.data.startTime)" type="datetime" readonly placeholder="请选择时间" style="width: 200px;"></DatePicker>
+                <br/>
+                    项目结束时间：
+                    <DatePicker v-model="updateTime.data.endTime" :value="new Date(updateTime.data.endTime)" type="datetime" placeholder="请选择时间" style="width: 200px;margin-top: 20px" ></DatePicker>
+                </div>
+                <Button style="margin-top: 20px;margin-bottom: 20px" type="success" @click="toUpdateTime">提交</Button>
+            </div>
+        </Modal>
+
         <Table style="margin-top: 5px" border :columns="table.tabHeader" :data="table.userData">
 
         </Table>
@@ -31,6 +51,10 @@
         name: "Index",
         data(){
             return {
+                updateTime:{
+                    isShow:false,
+                    data:{}
+                },
                 project:{
                     data:null,
                     allMenus:[],
@@ -56,6 +80,17 @@
                         width: 60,
                         key:"id",
                         align: 'center'
+                    },{
+                        title:'项目进度',
+                        width: 200,
+                        render:(h,param)=>{
+                            return h('Progress',{
+                                props:{
+                                    status:'active',
+                                    percent:30
+                                }
+                            })
+                        }
                     },
                         {
                             title: '项目名',
@@ -156,24 +191,17 @@
 
                                                 }
                                             }},
-                                        '拒绝'), h('Button',{props:{
-                                                size:'small',type:'info'
-                                            },
-                                            style: {
-                                                'margin-right':'2px'
-                                            }
-                                            ,on:{
-                                                click(){
-
-
-                                                }
-                                            }},
-                                        '查看'),h('Button',{props:{
+                                        '拒绝'),h('Button',{props:{
                                                 size:'small',type:'warning'
                                             },on:{
                                                 click(){
+                                                    self.updateTime.isShow = true
 
-
+                                                    let xincan_data = {}
+                                                    Object.assign(xincan_data,params.row)
+                                                    xincan_data.endTime = new Date(xincan_data.endTime)
+                                                    self.updateTime.data = xincan_data
+                                                    console.log('延期时间数据',self.updateTime.data)
                                                 }
                                             }},
                                         '延期')])
@@ -185,6 +213,7 @@
         },
         mounted(){
             this.loadData()
+
         },
         methods:{
             agreeApply(){
@@ -224,6 +253,23 @@
             limitChange(limit) {
                 this.mouldForm.limit = limit.toString();
                 this.loadData();
+            },
+            toUpdateTime(){
+                if (this.updateTime.data.endTime==null || this.updateTime.data.endTime == ""){
+                    this.$Modal.error({content:"请选择延期的时间"})
+                    return
+                }
+                this.updateTime.data.endTime = this.updateTime.data.endTime.getTime()
+                console.log('更新时间',this.updateTime.data)
+
+                projectApi.applyUpdateTimeApi(this.updateTime.data).then(resp=>{
+                    this.$Message.success({content:"延期成功"})
+                    this.updateTime.isShow = false
+                    this.updateTime.data = {}
+                    this.loadData()
+                }).catch(error=>{
+                    this.$Modal.error({title:"延期时发生错误",content:JSON.stringify(error)})
+                })
             },
             loadData(){
                 projectApi.applyListApi(this.mouldForm).then(resp=>{

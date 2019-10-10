@@ -49,9 +49,17 @@
                 my_data:{},
                 my_col :[
                     {
-                        type: 'index',
-                        width: 60,
-                        align: 'center'
+                        title:'项目进度',
+                        width: 200,
+                        fixed:'left',
+                        render:(h,param)=>{
+                            return h('Progress',{
+                                props:{
+                                    status:'active',
+                                    percent:param.row.completionSchedule
+                                }
+                            })
+                        }
                     },
                     {
                         title: '等级',
@@ -75,7 +83,7 @@
                         key: 'modificationPerson'
                     },
                     {
-                        title: '时间',
+                        title: '申请时间',
                         key: 'modificationTime'
                     },
                     {
@@ -101,8 +109,7 @@
                                     size: 'small'
                                 }, on: {
                                     click() {
-                                        console.log('当前参数', params)
-                                        console.log(self.$refs.alert);
+
                                         let data = params.row;
                                         let testContent = {};
                                         let templateData = JSON.parse(data.templateData);
@@ -125,7 +132,7 @@
                                         let userId = data.userIds.replace(/'/g, '').split(',').map(v => {
                                             return parseInt(v);
                                         });
-                                        self.$refs.alert.update(testContent, extraField, userId, data.id);
+                                        self.$refs.alert.update(testContent, extraField, userId, data);
                                         //     .testContent = testContent;
                                         // self.$refs.alert.extraField = extraField;
                                         // self.isPublish = true;

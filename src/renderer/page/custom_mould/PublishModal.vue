@@ -74,6 +74,34 @@
                 </Col>
             </Row>
             </FormItem>
+            <FormItem :rules='{
+            required: true,
+            type: "date",
+            message: "Please select the date",
+            trigger: "change"
+            }' prop="startTime">
+
+                <Row :gutter="gutter" class="my-row">
+                    <Col span="3">开始时间</Col>
+                    <Col span="18">
+                        <DatePicker v-model="extraField.startTime" type="datetime"></DatePicker>
+                    </Col>
+                </Row>
+            </FormItem>
+            <FormItem :rules='{
+            required: true,
+            type: "date",
+            message: "Please select the date",
+            trigger: "change"
+            }' prop="endTime">
+
+                <Row :gutter="gutter" class="my-row">
+                    <Col span="3">结束时间</Col>
+                    <Col span="18">
+                        <DatePicker v-model="extraField.endTime" type="datetime"></DatePicker>
+                    </Col>
+                </Row>
+            </FormItem>
         </Form>
         <div v-if="dataContent.urls == 1" style="margin-bottom: 10px">
             <Row :gutter="gutter" class="my-row">
@@ -113,7 +141,9 @@
                     gradeState:'',
                     gradeStateO:['一级','二级','三级'],
                     url:'',
-                    fileList:[]
+                    fileList:[],
+                    startTime:new Date(),
+                    endTime:new Date()
                 },
             type:{
                 isCreate:true,
@@ -134,27 +164,38 @@
                 }
             },
             insert(){
+
                 this.type.isCreate = true;
                 this.extraField.status='';
                 this.extraField.gradeState='';
                 this.extraField.url='';
                 this.extraField.fileList=[];
+                this.extraField.startTime = new Date()
+                this.extraField.endTime = new Date()
                 this.testContent = {};
                 this.this_publish = true;
                 this.selectUser = [];
+                this.$refs.extraForm.resetFields()
+                this.$refs.myform.resetFields()
             },
-            update(testContent,extraField,userIds,id=null){
+            update(testContent,extraField,userIds,data=null){
+
                 this.type.isCreate = false;
-                this.type.id = id;
+                this.type.id = data.id;
                 console.log('查看操作',userIds);
-                console.log('内容',testContent,'额外字段',extraField)
+                console.log('内容',testContent,'额外字段',extraField,'所有信息',data)
                 this.testContent = testContent;
                 this.extraField.status = extraField.status;
                 this.extraField.url = extraField.url;
                 this.extraField.gradeState = extraField.gradeState;
+                //设置时间
+                this.extraField.startTime = new Date(data.startTime)
+                this.extraField.endTime = new Date(data.endTime)
                 this.extraField.fileList = extraField.fileList;
                 this.this_publish = true;
                 this.selectUser = userIds;
+                this.$refs.extraForm.resetFields()
+                this.$refs.myform.resetFields()
             },
             uploadFail(err,file,fileList){
                 console.log('fileE',file);
@@ -185,6 +226,7 @@
                 await this.realSendData()
             },
             async sendData(){
+                // console.log('aaa',this.extraField.startTime.format('yyyy-MM-dd hh:mm:ss'))
                 this.taskType = "other"
                 await this.realSendData()
             },
@@ -224,7 +266,10 @@
                 console.log(userIds)
                 let menuId = this.dataContent.menuId;
                 let templateFieldId = this.dataContent.id;
-                let formData = {taskType:this.taskType,menuId,templateFieldId,userIds,templateData:JSON.stringify(data)};
+                let formData = {
+                    startTime:this.extraField.startTime.format('yyyy-MM-dd hh:mm:ss'),
+                    endTime:this.extraField.endTime.format('yyyy-MM-dd hh:mm:ss'),
+                    taskType:this.taskType,menuId,templateFieldId,userIds,templateData:JSON.stringify(data)};
 
                 if (this.dataContent.status==1){
                     formData.status = this.extraField.status

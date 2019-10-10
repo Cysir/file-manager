@@ -287,7 +287,7 @@
                     }
             },
         async mounted() {
-
+            this.$ipcR.on('MsgExitLogin',this.logout)
             console.log('首页路由', this.$route.path);
             try{
                 let resp =await getMenu();
@@ -315,6 +315,7 @@
                 let userInfo = this.$store.getters["mine/info"];
                 this.userModel = userInfo;
                 console.log('用户数据>>>>', userInfo)
+                this.$ipcR.send("MsgUserInfo",userInfo.name);
                 console.log('getters获得数据',this.$store.getters.token)
                 if ('WebSocket' in window) {
                     console.log("bbbbbbbbbbbbbbbbb")
@@ -330,6 +331,7 @@
         },
         beforeDestroy() {
             this.onbeforeunload()
+            this.$ipcR.removeListener('MsgExitLogin',this.logout);
         },
         methods: {
             toApply(){
@@ -446,6 +448,9 @@
                 //消息提醒
                /* let msg = JSON.parse(event.data)
                 if(Array.isArray(msg)){
+                    this.$ipcR.send("indexMessage",msg[0].message)
+
+                }
                     ipcRenderer.send("indexMessage",msg[0].message)
                 }*/
 
