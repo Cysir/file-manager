@@ -61,7 +61,10 @@ service.interceptors.response.use(
     Spin.hide()
 
     const res = response.data
-
+    let pd = res instanceof Blob
+    if(pd){
+      return response
+    }
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200 && res.code !== 0) {
 
@@ -74,7 +77,10 @@ service.interceptors.response.use(
       else{
         Modal.info({title:'错误码:'+res.code,content:"错误信息:"+res.msg});
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+
+      console.log('request检测搭配错误',pd,res,response)
+
+      return Promise.reject(new Error(res.msg || 'Error'))
     } else {
       // Message.success({content:"操作成功"});
       return res

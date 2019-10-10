@@ -4,6 +4,35 @@
         <div>
             <PublishModal ref="alert" :publish="isPublish" @new_data="newData" @change="x=>isPublish =x"
                           :mould-content="mouldContent"/>
+            <Modal  v-model="exportWord.isShow" :mask-closable="false" :footer-hide="true" @on-visible-change="exportChange">
+                <Divider orientation="left">导出报表</Divider>
+                <Form label-position="top"  ref="myApplyForm" :model="exportWord.searchParams">
+                    <FormItem label="任务等级">
+                        <RadioGroup v-model="exportWord.searchParams.gradeState">
+                            <Radio label="">全部</Radio>
+                            <Radio label="一级"></Radio>
+                            <Radio label="二级"></Radio>
+                            <Radio label="三级"></Radio>
+                        </RadioGroup>
+                    </FormItem>
+                    <FormItem label="完成状态">
+                        <RadioGroup v-model="exportWord.searchParams.status">
+                            <Radio label="">全部</Radio>
+                            <Radio label="未开始"></Radio>
+                            <Radio label="进行中"></Radio>
+                            <Radio label="已完成"></Radio>
+                        </RadioGroup>
+                    </FormItem>
+                    <FormItem label="开始时间" prop="startTime">
+                        <DatePicker  v-model="exportWord.searchParams.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
+                    </FormItem>
+                    <FormItem label="结束时间" prop="endTime">
+                        <DatePicker v-model="exportWord.searchParams.endTime" type="datetime" placeholder="请选择结束时间" style="width: 200px"></DatePicker>
+                    </FormItem>
+                    <Button type="primary" @click="toexportWord">导出word</Button>
+                    <Button type="primary" @click="toexportExcel">导出excel</Button>
+                </Form>
+            </Modal>
         </div>
         <div style="">
             <div class="filterHeader">
@@ -20,7 +49,7 @@
                 </Select>
                 开始时间:
                 <DatePicker @on-clear="clear" v-model="queryParam.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
-                <Button type="info" STYLE="float: right;margin-left: 5px" @click="exportData">导出报表</Button>
+                <Button type="info" STYLE="float: right;margin-left: 5px" @click="()=>{exportWord.isShow = true}">导出word</Button>
                 <Button type="primary" @click="insert" style="float: right">下发任务</Button>
                 <Button type="info" STYLE="float: right;margin-right: 5px" @click="search">查询</Button>
 
@@ -39,13 +68,26 @@
 <script>
     import PublishModal from "./PublishModal";
     import customeApi from "../../api/custom";
-
-
+    import {getToken} from '../../utils/auth'
+    const Qs = require('qs');
     export default {
         name: "Index",
         components: { PublishModal},
         data() {
             return {
+                exportWord:{
+                    isShow:false,
+                    mouldName:'',
+                    searchParams:{
+                        menuId:'',
+                        templateFieldId:'',
+                        status:"",
+                        startTime:'',
+                        endTime:'',
+                        gradeState:""
+
+                    }
+                },
                 my_data:{},
                 my_col :[
                     {
@@ -190,6 +232,51 @@
             console.log('进入下一步方法')
             this.init();
         }, methods: {
+            //导出word,
+            toexportWord(){
+                console.log('查询参数WORD:',this.exportWord.searchParams)
+                this.exportWord.searchParams.token = getToken()
+                // let param = Qs.stringify(this.exportWord.searchParams)
+                // window.location.href="http://"+localStorage.getItem("serverIp")+":8088/sys/query/deriveword?"+"token="+getToken()+param
+                customeApi.mouldExportWord(this.exportWord.searchParams).then(resp=>{
+                    // console.log(resp.headers)
+                    console.log('下载参数：',resp)
+                    let url = window.URL.createObjectURL(resp.data);
+                    let link = document.createElement('a');
+                    link.style.display = 'none';
+                    link.href = url;
+                    link.setAttribute('download','项目:'+this.exportWord.mouldName+'  word报表.docx');
+                    document.body.appendChild(link);
+                    link.click();
+                }).catch(err=>{
+                    console.log('err,导出word',err)
+                })
+            },
+            //导出excel
+            toexportExcel(){
+                console.log('查询参数EXCEL:',this.exportWord.searchParams)
+                this.exportWord.searchParams.token = getToken()
+                // let param = Qs.stringify(this.exportWord.searchParams)
+                // window.location.href="http://"+localStorage.getItem("serverIp")+":8088/sys/query/deriveword?"+"token="+getToken()+param
+                customeApi.mouldExportExcel(this.exportWord.searchParams).then(resp=>{
+                    // console.log(resp.headers)
+                    console.log('下载参数：',resp)
+                    let url = window.URL.createObjectURL(resp.data);
+                    let link = document.createElement('a');
+                    link.style.display = 'none';
+                    link.href = url;
+                    link.setAttribute('download','项目:'+this.exportWord.mouldName+'  excel报表.xls');
+                    document.body.appendChild(link);
+                    link.click();
+                }).catch(err=>{
+                    console.log('err,导出word',err)
+                })
+            },
+            //导出报表菜单
+            exportChange(isShow){
+
+            }
+            ,
             exportData(){
 
                 this.$refs.table.exportCsv({
@@ -278,6 +365,7 @@
                 // console.log("加载的参数id",this.$route.params.id);
                 let mouldTemp = await customeApi.mouldListApi(this.$route.params.id);
                 console.log('数据模板',mouldTemp);
+                this.exportWord.mouldName = mouldTemp.data.templateName;
                 let coustom_col = JSON.parse(mouldTemp.data.content).map(v=>{
                     return {title:v.displayName,key:v.fieldName};
                 });
@@ -286,6 +374,9 @@
                 this.tableCol.push(...coustom_col,...this.my_col);
                 this.mouldForm.menuId = mouldTemp.data.menuId;
                 this.mouldForm.templateFieldId = mouldTemp.data.id;
+                //设置默认的导出菜单参数
+                this.exportWord.searchParams.menuId = mouldTemp.data.menuId;
+                this.exportWord.searchParams.templateFieldId = mouldTemp.data.id;
                 mouldTemp.data.content = JSON.parse(mouldTemp.data.content);
                 this.mouldContent = mouldTemp.data;
                 this.loadData();

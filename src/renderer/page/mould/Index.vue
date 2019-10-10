@@ -39,8 +39,8 @@
                     <Col span="5">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:90px"/></Col>
                     <Col span="5">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:90px"/></Col>
                     <Col span="5">
-                        只读: <Select v-model="form.onlyRead" style="width:100px">
-                        <Option v-for="item in modeRadios" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        导出: <Select v-model="form.onlyRead" style="width:100px">
+                        <Option v-for="item in modeRadios" :value="item.value" >{{ item.label }}</Option>
                     </Select>
                     </Col>
                     <Col span="5">
@@ -214,6 +214,14 @@
                 let templateName = this.mouldTemplate.name;
                 let deptId = this.mouldTemplate.dept;
                 let content = JSON.stringify(this.mould);
+                //设置导出字段
+                let deriveWord = [];
+                for (let f of this.mould){
+                    if (f.onlyRead == 'yes')
+                        deriveWord.push(f)
+                }
+                deriveWord = JSON.stringify(deriveWord)
+                //
                 let id = this.mouldTemplate.id;
                 console.log(JSON.stringify(this.mould));
                 let urls = 0;
@@ -230,7 +238,7 @@
                         gradeState = 1;
                     }
                 }
-                mould.saveMould({templateName,menuId,deptId,content,id,urls,status,gradeState}).then(resp=>{
+                mould.saveMould({deriveWord,templateName,menuId,deptId,content,id,urls,status,gradeState}).then(resp=>{
                     this.$Message.info({content:"模板创建成功"});
                     this.restMould();
                     mould.queryMould().then(resp=>{
@@ -263,7 +271,7 @@
                 this.form = {
                     displayName:'',
                     fieldName:'',
-                    onlyRead:'no',
+                    onlyRead:'yes',
                     type:'input',
                     optionalValue:[]};
             }
@@ -283,13 +291,13 @@
                 form:{
                     displayName:'',
                     fieldName:'',
-                    onlyRead:'no',
+                    onlyRead:'yes',
                     type:'input',
                     optionalValue:[]},
                 mould:[],
                 create:false,
 
-                modeRadios:[{value:'yes',label:'是'},{value:'no',label:'否'},],
+                modeRadios:[{value:'yes',label:'是'},{value:'no',label:'否'}],
                 modeTypes:[{value:'input',label:'输入框'},{value:'text',label:'文本框'},{value:'radio',label:'单选框'},{value:'checkbox',label:'多选框'},{value:'date',label:'日期框'},{value:'button',label:'按钮'}],
                 headerColumn: [
                     {
