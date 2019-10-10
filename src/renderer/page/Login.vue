@@ -18,7 +18,7 @@
       <Header id="header">
         <img src="../../../static/icon_logo.png" />
       </Header>
-      <Content id="content" style="background-image: url('../../../static/bg_main.jpg');height: 450px;padding: 20px">
+      <Content id="content" style="background-image: url('./static/bg_main.jpg');height: 450px;padding: 20px">
         <LoginForm ref="loginForm" @toLogin="testOne" style="width: 344px;height: 350px;border-radius: 6px;"></LoginForm>
       </Content>
       <Footer id="footer">
@@ -118,7 +118,7 @@ h1 {
 }
 
 #header {
-  margin-bottom: 20px;
+  margin-bottom: 38px;
   margin-top: 20px;
   background-color: #fff;
 }

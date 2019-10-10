@@ -84,7 +84,7 @@
                 <Row :gutter="gutter" class="my-row">
                     <Col span="3">开始时间</Col>
                     <Col span="18">
-                        <DatePicker v-model="extraField.startTime" type="datetime"></DatePicker>
+                        <DatePicker v-model="extraField.startTime" type="datetime" :value="extraField.startTime"></DatePicker>
                     </Col>
                 </Row>
             </FormItem>
@@ -142,8 +142,8 @@
                     gradeStateO:['一级','二级','三级'],
                     url:'',
                     fileList:[],
-                    startTime:new Date(),
-                    endTime:new Date()
+                    // startTime:new Date(),
+                    // endTime:''
                 },
             type:{
                 isCreate:true,
@@ -175,7 +175,7 @@
                 this.testContent = {};
                 this.this_publish = true;
                 this.selectUser = [];
-                this.$refs.extraForm.resetFields()
+                // this.$refs.extraForm.resetFields()
                 this.$refs.myform.resetFields()
             },
             update(testContent,extraField,userIds,data=null){
@@ -189,12 +189,13 @@
                 this.extraField.url = extraField.url;
                 this.extraField.gradeState = extraField.gradeState;
                 //设置时间
-                this.extraField.startTime = new Date(data.startTime)
-                this.extraField.endTime = new Date(data.endTime)
+                this.extraField.startTime = new Date(Date.parse(data.startTime))
+                console.log('__o__查看项目开始时间',this.extraField.startTime)
+                this.extraField.endTime = new Date(Date.parse(data.endTime))
                 this.extraField.fileList = extraField.fileList;
                 this.this_publish = true;
                 this.selectUser = userIds;
-                this.$refs.extraForm.resetFields()
+                // this.$refs.extraForm.resetFields()
                 this.$refs.myform.resetFields()
             },
             uploadFail(err,file,fileList){
