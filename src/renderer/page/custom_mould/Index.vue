@@ -105,7 +105,8 @@
                     },
                     {
                         title: '等级',
-                        key: 'gradeState'
+                        key: 'gradeState',
+                        width:80
                     },
                     {
                         title: '接收人',
@@ -135,6 +136,7 @@
                     {
                         title: '是否草稿',
                         key: 'taskType',
+                        width:90,
                         render:(h,param)=>{
                             let text = param.row.taskType == 'temporary'?"草稿":"已送达"
                             return h('div',text)
