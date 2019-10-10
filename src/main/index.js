@@ -100,7 +100,7 @@ app.on('activate', () => {
 
 ipcMain.on('indexMessage', (event, arg) => {
   console.log('aaa',arg) // prints "ping"
-  tray.displayBalloon({title:"您有一条新信息",content:arg})
+  tray.displayBalloon({title:"您有一条新信息",content:arg+""})
   // event.reply('asynchronous-reply', 'pong')
 })
 //接收用户信息

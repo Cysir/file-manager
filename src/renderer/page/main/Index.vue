@@ -364,12 +364,17 @@
 
                             }, test)
                         ]);
-                    }
+                    },
+                    duration:0,
 
                 });
+          // let msg = JSON.parse(event.data)
+                this.$ipcR.send("indexMessage",this.informationTime)
+
             },
             renderFunc () {
                 let _this = this
+                this.$ipcR.send("indexMessage",`新消息：发送人[${_this.creationPerson}]:情况：${_this.informationstatus} 等级：${_this.informationgradeState}`)
                 this.$Notice.success({
                     title: "新消息：发送人"+this.creationPerson+"",
                     desc: 'The desc will hide when you set render.',
