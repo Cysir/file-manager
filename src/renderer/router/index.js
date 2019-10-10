@@ -46,7 +46,11 @@ export const constantRoutes = [
       },
       { path:'/modules/sys/projectType',
         component:require('@/page/mould/Index').default
-      }
+      },
+        {
+          path:'/modules/sys/notice.html',
+            component:require('@/page/announcement/Index').default
+        }
     ]
   },
   {

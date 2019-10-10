@@ -15,4 +15,5 @@ export function deptUpdateApi(data) {
 export function deptDeleteApi(deptId) {
     return request.get("/sys/dept/delete",{params:{deptId}})
 }
+
 export default {deptDeleteApi,deptSelectApi,deptSaveApi,deptUpdateApi,deptListApi}
