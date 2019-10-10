@@ -23,5 +23,10 @@ export function mouldUpdateApi(data) {
 export function mouldDownload(filePath) {
     return request.get("sys/file/download",{params:filePath})
 }
-
-export default {mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi}
+export function mouldExportWord(data) {
+    return request.get("/sys/query/deriveword",{params:data,responseType:'blob',})
+}
+export function mouldExportExcel(data) {
+    return request.get("/sys/query/deriveexcel",{params:data,responseType:'blob',})
+}
+export default {mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi,mouldExportWord,mouldExportExcel}

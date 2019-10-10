@@ -48,9 +48,10 @@ console.log("加载图片地址")
   console.log("测试地址,",mpath)
   tray = new Tray(mpath);
 
-   contextMenu = Menu.buildFromTemplate([{
-     label:"未登录",id:0
-   },
+   contextMenu = Menu.buildFromTemplate([
+     {click:()=>{
+        mainWindow.webContents.openDevTools()
+       },label:'开启调试'},
     {click:()=>{
         mainWindow.minimize()
       },label:'最小化'},
@@ -73,6 +74,7 @@ console.log("加载图片地址")
       }
       else{
         mainWindow.focus()
+        mainWindow.setSkipTaskbar(true);
       }
 
     } else {
@@ -105,8 +107,4 @@ ipcMain.on('indexMessage', (event, arg) => {
 
 ipcMain.on('MsgUserInfo', (event, arg) => {
   console.log('aaa',arg) // prints "ping"
-  console.log(contextMenu.getMenuItemById(0))
-  contextMenu.getMenuItemById(0).label='当前用户：'+arg
-  // contextMenu.insert(0,new MenuItem({label:'当前用户：'+arg}))
-  // event.reply('asynchronous-reply', 'pong')
 })

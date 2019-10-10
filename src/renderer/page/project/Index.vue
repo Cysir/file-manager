@@ -30,7 +30,7 @@
                     <DatePicker :value="new Date(updateTime.data.startTime)" type="datetime" readonly placeholder="请选择时间" style="width: 200px;"></DatePicker>
                 <br/>
                     项目结束时间：
-                    <DatePicker v-model="updateTime.data.endTime" :value="new Date(updateTime.data.endTime)" type="datetime" placeholder="请选择时间" style="width: 200px;margin-top: 20px" ></DatePicker>
+                    <DatePicker v-model="updateTime.data.endTime" :value="updateTime.data.endTime" type="datetime" placeholder="请选择时间" style="width: 200px;margin-top: 20px" ></DatePicker>
                 </div>
                 <Button style="margin-top: 20px;margin-bottom: 20px" type="success" @click="toUpdateTime">提交</Button>
             </div>
@@ -87,7 +87,7 @@
                             return h('Progress',{
                                 props:{
                                     status:'active',
-                                    percent:30
+                                    percent:param.row.percentage
                                 }
                             })
                         }
@@ -259,16 +259,28 @@
                     this.$Modal.error({content:"请选择延期的时间"})
                     return
                 }
-                this.updateTime.data.endTime = this.updateTime.data.endTime.getTime()
-                console.log('更新时间',this.updateTime.data)
+                // let updateData = {...this.updateTime.data}
+                // Object.assign(updateData,this.updateTime.data)
+                // this.updateTime.data.endTime = this.updateTime.data.endTime.getTime()
+                // updateData.endTime = updateData.endTime.getTime()
+                let data = {}
+                Object.keys(this.updateTime.data).forEach(v=>{
+                    data[v]=this.updateTime.data[v]
+                })
+                data.endTime = this.updateTime.data.endTime.getTime()
+                console.log('更新时间',data)
 
-                projectApi.applyUpdateTimeApi(this.updateTime.data).then(resp=>{
+                projectApi.applyUpdateTimeApi(data).then(resp=>{
                     this.$Message.success({content:"延期成功"})
                     this.updateTime.isShow = false
-                    this.updateTime.data = {}
+                    // this.updateTime.data = null
+                    // this.$forceUpdate()
                     this.loadData()
                 }).catch(error=>{
-                    this.$Modal.error({title:"延期时发生错误",content:JSON.stringify(error)})
+                    // this.$Modal.error({title:"延期时发生错误",content:JSON.stringify(error)})
+                    this.$Message.error({content:"延期失败"})
+                    this.updateTime.isShow = false
+                    // this.updateTime.data = null
                 })
             },
             loadData(){
