@@ -364,11 +364,8 @@
 
                             }, test)
                         ]);
-                    },
-                    duration:0,
-                    onClose:e=>{
-                        this.number=this.number-1
                     }
+
                 });
             },
             renderFunc () {

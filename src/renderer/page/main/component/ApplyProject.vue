@@ -15,8 +15,8 @@
         <Input v-model="applyData.name" />
       </FormItem>
       <FormItem label="申请日期" prop="jurisdictionTime">
-        <DatePicker v-model="applyData.jurisdictionTime" type="datetime" placeholder="请选择申请日期" style="width: 200px"></DatePicker>
-      </FormItem>
+      <DatePicker v-model="applyData.jurisdictionTime" type="datetime" placeholder="请选择申请日期" style="width: 200px"></DatePicker>
+    </FormItem>
       <FormItem label="负责人角色开始时间" prop="startTime">
         <DatePicker  v-model="applyData.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
       </FormItem>
