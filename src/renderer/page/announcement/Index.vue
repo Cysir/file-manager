@@ -61,13 +61,19 @@
                         </div>
                         <Card :bordered="false">
                             <div slot="title">
-                                <p>发布者：</p>
-                                <p>{{data.creatorName}}</p>
-
+                                <p>发布者：{{data.creatorName}}</p>
                             </div>
 
-                            <p>内容：{{data.content }}</p>
-                            <p style=" color:#464c5b">发布时间：{{data.publishTime}}</p>
+                            <p style="font-family: inherit;font-weight: 700;line-height: 1.1;color: inherit;">内容:</p>
+                            <Card :bordered="false" style="background-color: #fafafa; ">
+                                <p>{{data.content }}</p>
+                            </Card>
+
+                            &nbsp
+                            <p style="font-family: inherit;font-weight: 700;line-height: 1.1;color: inherit;">发布时间:</p>
+                            <Card :bordered="false" style="background-color: #fafafa; ">
+                                <p>{{data.publishTime}}</p>
+                            </Card>
                         </Card>
 
 
