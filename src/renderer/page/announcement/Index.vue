@@ -48,7 +48,7 @@
                     <Card :bordered="true" dis-hover>
                         <div slot="title" >
 
-                        <p  style="height: 35px">
+                        <p  style="height: 35px ;font-family: inherit;font-weight: 700;line-height: 1.1;color: inherit;">
                             标题：
                         {{data.title}}
                             <Button  type="success" @click="deleteAnnouncement(data.id)" >
@@ -61,7 +61,7 @@
                         </div>
                         <Card :bordered="false">
                             <div slot="title">
-                                <p>发布者：{{data.creatorName}}</p>
+                                <p style="font-family: inherit;font-weight: 700;line-height: 1.1;color: inherit;">发布者：{{data.creatorName}}</p>
                             </div>
 
                             <p style="font-family: inherit;font-weight: 700;line-height: 1.1;color: inherit;">内容:</p>
