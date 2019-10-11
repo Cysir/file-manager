@@ -1,4 +1,4 @@
-import { app,MenuItem, BrowserWindow,Menu,Tray } from 'electron'
+import { app,Notification,MenuItem, BrowserWindow,Menu,Tray } from 'electron'
 let path = require('path')
 const { ipcMain } = require('electron')
 /**
@@ -100,7 +100,12 @@ app.on('activate', () => {
 
 ipcMain.on('indexMessage', (event, arg) => {
   console.log('aaa',arg) // prints "ping"
-  tray.displayBalloon({title:"您有一条新信息",content:arg})
+  let myNotification = new Notification({title:"智能文件助手提醒您",
+    body: '通知正文内容'+arg
+  })
+  myNotification.show()
+
+  // tray.displayBalloon({title:"您有一条新信息",content:arg+""})
   // event.reply('asynchronous-reply', 'pong')
 })
 //接收用户信息

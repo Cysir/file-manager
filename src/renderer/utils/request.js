@@ -12,18 +12,17 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: "http://"+ localStorage.getItem("serverIp")+":8088", // url = base url + request url
+  baseURL: "http://"+ localStorage.getItem("serverIp"), // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 10000 // request timeout
 })
 service.reload = function(){
-  service.defaults.baseURL = "http://"+ localStorage.getItem("serverIp")+":8088";
+  service.defaults.baseURL = "http://"+ localStorage.getItem("serverIp");
   console.log("重新加载url",service.defaults.baseURL)
 }
 // request interceptor
 service.interceptors.request.use(
   config => {
-    service.baseURL ="http://"+ localStorage.getItem("serverIp")+":8088";
     Spin.show();
     // do something before request is sent
     // console.log('发送请求成功拦截');

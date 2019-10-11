@@ -348,7 +348,7 @@
                 console.log('getters获得数据',this.$store.getters.token)
                 if ('WebSocket' in window) {
                     console.log("bbbbbbbbbbbbbbbbb")
-                    this.websocket = new WebSocket('ws://'+localStorage.getItem("serverIp")+':8088/myWebSocket/websocket/'+userInfo.userId);
+                    this.websocket = new WebSocket('ws://'+localStorage.getItem("serverIp")+'/myWebSocket/websocket/'+userInfo.userId);
                     this.initWebSocket();
                     console.log("aaaaaaaaaaaaaaaaa")
                 } else {
@@ -393,12 +393,17 @@
 
                             }, test)
                         ]);
-                    }
+                    },
+                    duration:0,
 
                 });
+          // let msg = JSON.parse(event.data)
+                this.$ipcR.send("indexMessage",this.informationTime)
+
             },
             renderFunc () {
                 let _this = this
+                this.$ipcR.send("indexMessage",`新消息：发送人[${_this.creationPerson}]:情况：${_this.informationstatus} 等级：${_this.informationgradeState}`)
                 this.$Notice.success({
                     title: "新消息：发送人:"+this.creationPerson+"",
                     desc: 'The desc will hide when you set render.',
