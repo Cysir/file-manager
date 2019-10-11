@@ -160,9 +160,12 @@
                 creationPerson:'',
                 informationgradeState:'',
                 informationstatus:'',
+                stardaydata:'',
+                enddaydata:'',
                 newList:[],
                 newListtem:[],
-                informationTime:''
+                informationTime:'',
+                taskTypedata:' temporary'
             }
         },
         computed: {
@@ -202,6 +205,7 @@
                                 console.log(this.informationTime)
                                 this.renderFuncTime()
                             }*/
+
                             let datat=this.informationdata
                             let lable=datat.substr(0,1)
                             console.log(lable)
@@ -250,16 +254,36 @@
                                     this.creationPerson=data.creationPerson
                                     this.informationgradeState=data.gradeState
                                     this.informationstatus=data.status
+                                    this.stardaydata=data.startDays
+                                    this.enddaydata=data.endDays
+
+
                                     console.log(data)
                                     console.log(this.creationPerson)
+                                    console.log(this.stardaydata)
+                                    console.log(this.enddaydata)
                                     console.log(this.informationgradeState)
                                     console.log(this.informationstatus)
+                                    console.log(this.daydata)
                                     this.newList.push(data)
                                     console.log(data)
                                     this.deteleObject(this.newList)
                                     console.log(this.newList)
                                     console.log(this.newList.length)
                                     /*localStorage.setItem()*/
+                                    console.log(data.taskType)
+                                    console.log(this.taskTypedata)
+                                    if (data.taskType=='temporary' ){
+                                        
+                                        if(data.startDays>0){
+                                            this.temporaryRenderFunc1()
+                                        }else if (data.endDays<3) {
+                                            this.temporaryRenderFunc2()
+                                        }
+                                    }else {
+                                        this.renderFunc()
+                                    }
+
 
                                 }
                                 /*  if (this.oldList.length>0){
@@ -278,7 +302,12 @@
                                 console.log(newList1.length)
                                 this.number=newList1.length
                                 console.log(this.number)*/
-                                this.renderFunc()
+                               /* if (this.taskType=='temporary' ){
+
+                                }else {
+                                   alert("222")
+                                }*/
+
                                 console.log("测试444")
                             }
 
@@ -376,7 +405,59 @@
                 let _this = this
                 this.$ipcR.send("indexMessage",`新消息：发送人[${_this.creationPerson}]:情况：${_this.informationstatus} 等级：${_this.informationgradeState}`)
                 this.$Notice.success({
-                    title: "新消息：发送人"+this.creationPerson+"",
+                    title: "新消息：发送人:"+this.creationPerson+"",
+                    desc: 'The desc will hide when you set render.',
+                    render: function (h, params) {
+                        let test='情况：'+_this.informationstatus+'   等级：'+_this.informationgradeState
+                        return h('div', [
+                            h('span', {
+                                props: {
+                                    type: 'primary',
+                                    size: 'small'
+                                },
+                                style: {
+                                    marginRight: '8px'
+                                },
+
+                            }, test)
+                        ]);
+                    },
+                    duration:0,
+                    onClose:e=>{
+                        this.number=this.number-1
+                    }
+                });
+            },
+            temporaryRenderFunc1 () {
+                let _this = this
+                this.$Notice.success({
+                    title: "任务:创建人:"+this.creationPerson+""+" 距任务开始:"+this.stardaydata+"天",
+                    desc: 'The desc will hide when you set render.',
+                    render: function (h, params) {
+                        let test='情况：'+_this.informationstatus+'   等级：'+_this.informationgradeState
+                        return h('div', [
+                            h('span', {
+                                props: {
+                                    type: 'primary',
+                                    size: 'small'
+                                },
+                                style: {
+                                    marginRight: '8px'
+                                },
+
+                            }, test)
+                        ]);
+                    },
+                    duration:0,
+                    onClose:e=>{
+                        this.number=this.number-1
+                    }
+                });
+            },
+            temporaryRenderFunc2 () {
+                let _this = this
+                this.$Notice.success({
+                    title: "任务:创建人:"+this.creationPerson+""+" 距任务结束:"+this.enddaydata+"天",
                     desc: 'The desc will hide when you set render.',
                     render: function (h, params) {
                         let test='情况：'+_this.informationstatus+'   等级：'+_this.informationgradeState

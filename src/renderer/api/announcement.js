@@ -14,4 +14,7 @@ export function inquireApi(data) {
 export function modificationDataApi(data) {
     return request.post('/sys/notice/update',data)
 }
-export default {announcementDataApi,preserveDataApi,deleteApi,inquireApi,modificationDataApi}
+export function pageApi(data) {
+    return request.get('/sys/notice/list',{params:data})
+}
+export default {announcementDataApi,preserveDataApi,deleteApi,inquireApi,modificationDataApi,pageApi}
