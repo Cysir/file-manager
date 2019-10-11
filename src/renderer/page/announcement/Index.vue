@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div style="margin-top: 0.5%;margin-left: 0.5%">
             <Button type="success" >
                 公告公示
             </Button>
@@ -71,7 +71,7 @@
 
 
         </Row>
-        <Page :total="100" />
+        <Page :total="totalCount" show-elevator  @on-change="changePage"/>
     </div>
 
 </template>
@@ -82,6 +82,7 @@
         name: "Index",
         data(){
             return{
+                totalCount:'',
             listength:[],
             title:'',	//标题
             content:'',//内容
@@ -90,6 +91,7 @@
             publishTime:'', //发布时间
                 id:'',
             modal1:false,
+                modal2:false,
             formItem:{
                 input1:'',
                 textarea:'',
@@ -112,6 +114,8 @@
                     console.log("公告列表",resp.data)
                     console.log(resp.data.list.length)
                     this.listength=resp.data.list
+                    this.totalCount=resp.data.totalCount
+                    console.log(resp.data.totalCount)
                 }).catch(error=>{
                     console.log("错误！")
                 })
@@ -129,6 +133,9 @@
                     announcement.preserveDataApi({title,content, publishTime}).then(resp=>{
                         console.log('添加公告列表',resp.msg)
                         this.inie()
+                        this.formItem.time=null
+                        this.formItem.textarea=null
+                        this.formItem.input1=null
                     }).catch(error=>{
                         console.log('错误！')
                     })
@@ -156,7 +163,9 @@
             },
             /*修改公告*/
             modificationAnnouncement(id1){
+
                 this.modal2=true
+
                 let id=id1
                 announcement.inquireApi(id).then(resp=>{
                     console.log('查询一个公告信息',resp.data)
@@ -181,10 +190,26 @@
                 announcement.modificationDataApi({id,creatorId,title,content, publishTime}).then(resp=>{
                     console.log('修改公告列表',resp.msg)
                     this.inie()
+                    this.modal2=false
                 }).catch(error=>{
                     console.log('错误！')
                 })
             },
+            /*分页*/
+            changePage(val){
+                let page=val
+                console.log(page)
+                let limit=10
+                announcement.pageApi({page,limit}).then(resp=>{
+                    console.log("分页查询公告列表",resp.data)
+                    console.log(resp.data.list.length)
+                    this.listength=resp.data.list
+                    this.totalCount=resp.data.totalCount
+                }).catch(error=>{
+                    console.log("错误！")
+                })
+
+            }
         }
     }
 </script>
