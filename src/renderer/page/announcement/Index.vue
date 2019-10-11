@@ -44,14 +44,13 @@
         </div>
         <Row style="background:#eee;padding:20px">
             <div v-for="data in listength">
-                <Col span="6">
-                    <Card :bordered="true">
+                <Col span="24">
+                    <Card :bordered="true" dis-hover>
                         <div slot="title" >
-                        <p>
+
+                        <p  style="height: 35px">
                             标题：
                         {{data.title}}
-                         </p>
-                        <p style="height: 35px;margin-left: 65%" >
                             <Button  type="success" @click="deleteAnnouncement(data.id)" >
                                 删除
                             </Button>
@@ -60,10 +59,17 @@
                             </Button>
                         </p>
                         </div>
+                        <Card :bordered="false">
+                            <div slot="title">
+                                <p>发布者：</p>
+                                <p>{{data.creatorName}}</p>
 
-                        <p>发布者：{{data.creatorName}}</p>
-                        <p>内容：{{data.content }}</p>
-                        <p>发布时间：{{data.publishTime}}</p>
+                            </div>
+
+                            <p>内容：{{data.content }}</p>
+                            <p style=" color:#464c5b">发布时间：{{data.publishTime}}</p>
+                        </Card>
+
 
                     </Card>
                 </Col>
