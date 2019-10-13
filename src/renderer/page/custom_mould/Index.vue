@@ -47,8 +47,10 @@
                     <Option v-for="item in settingParam.status" :label="item.label" :value="item.value">
                     </Option>
                 </Select>
-                开始时间:
+                查询时间:
                 <DatePicker @on-clear="clear" v-model="queryParam.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
+                -
+                <DatePicker @on-clear="clear" v-model="queryParam.endTime" type="datetime" placeholder="请选择结束时间" style="width: 200px"></DatePicker>
                 <Button type="info" STYLE="float: right;margin-left: 5px" @click="()=>{exportWord.isShow = true}">导出word</Button>
                 <Button type="primary" @click="insert" style="float: right">下发任务</Button>
                 <Button type="info" STYLE="float: right;margin-right: 5px" @click="search">查询</Button>
@@ -189,7 +191,7 @@
                 mouldContent: null,
                 queryParam:{
                     startTime:'',
-                    endTime:0,
+                    endTime:new Date(),
                     status:'',
                     gradeState:'',
                 },
@@ -349,7 +351,7 @@
                     let time = this.queryParam.startTime.getTime();
                     console.log('查看时间',this.queryParam.startTime);
                     this.mouldForm.startTime = time;
-                    this.mouldForm.endTime = new Date().getTime();
+                    this.mouldForm.endTime = this.queryParam.endTime.getTime();
                 }
                 catch (e) {
                     console.log('发生错误',e)
