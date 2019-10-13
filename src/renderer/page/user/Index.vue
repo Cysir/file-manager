@@ -195,24 +195,7 @@
                     this.recData.total = resp.page.totalCount;
                     let role = [...this.$store.getters['role/roleList']];
                     console.log('权限查看，',role);
-                    this.table.userData = resp.page.list.map(v=>{
-                        console.log('缺陷列表,',v.roleIdList);
-                        v.roleIdList = v.roleIdList.map(_v=>{
-                            let name = null;
-                            role.forEach(vv=>{
-                                if (vv.roleId == _v) {
-                                    name =  vv.roleName;
-                                }
-                            })
-                            return name
-                        });
-                        let q = '';
-                        v.roleIdList.forEach(vv=>{
-                            q += vv+"\n"
-                        })
-                        v.roleIdList = q
-                        return v;
-                    });
+                    this.table.userData = resp.page.list
                 }).catch(error=>{
                     console.log("发生错误")
                 })

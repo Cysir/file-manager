@@ -1,7 +1,7 @@
 import request from '../utils/request'
 
 export function deptListApi() {
-    return request.get("/sys/dept/list");
+    return request.post("/sys/dept/querydeptlist");
 }
 export function deptSelectApi() {
     return request.get("/sys/dept/select");
