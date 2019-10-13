@@ -240,7 +240,18 @@
                 this.exportWord.searchParams.token = getToken()
                 // let param = Qs.stringify(this.exportWord.searchParams)
                 // window.location.href="http://"+localStorage.getItem("serverIp")+":8088/sys/query/deriveword?"+"token="+getToken()+param
-                customeApi.mouldExportWord(this.exportWord.searchParams).then(resp=>{
+                let params = {}
+                for (let key in this.exportWord.searchParams) {
+                    params[key] = this.exportWord.searchParams[key]
+                }
+                if ( this.exportWord.searchParams.startTime != ''){
+                    params.startTime = this.exportWord.searchParams.startTime.getTime()
+                }
+                if(this.exportWord.searchParams.endTime != ''){
+                    params.endTime = this.exportWord.searchParams.endTime.getTime()
+                }
+
+                customeApi.mouldExportWord(params).then(resp=>{
                     // console.log(resp.headers)
                     console.log('下载参数：',resp)
                     let url = window.URL.createObjectURL(resp.data);
@@ -258,9 +269,19 @@
             toexportExcel(){
                 console.log('查询参数EXCEL:',this.exportWord.searchParams)
                 this.exportWord.searchParams.token = getToken()
+                let params = {}
+                for (let key in this.exportWord.searchParams) {
+                    params[key] = this.exportWord.searchParams[key]
+                }
+                if ( this.exportWord.searchParams.startTime != ''){
+                    params.startTime = this.exportWord.searchParams.startTime.getTime()
+                }
+                if(this.exportWord.searchParams.endTime != ''){
+                    params.endTime = this.exportWord.searchParams.endTime.getTime()
+                }
                 // let param = Qs.stringify(this.exportWord.searchParams)
                 // window.location.href="http://"+localStorage.getItem("serverIp")+":8088/sys/query/deriveword?"+"token="+getToken()+param
-                customeApi.mouldExportExcel(this.exportWord.searchParams).then(resp=>{
+                customeApi.mouldExportExcel(params).then(resp=>{
                     // console.log(resp.headers)
                     console.log('下载参数：',resp)
                     let url = window.URL.createObjectURL(resp.data);
