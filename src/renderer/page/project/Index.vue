@@ -149,7 +149,7 @@
                             width:120,
                             render:(h,params)=>{
                                 let self = this;
-                                let able = params.row.status == 0;
+                                let able = params.row.status == 0||params.row.status == 1;
                                 return h('div',{
                                     props:{
                                         // class:'opt_menu'
@@ -178,6 +178,7 @@
                                         }
                                     },'同意'),
                                     h('Button',{props:{
+                                                disabled:able,
                                                 size:'small',type:'error'
                                             },on:{
                                                 click(){

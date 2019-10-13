@@ -3,6 +3,9 @@ import request from '../utils/request'
 export function deptListApi() {
     return request.get("/sys/dept/list");
 }
+export function alldeptListApi() {
+    return request.post("/sys/dept/querydeptlist");
+}
 export function deptSelectApi() {
     return request.get("/sys/dept/select");
 }
@@ -16,4 +19,4 @@ export function deptDeleteApi(deptId) {
     return request.get("/sys/dept/delete",{params:{deptId}})
 }
 
-export default {deptDeleteApi,deptSelectApi,deptSaveApi,deptUpdateApi,deptListApi}
+export default {deptDeleteApi,deptSelectApi,deptSaveApi,deptUpdateApi,deptListApi,alldeptListApi}

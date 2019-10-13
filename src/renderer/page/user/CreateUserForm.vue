@@ -45,7 +45,7 @@
             </FormItem>
         </Form>
         <div style="height: 35px">
-            <Button type="info" @click="ok" style="float: right">添加角色</Button>
+            <Button type="info" @click="ok" style="float: right">保存</Button>
         </div>
     </Modal>
 
@@ -121,7 +121,7 @@
                 this.userContent = user || new userModel();
                 this.isCreate = true;
                 this.loadDept(true)
-                this.loadRole(true)
+                this.allloadRole(true)
             },
             async ok(){
                 console.log('提交的数据',this.userContent);
@@ -151,7 +151,16 @@
                 }
 
             },
-
+            allloadRole(open){
+                if (open && this.defaultParam.roles.length<=0){
+                    roleApi.allqueryRoleApi().then(resp=>{
+                        console.log('角色列表',resp)
+                        this.defaultParam.roles = resp.data;
+                    }).catch(err=>{
+                        console.log('加载角色失败',err);
+                    })
+                }
+            },
             loadRole(open){
                 if (open && this.defaultParam.roles.length<=0){
                     roleApi.queryRoleApi().then(resp=>{
@@ -164,7 +173,7 @@
             },
             loadDept(open){
                 if (open && this.defaultParam.depts.length<=0){
-                    deptApi.deptListApi().then(resp=>{
+                    deptApi.alldeptListApi().then(resp=>{
                         console.log('部门列表',resp)
                         this.defaultParam.depts = resp.data;
                     }).catch(err=>{

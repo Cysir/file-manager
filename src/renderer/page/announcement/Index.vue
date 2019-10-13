@@ -9,7 +9,7 @@
             </Button>
             <Modal
                     v-model="modal1"
-                    title="Common Modal dialog box title"
+                    title="添加公告"
                     @on-ok="ok"
                     @on-cancel="cancel">
                 <Form :model="formItem" :label-width="80">
@@ -26,7 +26,7 @@
             </Modal>
             <Modal
                     v-model="modal2"
-                    title="Common Modal dialog box title"
+                    title="修改公告"
                     @on-ok="ok2"
                     @on-cancel="cance1">
                 <Form :model="formItem2" :label-width="80">

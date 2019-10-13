@@ -390,6 +390,7 @@
                 // console.log("加载的参数id",this.$route.params.id);
                 let mouldTemp = await customeApi.mouldListApi(this.$route.params.id);
                 console.log('数据模板',mouldTemp);
+                console.log('模板ID',mouldTemp.data.menuId)
                 this.exportWord.mouldName = mouldTemp.data.templateName;
                 let coustom_col = JSON.parse(mouldTemp.data.content).map(v=>{
                     return {title:v.displayName,key:v.fieldName};
