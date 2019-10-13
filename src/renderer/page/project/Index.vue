@@ -149,12 +149,14 @@
                             width:120,
                             render:(h,params)=>{
                                 let self = this;
+                                let able = params.row.status == 0;
                                 return h('div',{
                                     props:{
                                         // class:'opt_menu'
                                     },
                                 },[
                                     h('Button',{props:{
+                                            disabled:able,
                                             size:'small',type:'info'
                                         },
                                         style:{
