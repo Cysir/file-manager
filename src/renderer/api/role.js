@@ -1,4 +1,7 @@
 import request from '../utils/request'
+export function allqueryRoleApi(data) {
+    return request.post("/sys/role/queryrole")
+}
 export function queryRoleApi(data) {
     return request.get("/sys/role/list",{params:data})
 }
@@ -34,4 +37,4 @@ export function selectMenu() {
     return request.get("/sys/menu/list")
 
 }
-export default {queryRoleApi,roleInfoApi,saveRoleApi,updateRoleApi,deleteRoleApi,selectDept,selectMenu,queryAllRoleApi}
+export default {allqueryRoleApi,queryRoleApi,roleInfoApi,saveRoleApi,updateRoleApi,deleteRoleApi,selectDept,selectMenu,queryAllRoleApi}

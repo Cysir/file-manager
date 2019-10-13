@@ -29,4 +29,7 @@ export function mouldExportWord(data) {
 export function mouldExportExcel(data) {
     return request.get("/sys/query/deriveexcel",{params:data,responseType:'blob',})
 }
-export default {mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi,mouldExportWord,mouldExportExcel}
+export  function accepterApi(data) {
+    return request.get('/sys/user/menuIdByUserList',{params:data})
+}
+export default {mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi,mouldExportWord,mouldExportExcel,accepterApi}

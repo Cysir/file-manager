@@ -165,6 +165,7 @@
                 newList:[],
                 newListtem:[],
                 informationTime:'',
+                taskType:'',
                 taskTypedata:' temporary'
             }
         },
@@ -256,7 +257,7 @@
                                     this.informationstatus=data.status
                                     this.stardaydata=data.startDays
                                     this.enddaydata=data.endDays
-
+                                    this.taskType=data.taskType
 
                                     console.log(data)
                                     console.log(this.creationPerson)
@@ -273,18 +274,19 @@
                                     /*localStorage.setItem()*/
                                     console.log(data.taskType)
                                     console.log(this.taskTypedata)
-                                    if (data.taskType=='temporary' ){
-                                        
-                                        if(data.startDays>0){
-                                            this.temporaryRenderFunc1()
-                                        }else if (data.endDays<3) {
-                                            this.temporaryRenderFunc2()
-                                        }
-                                    }else {
-                                        this.renderFunc()
+
+
+
+                                }
+                                if (this.taskType=='temporary' ){
+
+                                    if( this.stardaydata>0){
+                                        this.temporaryRenderFunc1()
+                                    }else if (this.enddaydata<3) {
+                                        this.temporaryRenderFunc2()
                                     }
-
-
+                                }else {
+                                    this.renderFunc()
                                 }
                                 /*  if (this.oldList.length>0){
                                       console.log(this.oldList)

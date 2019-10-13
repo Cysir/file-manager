@@ -32,7 +32,7 @@
 <script>
 import LoginForm from "../components/LoginForm";
 import request from "../utils/request";
-let copyright = "国网常德分公司 © 版权所有 ";
+let copyright = "国网常德公司 © 版权所有 ";
 let author = "技术支持：湖南文理学院古剑奇谭工作室";
 let welcome = "重点工作任务智能助手";
 

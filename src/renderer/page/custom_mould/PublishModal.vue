@@ -216,7 +216,7 @@
                 }
             },
             loadUser(){
-                customApi.userListApi().then(resp=>{
+                customApi.accepterApi({menuId:this.dataContent.menuId}).then(resp=>{
                    console.log('用户列表',resp)
                     this.userList = resp.page.list;
                 });
@@ -307,6 +307,7 @@
 
             },
             mouldContent(val){
+                console.log("aaaaaaaaaaaaaaaaaaa mouldContent>",val)
                 this.dataContent = val;
             }
         }
