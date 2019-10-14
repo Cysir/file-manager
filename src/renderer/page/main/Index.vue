@@ -4,15 +4,20 @@
     <Layout style="height: 100%">
         <ApplyProject ref="myApply"> </ApplyProject>
         <Modal
+                ref="pass_modal"
                 v-model="modal2"
                 title="修改用户密码"
+                loading="true"
                 @on-ok="submit"
                 @on-cancel="cancel">
-            <Form  :model="use" :label-width="80">
+            <Form ref="repassword"  :model="use" :label-width="80">
                 <FormItem label="原密码">
                     <Input v-model="use.password" placeholder="请输入原始密码..."></Input>
                 </FormItem>
-                <FormItem label="新密码">
+                <FormItem prop="newPassword" label="新密码" :rules="[
+                        { required: true, message: '请输入密码', trigger: 'blur' },
+                        { type: 'string', min: 6, message: '密码长度不能小于6', trigger: 'blur' }
+                    ]">
                     <Input v-model="use.newPassword" placeholder="请输入新密码..."></Input>
                 </FormItem>
             </Form>
@@ -620,17 +625,28 @@
             updatePassword(){
                     this.modal2 = true
             },
-            submit(){
+            async submit(){
+                let ok = await this.$refs.repassword.validate()
+                if (!ok){
+                    this.$refs.pass_modal.buttonLoading = false;
+                    return;
+                }
                 let person={
                     'password':this.use.password,
                     'newPassword':this.use.newPassword
                 }
                 updatePasswordApi(person).then(resp=>{
+                    this.$refs.pass_modal.buttonLoading = false;
+                    this.modal2 = false
                     console.log("成功—！！！")
                    console.log(resp)
                     this.$Message.success("修改成功！下次登录用最新密码");
                 }).catch(error=>{
                     console.log("错误！+111")
+                    this.$refs.pass_modal.buttonLoading = false;
+                    this.modal2 = false
+                    // this.$Modal.error({title:"修改密码失败",content:error.toString()})
+
                 })
 
 
