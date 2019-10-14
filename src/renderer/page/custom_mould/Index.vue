@@ -51,7 +51,7 @@
                 <DatePicker @on-clear="clear" v-model="queryParam.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
                 -
                 <DatePicker @on-clear="clear" v-model="queryParam.endTime" type="datetime" placeholder="请选择结束时间" style="width: 200px"></DatePicker>
-                <Button type="info" STYLE="float: right;margin-left: 5px" @click="()=>{exportWord.isShow = true}">导出word</Button>
+                <Button type="info" STYLE="float: right;margin-left: 5px" @click="()=>{exportWord.isShow = true}">导出报表</Button>
                 <Button type="primary" @click="insert" style="float: right">下发任务</Button>
                 <Button type="info" STYLE="float: right;margin-right: 5px" @click="search">查询</Button>
 
@@ -351,11 +351,18 @@
                     let time = this.queryParam.startTime.getTime();
                     console.log('查看时间',this.queryParam.startTime);
                     this.mouldForm.startTime = time;
-                    this.mouldForm.endTime = this.queryParam.endTime.getTime();
+
                 }
                 catch (e) {
                     console.log('发生错误',e)
                     delete this.mouldForm.startTime;
+
+                }
+                try{
+                    this.mouldForm.endTime = this.queryParam.endTime.getTime();
+                }
+                catch (e) {
+                    console.log('发生错误',e)
                     delete this.mouldForm.endTime;
                 }
                 let self = this;

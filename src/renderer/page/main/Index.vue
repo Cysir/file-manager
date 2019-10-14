@@ -40,7 +40,9 @@
                                 <DropdownItem>账号：{{userModel.username}}</DropdownItem>
                                 <DropdownItem disabled>部门：{{userModel.deptName}}</DropdownItem>
                                 <DropdownItem>邮箱：{{userModel.email}}</DropdownItem>
+                                <DropdownItem name="updatePassword" v-if="false">修改密码</DropdownItem>
                                 <DropdownItem name="logout" divided>退出登录</DropdownItem>
+
                             </DropdownMenu>
                         </Dropdown>
 
@@ -374,6 +376,9 @@
                 if (event == 'logout'){
                     this.logout()
                 }
+                if (event == 'updatePassword'){
+                    this.updatePassword()
+                }
             },
             /*消息提醒弹出框内容*/
             renderFuncTime () {
@@ -567,6 +572,9 @@
                             console.log('退出登录失败',err);
                         });
                     }});
+            },
+            updatePassword(){
+
             },
             refresh() {
                 location.reload();

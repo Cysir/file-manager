@@ -37,11 +37,11 @@
                 <Col span="20">
                     <RadioGroup v-model="form.type">
                         <Radio label="0">
-                            <Icon type="logo-apple"></Icon>
+                            <Icon type="ios-aperture" />
                             <span>目录</span>
                         </Radio>
                         <Radio label="1">
-                            <Icon type="logo-android"></Icon>
+                            <Icon type="ios-basket" />
                             <span>菜单</span>
                         </Radio>
                         <Radio label="2">
@@ -72,7 +72,7 @@
                 create:false,
                 form:{
                   /*  deptId:0,*/
-                    type:'',
+                    type:"1",
                     name:'',
                     perms:'',
                     url:'/custom_menu/',
@@ -239,7 +239,7 @@
             },
             resetForm(){
                 this.form={
-                    type:'',
+                    type:'1',
                     name:'',
                     perms:'',
                     url:'/custom_menu/',
