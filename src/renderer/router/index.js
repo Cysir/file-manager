@@ -14,7 +14,7 @@ export const constantRoutes = [
   {
     path: '/index',
     component: require('@/page/main/Index').default,
-    redirect:'/modules/sys/projectType',
+    redirect:'/modules/sys/notice.html',
     hidden: true,
     meta:{
       requireAuth:true

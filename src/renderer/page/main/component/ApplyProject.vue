@@ -44,7 +44,9 @@ export default {
   data() {
     return {
       title: ["原因说明"],
-      applyData:null,
+      applyData:{
+
+      },
       ruleValidate: {
         cause: [
           {

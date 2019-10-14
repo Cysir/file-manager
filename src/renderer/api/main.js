@@ -6,3 +6,8 @@ export function getMenu() {
         method:"get"
     })
 }
+export function updatePasswordApi(data) {
+
+    return request.post("/sys/user/password",data)
+}
+export default {getMenu,updatePasswordApi}

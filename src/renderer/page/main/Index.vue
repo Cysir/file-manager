@@ -1,6 +1,22 @@
 <template>
+
+
     <Layout style="height: 100%">
         <ApplyProject ref="myApply"> </ApplyProject>
+        <Modal
+                v-model="modal2"
+                title="修改用户密码"
+                @on-ok="submit"
+                @on-cancel="cancel">
+            <Form  :model="use" :label-width="80">
+                <FormItem label="原密码">
+                    <Input v-model="use.password" placeholder="请输入原始密码..."></Input>
+                </FormItem>
+                <FormItem label="新密码">
+                    <Input v-model="use.newPassword" placeholder="请输入新密码..."></Input>
+                </FormItem>
+            </Form>
+        </Modal>
         <Header style="background: rgba(1,157,141,0.87)">
             <Row type="flex" justify="space-between" class="code-row-bg">
                 <Col span="16">
@@ -25,13 +41,17 @@
                             </Badge>
                         </Tooltip>
 
+
+
                         <!--<Avatar style="color: #f56a00;background-color: #fde3cf;position: absolute;right: 0px;top:15px">-->
                             <!--{{userModel.name}}-->
                         <!--</Avatar>-->
+
                         <Dropdown  trigger="click" style="margin-left: 20px"  @on-click="userClick">
                             <a href="javascript:void(0)">
-                                <Avatar style="color: #f56a00;background-color: #fde3cf">
-                                    {{userModel.name.charAt(userModel.name.length-1)}}
+                                <Avatar style="background-color: #87d068">
+                                    <!--{{userName}}-->
+                                    <Icon size="28" type="ios-person"></Icon>
                                 </Avatar>
                                 <!--<Icon type="ios-arrow-down"></Icon>-->
                             </a>
@@ -40,8 +60,10 @@
                                 <DropdownItem>账号：{{userModel.username}}</DropdownItem>
                                 <DropdownItem disabled>部门：{{userModel.deptName}}</DropdownItem>
                                 <DropdownItem>邮箱：{{userModel.email}}</DropdownItem>
-                                <DropdownItem name="updatePassword" v-if="false">修改密码</DropdownItem>
+                                <DropdownItem name="updatePassword"   >修改密码</DropdownItem>
                                 <DropdownItem name="logout" divided>退出登录</DropdownItem>
+
+
 
                             </DropdownMenu>
                         </Dropdown>
@@ -76,6 +98,10 @@
             </Content>
         </Layout>
     </Layout>
+
+
+
+
 </template>
 
 <script>
@@ -144,16 +170,25 @@
         }
     });
 
-    import {getMenu} from '../../api/main'
+    import  {getMenu,updatePasswordApi} from '../../api/main'
 
     export default {
         name: "Index",
               components: {ApplyProject},
         data() {
             return {
+                modal2:false,
+                use:{
+                    password:'',
+                    newPassword:'',
+                },
+
+
                 number:0,
                 navMenu: [],
-                userModel: {},
+                userName:'',
+                userModel: {
+                },
                 text: '',
                 data: '',
                 websocket: null,
@@ -326,11 +361,12 @@
                 let resp =await getMenu();
                 if (resp.code == 0) {
                     this.navMenu = resp.menuList;
+                    console.log('菜单加载完成')
                     this.$nextTick(() => {
                         // console.log(this.$refs['menu']);
                         // console.log('aaaaaaa>>>>>>',this.$refs.menu);
-                        // this.$refs.menu.updateOpened();
-                        // this.$refs.menu.updateActiveName();
+                        this.$refs.menu.updateOpened();
+                        this.$refs.menu.updateActiveName();
                     })
                 }
             }
@@ -347,6 +383,12 @@
                 // console.log('用户数据得到》》》')
                 let userInfo = this.$store.getters["mine/info"];
                 this.userModel = userInfo;
+               try{
+                   this.userName = this.userModel.name.charAt(this.userModel.name.length-1)
+               }
+               catch (e) {
+                   console.log('aa',e)
+               }
                 console.log('用户数据>>>>', userInfo)
                 this.$ipcR.send("MsgUserInfo",userInfo.name);
                 console.log('getters获得数据',this.$store.getters.token)
@@ -378,8 +420,10 @@
                 }
                 if (event == 'updatePassword'){
                     this.updatePassword()
+
                 }
             },
+
             /*消息提醒弹出框内容*/
             renderFuncTime () {
                 let _this = this
@@ -574,8 +618,27 @@
                     }});
             },
             updatePassword(){
+                    this.modal2 = true
+            },
+            submit(){
+                let person={
+                    'password':this.use.password,
+                    'newPassword':this.use.newPassword
+                }
+                updatePasswordApi(person).then(resp=>{
+                    console.log("成功—！！！")
+                   console.log(resp)
+                    this.$Message.success("修改成功！下次登录用最新密码");
+                }).catch(error=>{
+                    console.log("错误！+111")
+                })
+
 
             },
+            cancel(){
+
+            },
+
             refresh() {
                 location.reload();
             },
