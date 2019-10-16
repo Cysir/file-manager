@@ -1,4 +1,4 @@
-<template>
+ <template>
 
 
     <Layout style="height: 100%">
@@ -208,7 +208,8 @@
                 newListtem:[],
                 informationTime:'',
                 taskType:'',
-                taskTypedata:' temporary'
+                taskTypedata:' temporary',
+                menuNamedata:''
             }
         },
         computed: {
@@ -300,6 +301,8 @@
                                     this.stardaydata=data.startDays
                                     this.enddaydata=data.endDays
                                     this.taskType=data.taskType
+                                    this.menuNamedata=data.menuName
+                                    console.log(data.menuName)
 
                                     console.log(data)
                                     console.log(this.creationPerson)
@@ -459,12 +462,12 @@
             },
             renderFunc () {
                 let _this = this
-                this.$ipcR.send("indexMessage",`新消息：发送人[${_this.creationPerson}]:情况：${_this.informationstatus} 等级：${_this.informationgradeState}`)
+                this.$ipcR.send("indexMessage",`新消息：发送人[${_this.creationPerson}] 菜单：${_this.menuNamedata} 情况：${_this.informationstatus} 等级：${_this.informationgradeState}`)
                 this.$Notice.success({
                     title: "新消息：发送人:"+this.creationPerson+"",
                     desc: 'The desc will hide when you set render.',
                     render: function (h, params) {
-                        let test='情况：'+_this.informationstatus+'   等级：'+_this.informationgradeState
+                        let test='菜单:'+_this.menuNamedata+'  情况：'+_this.informationstatus+'   等级：'+_this.informationgradeState
                         return h('div', [
                             h('span', {
                                 props: {
@@ -479,9 +482,9 @@
                         ]);
                     },
                     duration:0,
-                    onClose:e=>{
+                   /* onClose:e=>{
                         this.number=this.number-1
-                    }
+                    }*/
                 });
             },
             temporaryRenderFunc1 () {
@@ -505,9 +508,9 @@
                         ]);
                     },
                     duration:0,
-                    onClose:e=>{
+                  /*  onClose:e=>{
                         this.number=this.number-1
-                    }
+                    }*/
                 });
             },
             temporaryRenderFunc2 () {
@@ -531,9 +534,9 @@
                         ]);
                     },
                     duration:0,
-                    onClose:e=>{
+                   /* onClose:e=>{
                         this.number=this.number-1
-                    }
+                    }*/
                 });
             },
             /*消息提醒的数组里面数据重复解决方法*/
