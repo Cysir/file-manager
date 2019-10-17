@@ -198,14 +198,40 @@
                                     type: 'primary',
                                     size: 'small',
 
-                                }},'上移'),h('Button',{
+                                },
+                                on:{
+                                    click(){
+                                        let id = params.row.id
+                                        let sortOrder = 'up'
+                                        customeApi.mouldMoveApi({id,sortOrder}).then(resp=>{
+                                            self.$Message.success({content:'操作成功'})
+                                            self.loadData()
+                                        }).catch(err=>{
+                                            self.$Message.error({content:'操作失败'})
+                                        })
+                                    }
+                                },
+                                },'上移'),h('Button',{
                                 style:{
                                     margin:'0px 1px'
                                 },
                                 props: {
                                     type: 'success',
                                     size: 'small'
-                                }},'下移')])
+                                },
+                                on:{
+                                    click(){
+                                        let id = params.row.id
+                                        let sortOrder = 'down'
+                                        customeApi.mouldMoveApi({id,sortOrder}).then(resp=>{
+                                            self.$Message.success({content:'操作成功'})
+                                            self.loadData()
+                                        }).catch(err=>{
+                                            self.$Message.error({content:'操作失败'})
+                                        })
+                                    }
+                                }
+                                },'下移')])
                         }
                     }
                 ],
