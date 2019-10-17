@@ -32,4 +32,7 @@ export function mouldExportExcel(data) {
 export  function accepterApi(data) {
     return request.get('/sys/user/menuIdByUserList',{params:data})
 }
-export default {mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi,mouldExportWord,mouldExportExcel,accepterApi}
+export function mouldMoveApi(data) {
+    return request.post('/sys/Templatedata/updateOrderNumber',data)
+}
+export default {mouldMoveApi,mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi,mouldExportWord,mouldExportExcel,accepterApi}
