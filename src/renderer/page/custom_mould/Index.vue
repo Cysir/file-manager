@@ -146,45 +146,66 @@
                     },
                     {
                         title: '操作',
-                        width: 100,
+                        width: 126,
                         render: (h, params) => {
                             let self = this;
-                            return h('Button', {
+                            return h('div',[h('Button',
+                                {
+                                    props: {
+                                        type: 'success',
+                                        size: 'small'
+                                    },
+                                    style:{
+                                        width:'82px',
+                                        margin:'1px 0px'
+                                    },
+                                    on: {
+                                        click() {
+
+                                            let data = params.row;
+                                            let testContent = {};
+                                            let templateData = JSON.parse(data.templateData);
+                                            for (let data of templateData) {
+                                                for (let key in data) {
+                                                    testContent[key] = data[key];
+                                                }
+                                            }
+                                            let extraField = {
+                                                status: data.status,
+                                                gradeState: data.gradeState,
+                                                url: data.urls,
+                                                fileList: data.urls != null ? [{
+                                                    name: '文件：' + data.urls.split('/')[data.urls.split('/').length - 1],
+                                                    url: data.urls
+                                                }] : []
+                                            };
+                                            console.log('拼接后的data', testContent);
+                                            console.log(data.userIds, data.userIds.replace("'", ''));
+                                            let userId = data.userIds.replace(/'/g, '').split(',').map(v => {
+                                                return parseInt(v);
+                                            });
+                                            self.$refs.alert.update(testContent, extraField, userId, data);
+                                            //     .testContent = testContent;
+                                            // self.$refs.alert.extraField = extraField;
+                                            // self.isPublish = true;
+                                        }
+                                    }
+                                }, '查看'),h('Button',{
+                                style:{
+                                    margin:'0px 1px'
+                                },
+                                props: {
+                                    type: 'primary',
+                                    size: 'small',
+
+                                }},'上移'),h('Button',{
+                                style:{
+                                    margin:'0px 1px'
+                                },
                                 props: {
                                     type: 'success',
                                     size: 'small'
-                                }, on: {
-                                    click() {
-
-                                        let data = params.row;
-                                        let testContent = {};
-                                        let templateData = JSON.parse(data.templateData);
-                                        for (let data of templateData) {
-                                            for (let key in data) {
-                                                testContent[key] = data[key];
-                                            }
-                                        }
-                                        let extraField = {
-                                            status: data.status,
-                                            gradeState: data.gradeState,
-                                            url: data.urls,
-                                            fileList: data.urls != null ? [{
-                                                name: '文件：' + data.urls.split('/')[data.urls.split('/').length - 1],
-                                                url: data.urls
-                                            }] : []
-                                        };
-                                        console.log('拼接后的data', testContent);
-                                        console.log(data.userIds, data.userIds.replace("'", ''));
-                                        let userId = data.userIds.replace(/'/g, '').split(',').map(v => {
-                                            return parseInt(v);
-                                        });
-                                        self.$refs.alert.update(testContent, extraField, userId, data);
-                                        //     .testContent = testContent;
-                                        // self.$refs.alert.extraField = extraField;
-                                        // self.isPublish = true;
-                                    }
-                                }
-                            }, '查看')
+                                }},'下移')])
                         }
                     }
                 ],

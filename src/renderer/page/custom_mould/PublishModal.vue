@@ -54,9 +54,9 @@
             <Row :gutter="gutter" class="my-row">
                 <Col span="3">完成状态</Col>
                 <Col span="18">
-                    <Select v-model="extraField.status">
-                        <Option v-for="item in extraField.statusO" :value="item">{{item}}</Option>
-                    </Select>
+                    <RadioGroup  v-model="extraField.status">
+                        <Radio  v-for="item in extraField.statusO" :label="item">{{item}}</Radio >
+                    </RadioGroup >
                 </Col>
             </Row>
             </FormItem>
@@ -67,10 +67,10 @@
                 <Col span="3">任务等级</Col>
                 <Col span="18">
                     <!--        等级-->
-                    <Select v-model="extraField.gradeState">
-                        <Option v-for="item in extraField.gradeStateO" :value="item">{{item}}</Option>
+                    <RadioGroup v-model="extraField.gradeState">
+                        <Radio  v-for="item in extraField.gradeStateO" :label="item"></Radio >
 
-                    </Select>
+                    </RadioGroup>
                 </Col>
             </Row>
             </FormItem>
@@ -136,9 +136,9 @@
             return {
                 token:'http://'+localStorage.getItem("serverIp")+'/sys/file/upload?token='+getToken(),
                 extraField:{
-                    status:'',
+                    status:'三级',
                     statusO:['已完成','进行中','未开始'],
-                    gradeState:'',
+                    gradeState:'未开始',
                     gradeStateO:['一级','二级','三级'],
                     url:'',
                     fileList:[],
@@ -166,8 +166,8 @@
             insert(){
 
                 this.type.isCreate = true;
-                this.extraField.status='';
-                this.extraField.gradeState='';
+                this.extraField.status='未开始';
+                this.extraField.gradeState='三级';
                 this.extraField.url='';
                 this.extraField.fileList=[];
                 this.extraField.startTime = new Date()
