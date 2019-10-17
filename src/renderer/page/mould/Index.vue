@@ -1,27 +1,41 @@
 <template>
     <div style="height: 100%;margin: 10px">
-        <Modal width="800" :mask-closable=false v-model="create" :footer-hide=true class-name="vertical-center-modal">
+        <Modal width="1000" :mask-closable=false v-model="create" :footer-hide=true class-name="vertical-center-modal">
 
             <div class="editField" style="font-size: 15px;padding-right: 5px">
 
                 <Divider orientation="left">模板</Divider>
 
                 <Row>
-                    <Col span="5">模板名:<Input v-model="mouldTemplate.name" placeholder="如:异常上报" style="width:90px"/></Col>
-                    <Col span="5">
-                        部门: <Select v-model="mouldTemplate.dept" style="width:100px">
+
+<!--                    <Col span="5">模板名:<Input v-model="mouldTemplate.name" placeholder="如:异常上报" style="width:90px"/></Col>-->
+                    <Col span="8">
+                        部门: <Select v-model="mouldTemplate.dept" style="width:200px">
                         <Option v-for="item in mouldTemplate.mouldDept" :value="item.deptId" :key="item.deptId">{{ item.name }}</Option>
                     </Select>
                     </Col>
-                    <Col span="5">
-                        菜单: <Select v-model="mouldTemplate.menu" style="width:100px">
+                    <Col span="8">
+                        菜单: <Select v-model="mouldTemplate.menu" style="width:200px">
                         <Option v-for="item in mouldTemplate.mouldMenu" :value="item.menuId" :key="item.menuId">{{ item.name }}</Option>
                     </Select>
                     </Col>
-                    <Col span="9">
+
+                    <Col span="8">
                         <Button style="float: right" type="success" @click="createMould">保存模板</Button>
                     </Col>
                 </Row>
+                <Divider orientation="left">
+                    标题
+                </Divider>
+                <div>
+                <Row gutter="2">
+                    <Col span="8">
+                        模板名:<Input v-model="mouldTemplate.name" placeholder="如:异常上报"/>
+                    </Col>
+                    <Col span="8"> 中标题：<Input v-model="mouldTemplate.subtitle" placeholder="请输入中标题"/></Col>
+                    <Col span="8"> 小标题：<Input v-model="mouldTemplate.headings" placeholder="请输入小标题"/></Col>
+                </Row>
+                </div>
                 <Divider orientation="left">
                     公共字段
                 </Divider>
@@ -32,24 +46,31 @@
                         <Checkbox style="font-size: 15px" label="3">等级</Checkbox>
 <!--                        <Checkbox label="西瓜"></Checkbox>-->
                     </CheckboxGroup>
+
                 </div>
                 <Divider orientation="left">字段</Divider>
                 <Row>
 
-                    <Col span="5">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:90px"/></Col>
-                    <Col span="5">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:90px"/></Col>
-                    <Col span="5">
+                    <Col span="4">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:90px"/></Col>
+                    <Col span="4">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:90px"/></Col>
+                    <Col span="4">
                         导出: <Select v-model="form.onlyRead" style="width:100px">
                         <Option v-for="item in modeRadios" :value="item.value" >{{ item.label }}</Option>
                     </Select>
                     </Col>
-                    <Col span="5">
+                    <Col span="4">
                         类型: <Select v-model="form.type" style="width:100px">
                         <Option v-for="item in modeTypes" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                     </Col>
-                    <Col span="4">
-                        <Button style="" type="warning" @click="test">添加字段</Button>
+                    <Col span="3">
+                        宽度：<Input v-model="form.widths" style="width: 60px"/>
+                    </Col>
+                    <Col span="3">
+                        高度：<Input v-model="form.heights" style="width: 60px"/>
+                    </Col>
+                    <Col span="2">
+                        <Button style="width: 80px" type="warning" @click="test">添加字段</Button>
                     </Col>
 
                 </Row>
@@ -207,12 +228,18 @@
                 //打开创建的面板
                 this.create = true;
                 this.mouldTemplate.id = null;
+                this.mouldTemplate.headings=''
+                this.mouldTemplate.subtitle=''
                 this.restMould();
             },
             createMould(){
                 let menuId = this.mouldTemplate.menu;
                 let templateName = this.mouldTemplate.name;
                 let deptId = this.mouldTemplate.dept;
+                //中标题
+                let subtitle=this.mouldTemplate.subtitle;
+                //小标题
+                let headings=this.mouldTemplate.headings;
                 let content = JSON.stringify(this.mould);
                 //设置导出字段
                 let deriveWord = [];
@@ -238,7 +265,7 @@
                         gradeState = 1;
                     }
                 }
-                mould.saveMould({deriveWord,templateName,menuId,deptId,content,id,urls,status,gradeState}).then(resp=>{
+                mould.saveMould({subtitle,headings,deriveWord,templateName,menuId,deptId,content,id,urls,status,gradeState}).then(resp=>{
                     this.$Message.info({content:"模板创建成功"});
                     this.restMould();
                     mould.queryMould().then(resp=>{
@@ -273,6 +300,8 @@
                     fieldName:'',
                     onlyRead:'yes',
                     type:'input',
+                    widths:100,
+                    heights:40,
                     optionalValue:[]};
             }
         },
@@ -284,6 +313,8 @@
                     name:'',
                     dept:'',
                     menu:'',
+                    subtitle:'',
+                    headings:'',
                     mouldDept:[],
                     mouldMenu:[],
                     common:[],
@@ -293,6 +324,8 @@
                     fieldName:'',
                     onlyRead:'yes',
                     type:'input',
+                    widths:100,
+                    heights:40,
                     optionalValue:[]},
                 mould:[],
                 create:false,
@@ -333,6 +366,8 @@
                                     _this.mouldTemplate.dept = params.row.deptId;
                                     _this.mouldTemplate.menu = params.row.menuId;
                                     _this.mouldTemplate.name = params.row.templateName;
+                                    _this.mouldTemplate.subtitle = params.row.subtitle
+                                    _this.mouldTemplate.headings = params.row.headings
                                     console.log("前置多选框值",params.row);
                                     _this.mouldTemplate.common = [params.row.urls==1?'1':'0',params.row.status==1?'2':'0',params.row.gradeState==1?'3':'0'];
                                     console.log('加载多选按钮值：',_this.mouldTemplate.common);
