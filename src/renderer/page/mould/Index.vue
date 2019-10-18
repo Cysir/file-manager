@@ -51,15 +51,20 @@
                 <Divider orientation="left">字段</Divider>
                 <Row>
 
-                    <Col span="4">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:60px"/></Col>
-                    <Col span="4">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:60px"/></Col>
-                    <Col span="4">
-                        导出: <Select v-model="form.onlyRead" style="width:60px">
+                    <Col span="3">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:70px"/></Col>
+                    <Col span="3">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:70px"/></Col>
+                    <Col span="3">
+                        导出: <Select v-model="form.onlyRead" style="width:70px">
                         <Option v-for="item in modeRadios" :value="item.value" >{{ item.label }}</Option>
                     </Select>
                     </Col>
-                    <Col span="4">
-                        类型: <Select v-model="form.type" style="width:60px">
+                    <Col span="3">
+                        合并: <Select v-model="form.merge" style="width:70px">
+                        <Option v-for="item in mergeData" :value="item.value" >{{ item.label }}</Option>
+                    </Select>
+                    </Col>
+                    <Col span="3">
+                        类型: <Select v-model="form.type" style="width:70px">
                         <Option v-for="item in modeTypes" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                     </Col>
@@ -69,9 +74,11 @@
                     <Col span="3">
                         高度：<Input v-model="form.heights" style="width: 60px"/>
                     </Col>
+
                     <Col span="2">
                         <Button style="width: 80px" type="warning" @click="test">添加字段</Button>
                     </Col>
+
 
                 </Row>
                 <Form :model="form">
@@ -323,6 +330,7 @@
                     displayName:'',
                     fieldName:'',
                     onlyRead:'yes',
+                    merge:'no',
                     type:'input',
                     widths:100,
                     heights:40,
@@ -331,6 +339,7 @@
                 create:false,
 
                 modeRadios:[{value:'yes',label:'是'},{value:'no',label:'否'}],
+                mergeData:[{value:'no',label:'否'},{value:'yes',label:'是'}],
                 modeTypes:[{value:'input',label:'输入框'},{value:'text',label:'文本框'},{value:'radio',label:'单选框'},{value:'checkbox',label:'多选框'},{value:'date',label:'日期框'},{value:'button',label:'按钮'}],
                 headerColumn: [
                     {
