@@ -51,25 +51,28 @@
                 <Divider orientation="left">字段</Divider>
                 <Row>
 
-                    <Col span="4">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:70px"/></Col>
-                    <Col span="4">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:70px"/></Col>
+                    <Col span="4">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:90px"/></Col>
+                    <Col span="4">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:90px"/></Col>
                     <Col span="4">
-                        导出: <Select v-model="form.onlyRead" style="width:70px">
+                        导出: <Select v-model="form.onlyRead" style="width:90px">
                         <Option v-for="item in modeRadios" :value="item.value" >{{ item.label }}</Option>
                     </Select>
                     </Col>
-                    <Col span="4">
+                  <!--  <Col span="4">
                         合并: <Select v-model="form.merge" style="width:70px">
                         <Option v-for="item in mergeData" :value="item.value" >{{ item.label }}</Option>
                     </Select>
-                    </Col>
-                    <Col span="3">
-                        类型: <Select v-model="form.type" style="width:70px">
+                    </Col>-->
+                    <Col span="4">
+                        类型: <Select v-model="form.type" style="width:90px">
                         <Option v-for="item in modeTypes" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                     </Col>
-                    <Col span="3">
-                        宽度：<Input v-model="form.widths" style="width: 60px"/>
+                    <Col span="4">
+                        <Tooltip content="总页宽7500----8900" placement="top-start">
+                            宽度：<Input v-model="form.widths" style="width: 90px"/>
+                        </Tooltip>
+
                     </Col>
                   <!--  <Col span="3">
                         高度：<Input v-model="form.heights" style="width: 60px"/>
@@ -320,7 +323,7 @@
                     fieldName:'',
                     onlyRead:'yes',
                     type:'input',
-                    widths:100,
+                    widths:1000,
                   /*  heights:40,*/
                     optionalValue:[]};
             }
@@ -343,9 +346,9 @@
                     displayName:'',
                     fieldName:'',
                     onlyRead:'yes',
-                    merge:'no',
+                  /*  merge:'no',*/
                     type:'input',
-                    widths:100,
+                    widths:1000,
                    /* heights:40,*/
                     optionalValue:[]},
                 mould:[],
