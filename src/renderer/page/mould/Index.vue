@@ -30,10 +30,10 @@
                 <div>
                 <Row gutter="2">
                     <Col span="8">
-                        模板名:<Input v-model="mouldTemplate.name" placeholder="如:异常上报"/>
+                        小标题(模板名):<Input v-model="mouldTemplate.name" placeholder="如:异常上报"/>
                     </Col>
                     <Col span="8"> 中标题：<Input v-model="mouldTemplate.subtitle" placeholder="请输入中标题"/></Col>
-                    <Col span="8"> 小标题：<Input v-model="mouldTemplate.headings" placeholder="请输入小标题"/></Col>
+                    <Col span="8"> 大标题：<Input v-model="mouldTemplate.headings" placeholder="请输入小标题"/></Col>
                 </Row>
                 </div>
                 <Divider orientation="left">
@@ -51,14 +51,14 @@
                 <Divider orientation="left">字段</Divider>
                 <Row>
 
-                    <Col span="3">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:70px"/></Col>
-                    <Col span="3">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:70px"/></Col>
-                    <Col span="3">
+                    <Col span="4">显示名:<Input v-model="form.displayName" placeholder="如:姓名" style="width:70px"/></Col>
+                    <Col span="4">字段:<Input v-model="form.fieldName" placeholder="如：name" style="width:70px"/></Col>
+                    <Col span="4">
                         导出: <Select v-model="form.onlyRead" style="width:70px">
                         <Option v-for="item in modeRadios" :value="item.value" >{{ item.label }}</Option>
                     </Select>
                     </Col>
-                    <Col span="3">
+                    <Col span="4">
                         合并: <Select v-model="form.merge" style="width:70px">
                         <Option v-for="item in mergeData" :value="item.value" >{{ item.label }}</Option>
                     </Select>
@@ -71,9 +71,9 @@
                     <Col span="3">
                         宽度：<Input v-model="form.widths" style="width: 60px"/>
                     </Col>
-                    <Col span="3">
+                  <!--  <Col span="3">
                         高度：<Input v-model="form.heights" style="width: 60px"/>
-                    </Col>
+                    </Col>-->
 
                     <Col span="2">
                         <Button style="width: 80px" type="warning" @click="test">添加字段</Button>
@@ -233,11 +233,23 @@
         methods:{
             openCreate(){
                 //打开创建的面板
+                this.menu()
                 this.create = true;
                 this.mouldTemplate.id = null;
+                this.mouldTemplate.name=''
                 this.mouldTemplate.headings=''
                 this.mouldTemplate.subtitle=''
+                this.mouldTemplate.common=[]
                 this.restMould();
+               this.mounted()
+
+            },
+            menu(){
+                mould.getMenuList().then(resp=>{
+                    this.mouldTemplate.mouldMenu = resp.data;
+                }).catch(error=>{
+                    console.log("错误！")
+                })
             },
             createMould(){
                 let menuId = this.mouldTemplate.menu;
@@ -278,6 +290,7 @@
                     mould.queryMould().then(resp=>{
                         console.log('得到所有模板:',resp);
                         this.mouldData = resp.data;
+                        this.mouldTemplate.mouldMenu=[]
                     }).catch(error=>{
                         console.log('模板加载错误',error);
                     });
@@ -308,7 +321,7 @@
                     onlyRead:'yes',
                     type:'input',
                     widths:100,
-                    heights:40,
+                  /*  heights:40,*/
                     optionalValue:[]};
             }
         },
@@ -333,7 +346,7 @@
                     merge:'no',
                     type:'input',
                     widths:100,
-                    heights:40,
+                   /* heights:40,*/
                     optionalValue:[]},
                 mould:[],
                 create:false,

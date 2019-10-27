@@ -101,27 +101,27 @@
                         title: '部门名',
                         key: 'deptName'
                     },{
-                    width:120,
-                    title:'操作',
+                        width:120,
+                        title:'操作',
                         render:(h,params)=>{
-                        let _this = this;
-                        return h('div',[h('Button',{props:{type:'info',size:'small'},style:{'margin-right':'2px'},on:{
-                            click(){
-                                _this.viewRole(params.row.roleId);
-                            }
-                            }},'查看'),h('Button',{props:{type:'error',size:'small'},on:{
-                            click(){
-                                _this.$Modal.confirm({content:'确定删除该角色吗?',onOk(){
-                                    roleApi.deleteRoleApi([params.row.roleId]).then(resp=>{
-                                        console.log('删除成功');
-                                        _this.loadRoles();
-                                        _this.$Message.success({content:"角色删除成功"});
-                                    }).catch(error=>{
-                                        console.log('角色删除失败');
-                                    })
-                                    }})
-                            }
-                            }},'删除')])
+                            let _this = this;
+                            return h('div',[h('Button',{props:{type:'info',size:'small'},style:{'margin-right':'2px'},on:{
+                                    click(){
+                                        _this.viewRole(params.row.roleId);
+                                    }
+                                }},'查看'),h('Button',{props:{type:'error',size:'small'},on:{
+                                    click(){
+                                        _this.$Modal.confirm({content:'确定删除该角色吗?',onOk(){
+                                                roleApi.deleteRoleApi([params.row.roleId]).then(resp=>{
+                                                    console.log('删除成功');
+                                                    _this.loadRoles();
+                                                    _this.$Message.success({content:"角色删除成功"});
+                                                }).catch(error=>{
+                                                    console.log('角色删除失败');
+                                                })
+                                            }})
+                                    }
+                                }},'删除')])
                         }
                     }]}
         },
@@ -149,15 +149,13 @@
                     return value.id;
                 });
                 menuIdList.splice(menuIdList.findIndex(value => {return value == -1}),1)
-
-
                 if (menuIdList.findIndex(v=>{return v == -1})!=-1){
                     menuIdList.splice(menuIdList.findIndex(value => {return value == -1}),1)
                 }
                 deptIdList.splice(deptIdList.findIndex(value => {return value == -1}),1)
                 console.log('aaaaaaaaaaaaaaaaaa>',deptIdList)
                 roleApi.saveRoleApi({deptIdList,roleName:this.roleForm.roleName,deptId:this.roleForm.deptId,remark:this.roleForm.remark,
-                menuIdList
+                    menuIdList
                 }).then(resp=>{
                     console.log('角色创建成功');
                     this.addRole = false;
@@ -189,10 +187,7 @@
                 }
                 if (deptIdList.findIndex(v=>{return v == -1})!=-1){
                     deptIdList.splice(deptIdList.findIndex(value => {return value == -1}),1);
-
                 }
-
-
                 roleApi.updateRoleApi({deptIdList,roleId:this.roleForm.roleId,roleName:this.roleForm.roleName,deptId:this.roleForm.deptId,remark:this.roleForm.remark,
                     menuIdList
                 }).then(resp=>{
@@ -217,7 +212,7 @@
                 });
                 this.roleForm.deptIdListTree[0].children=t;
                 let m = menu.data.map((value,index)=>{
-                   return {title:value.parentName+'-'+value.name,id:value.menuId};
+                    return {title:value.parentName+'-'+value.name,id:value.menuId};
                 });
                 this.roleForm.menuIdListTree[0].children=m;
                 this.roleForm.remark = '';
@@ -246,7 +241,6 @@
                         treeA.push(treeList[i]);
                     }
                     else{
-
                     }
                 }
             },
@@ -268,7 +262,7 @@
                 console.log(this.roleForm);
                 let dept = role.deptList;
                 let menu = role.menuList;
-            //    设置默认选中
+                // 设置默认选中
                 this.roleForm.deptIdListTree[0].children = this.roleForm.deptIdListTree[0].children.map((value,index)=>{
                     if (dept.findIndex(v=>{
                         if (v == null)
@@ -284,7 +278,7 @@
                 //设置菜单默认选中
                 this.roleForm.menuIdListTree[0].children = this.roleForm.menuIdListTree[0].children.map((value,index)=>{
                     if (menu.findIndex(v=>{
-                        console.log('查看菜单aaa>',v,'  bbb>',value)
+                        console.log('查看菜单aaa>',v,' bbb>',value)
                         if (v == null)
                             return false;
                         return v.menuId == value.id
@@ -305,7 +299,6 @@
                 this.loadRoles();
             },
             loadRoles(){
-
                 roleApi.queryRoleApi(this.mouldForm).then(resp=>{
                     this.roleData = resp.page.list;
                     console.log(TAG,resp)
@@ -321,5 +314,4 @@
 </script>
 
 <style scoped>
-
 </style>

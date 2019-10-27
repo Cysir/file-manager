@@ -265,12 +265,20 @@
                     return;
                 }
                 console.log(userIds)
+                console.log(data)
+               /* for (let i=0;i<data.length;i++){
+                    if (i=0){
+                        console.log(data[i])
+                    }
+                }*/
                 let menuId = this.dataContent.menuId;
                 let templateFieldId = this.dataContent.id;
                 let formData = {
                     startTime:this.extraField.startTime.format('yyyy-MM-dd hh:mm:ss'),
                     endTime:this.extraField.endTime.format('yyyy-MM-dd hh:mm:ss'),
-                    taskType:this.taskType,menuId,templateFieldId,userIds,templateData:JSON.stringify(data)};
+                    taskType:this.taskType,menuId,templateFieldId,userIds,templateData:JSON.stringify(data)
+
+                };
 
                 if (this.dataContent.status==1){
                     formData.status = this.extraField.status

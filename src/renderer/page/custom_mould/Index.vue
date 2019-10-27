@@ -31,6 +31,7 @@
                     </FormItem>
                     <Button type="primary" @click="toexportWord">导出word</Button>
                     <Button type="primary" @click="toexportExcel">导出excel</Button>
+                    <Button type="primary" @click="alltoexportExcel">导出项目word</Button>
                 </Form>
             </Modal>
         </div>
@@ -80,6 +81,7 @@
                 exportWord:{
                     isShow:false,
                     mouldName:'',
+                    allmouldName:'',
                     searchParams:{
                         menuId:'',
                         templateFieldId:'',
@@ -88,7 +90,9 @@
                         endTime:'',
                         gradeState:""
 
-                    }
+                    },
+                    parentId:'',
+
                 },
                 my_data:{},
                 my_col :[
@@ -314,6 +318,37 @@
                     console.log('err,导出word',err)
                 })
             },
+            alltoexportExcel(){
+                console.log('查询参数WORD:',this.exportWord.searchParams)
+                this.exportWord.searchParams.token = getToken()
+                // let param = Qs.stringify(this.exportWord.searchParams)
+                // window.location.href="http://"+localStorage.getItem("serverIp")+":8088/sys/query/deriveword?"+"token="+getToken()+param
+                let parentId=this.exportWord.parentId
+                let params = {parentId:parentId}
+                for (let key in this.exportWord.searchParams) {
+                    params[key] = this.exportWord.searchParams[key]
+                }
+                if ( this.exportWord.searchParams.startTime != ''){
+                    params.startTime = this.exportWord.searchParams.startTime.getTime()
+                }
+                if(this.exportWord.searchParams.endTime != ''){
+                    params.endTime = this.exportWord.searchParams.endTime.getTime()
+                }
+
+                customeApi.allmouldExportWord(params).then(resp=>{
+                    // console.log(resp.headers)
+                    console.log('下载参数：',resp)
+                    let url = window.URL.createObjectURL(resp.data);
+                    let link = document.createElement('a');
+                    link.style.display = 'none';
+                    link.href = url;
+                    link.setAttribute('download','项目:'+this.exportWord.allmouldName+'  word报表.docx');
+                    document.body.appendChild(link);
+                    link.click();
+                }).catch(err=>{
+                    console.log('err,导出word',err)
+                })
+            },
             //导出excel
             toexportExcel(){
                 console.log('查询参数EXCEL:',this.exportWord.searchParams)
@@ -440,12 +475,16 @@
             },
             async init() {
                 this.path = this.$route.path;
-                console.log(this.$route);
+                console.log("测试！",this.$route);
                 // console.log("加载的参数id",this.$route.params.id);
                 let mouldTemp = await customeApi.mouldListApi(this.$route.params.id);
                 console.log('数据模板',mouldTemp);
                 console.log('模板ID',mouldTemp.data.menuId)
+                this.exportWord.parentId=mouldTemp.data.parentId
+                console.log('上级菜单ID',mouldTemp.data.parentId)
                 this.exportWord.mouldName = mouldTemp.data.templateName;
+                this.exportWord.allmouldName=mouldTemp.data.subtitle
+                console.log('模板名称',mouldTemp.data.templateName)
                 let coustom_col = JSON.parse(mouldTemp.data.content).map(v=>{
                     return {title:v.displayName,key:v.fieldName};
                 });

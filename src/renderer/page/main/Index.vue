@@ -19,6 +19,7 @@
                         { type: 'string', min: 6, message: '密码长度不能小于6', trigger: 'blur' }
                     ]">
                     <Input v-model="use.newPassword" placeholder="请输入新密码..."></Input>
+
                 </FormItem>
             </Form>
         </Modal>
@@ -67,9 +68,6 @@
                                 <DropdownItem>邮箱：{{userModel.email}}</DropdownItem>
                                 <DropdownItem name="updatePassword"   >修改密码</DropdownItem>
                                 <DropdownItem name="logout" divided>退出登录</DropdownItem>
-
-
-
                             </DropdownMenu>
                         </Dropdown>
 

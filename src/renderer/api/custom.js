@@ -26,6 +26,9 @@ export function mouldDownload(filePath) {
 export function mouldExportWord(data) {
     return request.get("/sys/query/deriveword",{params:data,responseType:'blob',})
 }
+export function allmouldExportWord(data) {
+    return request.get("sys/query/several/deriveword",{params:data,responseType:'blob',})
+}
 export function mouldExportExcel(data) {
     return request.get("/sys/query/deriveexcel",{params:data,responseType:'blob',})
 }
@@ -35,4 +38,4 @@ export  function accepterApi(data) {
 export function mouldMoveApi(data) {
     return request.post('/sys/Templatedata/updateOrderNumber',data)
 }
-export default {mouldMoveApi,mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi,mouldExportWord,mouldExportExcel,accepterApi}
+export default {mouldMoveApi,mouldDownload,mouldListApi,mouldDataList,userListApi,mouldSendApi,mouldUpdateApi,mouldExportWord,allmouldExportWord,mouldExportExcel,accepterApi}
