@@ -51,14 +51,14 @@ export default {
         cause: [
           {
             required: true,
-            message: "The name cannot be empty",
+            message: "输入框不能为空！",
             trigger: "blur"
           }
         ],
         name: [
           {
             required: true,
-            message: "The name cannot be empty",
+            message: "输入框不能为空！",
             trigger: "blur"
           }
         ],

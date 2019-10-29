@@ -132,7 +132,7 @@
                         key: 'modificationPerson'
                     },
                     {
-                        title: '申请时间',
+                        title: '任务申请时间',
                         key: 'modificationTime'
                     },
                     {

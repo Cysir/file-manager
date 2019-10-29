@@ -103,6 +103,15 @@
             </div>
 <!--            <Button slot="footer"></Button>-->
         </Modal>
+      <!--  <Modal
+                v-model="modal1"
+                title="Common Modal dialog box title"
+                @on-ok="ok"
+                @on-cancel="cancel">
+            <p>Content of dialog</p>
+            <p>Content of dialog</p>
+            <p>Content of dialog</p>
+        </Modal>-->
         <div>
             <Button type="success" @click="openCreate">新建模板</Button>
         </div>
@@ -123,7 +132,7 @@
     Vue.component("template-form",{
         functional: true,
         props:{
-            mouldForm:null,mouldID:null
+            mouldForm:null,mouldID:null,/*modal1:false*/
         },
         //渲染函数
         render(createElement, context) {
@@ -131,6 +140,7 @@
             // console.log("a"+context.props.mouldForm)
             return createElement('div',{style:{}},[context.props.mouldForm.map((value,index)=>{
                 let vnode = null;
+               /* var self = this*/
                 switch (value.type) {
                     //输入框
                     case 'input':
@@ -141,7 +151,19 @@
                                 click(){
                                     context.props.mouldForm.splice(context.props.mouldForm.findIndex((v,i) => i ==index ), 1)
                                 }
-                                }},'删除')])
+                                }},'删除')]),
+                          /*  createElement('Col',{props:{span:2}},[createElement('Button',{props:{type:'error'},on:{
+                                    click(index){
+                                        /!*context.props.mouldForm.splice(context.props.mouldForm.findIndex((v,i) => i ==index ), 1)*!/
+                                        this.modal1=true
+                                        console.log(value.displayName)
+                                        //这里已经是可以直接赋值修改宽度了
+                                        value.widths=5000
+                                        console.log(value)
+
+                                    }
+                                }},'修改')])*/
+
                         ]);
                         break;
                     //    文本框
@@ -153,7 +175,13 @@
                                     click(){
                                         context.props.mouldForm.splice(context.props.mouldForm.findIndex((v,i) => i ==index ), 1)
                                     }
-                                }},'删除')])
+                                }},'删除')]),
+                          /*  createElement('Col',{props:{span:2}},[createElement('Button',{props:{type:'error'},on:{
+                                    click(index){
+                                        /!*context.props.mouldForm.splice(context.props.mouldForm.findIndex((v,i) => i ==index ), 1)*!/
+                                        console.log(value.displayName)
+                                    }
+                                }},'修改')])*/
                         ]);
                         break;
                     case 'radio':
@@ -216,6 +244,7 @@
             mould.queryMould().then(resp=>{
                console.log('得到所有模板:',resp);
                this.mouldData = resp.data;
+               console.log(resp.data)
                // this.mouldTemplate.common = [resp.data]
             }).catch(error=>{
                 console.log('模板加载错误',error);
@@ -234,6 +263,12 @@
 
         },
         methods:{
+           /* ok () {
+                this.$Message.info('Clicked ok');
+            },
+            cancel () {
+                this.$Message.info('Clicked cancel');
+            },*/
             openCreate(){
                 //打开创建的面板
                 this.menu()
@@ -353,10 +388,11 @@
                     optionalValue:[]},
                 mould:[],
                 create:false,
+                modal1: false,
 
                 modeRadios:[{value:'yes',label:'是'},{value:'no',label:'否'}],
                 mergeData:[{value:'no',label:'否'},{value:'yes',label:'是'}],
-                modeTypes:[{value:'input',label:'输入框'},{value:'text',label:'文本框'},{value:'radio',label:'单选框'},{value:'checkbox',label:'多选框'},{value:'date',label:'日期框'},{value:'button',label:'按钮'}],
+                modeTypes:[{value:'input',label:'输入框'},{value:'text',label:'文本框'},{value:'radio',label:'单选框'},{value:'checkbox',label:'多选框'}/*,{value:'date',label:'日期框'}*/,{value:'button',label:'按钮'}],
                 headerColumn: [
                     {
                         type: 'index',
