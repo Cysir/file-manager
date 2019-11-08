@@ -116,7 +116,7 @@
             <Button type="success" @click="openCreate">新建模板</Button>
         </div>
 
-        <div style="margin-top: 20px">
+        <div style="margin-top: 10px">
             <Table border ref="selection" :columns="headerColumn" :data="mouldData"></Table>
 
         </div>

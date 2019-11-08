@@ -6,7 +6,15 @@
     @on-visible-change="visibleChange"
   >
     <Divider orientation="left">申请项目</Divider>
+    <!--<Select v-model="model8" clearable style="width:200px">
+      <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+    </Select>-->
     <Form label-position="top"  ref="myApplyForm" :model="applyData" :rules="ruleValidate">
+      <FormItem label="项目分类" prop="classifyNameId">
+        <Select v-model="applyData.classifyNameId" clearable style="width:200px">
+          <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+        </Select>
+      </FormItem>
       <FormItem label="原因说明" prop="cause">
         <Input v-model="applyData.cause" />
       </FormItem>
@@ -31,6 +39,7 @@
 <script>
 class ApplyBean{
     constructor(){
+        this.classifyNameId=  ''
         this.name = ''
         this.cause = ''
         this.jurisdictionTime = null
@@ -38,16 +47,26 @@ class ApplyBean{
         this.endTime = null
     }
 }
+import  classification from '../../../api/classification'
 import projectApi from '../../../api/project'
 export default {
   name: "ApplyProject",
   data() {
     return {
+        cityList: [],
       title: ["原因说明"],
       applyData:{
 
       },
       ruleValidate: {
+          classifyNameId: [
+              {
+                  required: true,
+                  message: "选择框不能为空！",
+                  type:'number',
+                  trigger: 'change',
+              }
+          ],
         cause: [
           {
             required: true,
@@ -125,7 +144,18 @@ export default {
       }
     };
   },
+    mounted(){
+        this.init()
+    },
   methods: {
+      init(){
+          classification.selectclassificationDataApi().then(resp=>{
+              console.log("申请框的数据",resp.data)
+              this.cityList=resp.data
+          }).catch(error=>{
+              console.log("错误！")
+          })
+      },
     visibleChange() {},
     insert() {
       this.sign.isShow = true
@@ -134,6 +164,7 @@ export default {
       this.$refs.myApplyForm.resetFields()
     },
     async submit(){
+          console.log("申请数据111111",this.applyData)
         let isOk = await this.$refs.myApplyForm.validate()
         if(!isOk){
             this.$Message.error({content:"请正确填写表单内容"});
@@ -146,7 +177,8 @@ export default {
         let endTime = this.applyData.endTime.getTime()
         let cause = this.applyData.cause;
         let name = this.applyData.name;
-        projectApi.applySaveApi({name,cause,jurisdictionTime,startTime,endTime}).then(resp=>{
+        let classifyNameId=this.applyData.classifyNameId;
+        projectApi.applySaveApi({classifyNameId,name,cause,jurisdictionTime,startTime,endTime}).then(resp=>{
           this.sign.isShow = false
           this.$Modal.success({title:"提示",content:"提交成功"})
         }).catch(err=>{

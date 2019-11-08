@@ -50,6 +50,7 @@
         <Divider/>
 <!--        完成情况-->
         <Form ref="extraForm" :model="extraField">
+         <!--   <Input v-model="mission" placeholder="Enter something..." clearable style="width: 200px" />-->
             <FormItem v-if="dataContent.status == 1" :rules="{required: true, message: '请选择完成情况', trigger: 'change'}" prop="status">
             <Row :gutter="gutter" class="my-row">
                 <Col span="3">完成状态</Col>

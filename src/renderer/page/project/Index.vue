@@ -46,11 +46,13 @@
 </template>
 
 <script>
+    import  classification from '../../api/classification'
     import projectApi from "../../api/project";
     export default {
         name: "Index",
         data(){
             return {
+                cityList:[],
                 updateTime:{
                     isShow:false,
                     data:{}
@@ -92,6 +94,10 @@
                             })
                         }
                     },
+                        {
+                            title: '项目类型',
+                            key: 'classifyName'
+                        },
                         {
                             title: '项目名',
                             key: 'name'
@@ -215,6 +221,7 @@
             }
         },
         mounted(){
+            this.init()
             this.loadData()
 
         },
@@ -286,14 +293,38 @@
                     // this.updateTime.data = null
                 })
             },
+            init(){
+                classification.selectclassificationDataApi().then(resp=>{
+                    console.log("申请框的数据",resp.data)
+                    this.cityList=resp.data
+                }).catch(error=>{
+                    console.log("错误！")
+                })
+            },
             loadData(){
                 projectApi.applyListApi(this.mouldForm).then(resp=>{
                     // alert("chengg")
                     this.$Message.success({content:"加载成功"});
-                    this.table.userData = resp.page.list;
-                    this.recData.total = resp.page.totalCount;
+                  /*  for (let i=0;i<resp.page.list.length;i++){
+                        for (let j=0;j<this.cityList.length;j++)
+                        if(resp.page.list.length[i].classifyName==this.cityList[j].classifyName){
+                          console.log(resp.page.list.length[i].classifyName)
+                        }
+                    }*/
+
+
+
                     console.clear()
                     console.log(resp)
+                    console.log(this.cityList)
+                    /*  for (let i=0;i<resp.page.list.length;i++){
+                       for (let j=0;j<this.cityList.length;j++){
+                            console.log(resp.page.list[i].classifyName)
+                           console.log(this.cityList[j].value)
+                       }
+                   }*/
+                    this.table.userData = resp.page.list;
+                    this.recData.total = resp.page.totalCount;
                 },onerror=>{
                     this.$Modal.error({title:"查询失败",content:JSON.stringify(onerror)})
                 }).catch(err=>{

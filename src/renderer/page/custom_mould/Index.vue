@@ -37,6 +37,8 @@
         </div>
         <div style="">
             <div class="filterHeader">
+                <Button type="primary"  >{{this.exportWord.mouldName}}</Button>
+
                 任务等级:
                 <Select placeholder="任务等级" style="width: 100px" v-model="queryParam.gradeState">
                     <Option v-for="item in settingParam.gradeState" :label="item.label" :value="item.value">
