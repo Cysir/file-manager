@@ -11,5 +11,7 @@ export  function saveaddDataApi(data) {
 export  function removeDataApi(data) {
     return request.get('sys/type/classification/delete',{params:data})
 }
-
-export default {classificationDataApi,selectclassificationDataApi,saveaddDataApi,removeDataApi}
+export  function datapageApi(data) {
+    return request.get('sys/type/classification/query',{params:data})
+}
+export default {classificationDataApi,selectclassificationDataApi,saveaddDataApi,removeDataApi,datapageApi}

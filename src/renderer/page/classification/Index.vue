@@ -21,6 +21,7 @@
         </div>
 
         <Table style="margin-left: 5px;margin-top: 10px" border :columns="columns" :data="data"></Table>
+        <Page :total="totalCount" show-elevator  @on-change="changePage"/>
     </div>
 
 </template>
@@ -31,6 +32,8 @@
         name: "Index",
         data () {
             return {
+                totalCount:'',
+                listength:'',
                 modal1: false,
                 formItem:{
                     input1:'',
@@ -91,6 +94,7 @@
                     console.log("数据",resp.data)
                     console.log(resp.data.list)
                     this.data=resp.data.list
+                    this.totalCount=resp.data.totalCount
                 }).catch(error=>{
                     console.log("错误！")
                 })
@@ -129,6 +133,21 @@
             },
             cancel () {
                 this.$Message.info('Clicked cancel');
+            },
+            changePage(val){
+                let page=val
+                console.log(page)
+                let limit=10
+                classification.datapageApi({page,limit}).then(resp=>{
+                    console.log("分页查询公告列表",resp.data)
+                    console.log(resp.data.list.length)
+                    this.data=resp.data.list
+                    this.listength=resp.data.list
+                    this.totalCount=resp.data.totalCount
+                }).catch(error=>{
+                    console.log("错误！")
+                })
+
             }
         }
     }

@@ -39,21 +39,23 @@
             <div class="filterHeader">
                 <Button type="primary"  >{{this.exportWord.mouldName}}</Button>
 
-                任务等级:
-                <Select placeholder="任务等级" style="width: 100px" v-model="queryParam.gradeState">
+                等级:
+                <Select placeholder="任务等级" style="width: 70px" v-model="queryParam.gradeState">
                     <Option v-for="item in settingParam.gradeState" :label="item.label" :value="item.value">
 
                     </Option>
                 </Select>
-                完成情况:
-                <Select placeholder="完成情况" style="width: 100px" v-model="queryParam.status">
+                情况:
+                <Select placeholder="完成情况" style="width: 70px" v-model="queryParam.status">
                     <Option v-for="item in settingParam.status" :label="item.label" :value="item.value">
                     </Option>
                 </Select>
                 查询时间:
-                <DatePicker @on-clear="clear" v-model="queryParam.startTime" type="datetime" placeholder="请选择开始时间" style="width: 200px"></DatePicker>
+                <DatePicker @on-clear="clear" v-model="queryParam.startTime" type="datetime" placeholder="请选择开始时间" style="width: 150px"></DatePicker>
                 -
-                <DatePicker @on-clear="clear" v-model="queryParam.endTime" type="datetime" placeholder="请选择结束时间" style="width: 200px"></DatePicker>
+                <DatePicker @on-clear="clear" v-model="queryParam.endTime" type="datetime" placeholder="请选择结束时间" style="width: 150px"></DatePicker>
+                关键字：
+                <Input v-model="queryParam.sendDataPublicFields" placeholder="输入搜索关键字..." clearable style="width: 150px" />
                 <Button type="info" STYLE="float: right;margin-left: 5px" @click="()=>{exportWord.isShow = true}">导出报表</Button>
                 <Button type="primary" @click="insert" style="float: right">下发任务</Button>
                 <Button type="info" STYLE="float: right;margin-right: 5px" @click="search">查询</Button>
@@ -120,11 +122,10 @@
                         title: '接收人',
                         key: 'sysName'
                     },
-                    // {
-                    //     title: '内容',
-                    //     key: 'templateData',
-                    //     tooltip: true
-                    // },
+                  {
+                         title: '任务名称',
+                        key: 'sendDataPublicFields',
+                     },
                     {
                         title: '创建人',
                         key: 'creationPerson'
@@ -177,6 +178,7 @@
                                                 }
                                             }
                                             let extraField = {
+                                                sendDataPublicFields:data.sendDataPublicFields,
                                                 status: data.status,
                                                 gradeState: data.gradeState,
                                                 url: data.urls,
@@ -243,6 +245,7 @@
                 ],
                 mouldContent: null,
                 queryParam:{
+                    sendDataPublicFields:'',
                     startTime:'',
                     endTime:new Date(),
                     status:'',
@@ -456,22 +459,33 @@
                 let findF2 = (v)=>{
                     return self.queryParam.gradeState == v.value;
                 };
+                let findF3 = (v)=>{
+                        return self.queryParam.sendDataPublicFields == v.value;
+                };
                 if (this.settingParam.status.findIndex(findF)!=-1) {
                     this.mouldForm.status = this.queryParam.status;
+                    this.mouldForm.sendDataPublicFields = this.queryParam.sendDataPublicFields;
                 }else{
                     delete this.mouldForm.status
+                    this.mouldForm.sendDataPublicFields = this.queryParam.sendDataPublicFields;
                 }
                 if (this.settingParam.gradeState.findIndex(findF2)!=-1) {
                     this.mouldForm.gradeState = this.queryParam.gradeState;
+                    this.mouldForm.sendDataPublicFields = this.queryParam.sendDataPublicFields;
                 }else{
                     delete this.mouldForm.gradeState
+                    this.mouldForm.sendDataPublicFields = this.queryParam.sendDataPublicFields;
                 }
                 if (this.queryParam.status =='全部'){
                     delete this.mouldForm.status
+                    this.mouldForm.sendDataPublicFields = this.queryParam.sendDataPublicFields;
                 }
                 if(this.queryParam.gradeState=='全部'){
                     delete this.mouldForm.gradeState
+                    this.mouldForm.sendDataPublicFields = this.queryParam.sendDataPublicFields;
                 }
+
+
                 console.log('查询',this.queryParam);
                 this.loadData();
             },

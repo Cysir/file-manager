@@ -50,7 +50,13 @@
         <Divider/>
 <!--        完成情况-->
         <Form ref="extraForm" :model="extraField">
-         <!--   <Input v-model="mission" placeholder="Enter something..." clearable style="width: 200px" />-->
+            <Row :gutter="gutter" class="my-row">
+                <Col span="3">任务名称</Col>
+                <Col span="18">
+                    <Input v-model="extraField.sendDataPublicFields" placeholder="输入关键名称..." clearable style="width: 200px" />
+                </Col>
+            </Row>
+
             <FormItem v-if="dataContent.status == 1" :rules="{required: true, message: '请选择完成情况', trigger: 'change'}" prop="status">
             <Row :gutter="gutter" class="my-row">
                 <Col span="3">完成状态</Col>
@@ -137,6 +143,7 @@
             return {
                 token:'http://'+localStorage.getItem("serverIp")+'/sys/file/upload?token='+getToken(),
                 extraField:{
+                    sendDataPublicFields:'',
                     status:'三级',
                     statusO:['已完成','进行中','未开始'],
                     gradeState:'未开始',
@@ -167,6 +174,7 @@
             insert(){
 
                 this.type.isCreate = true;
+                this.extraField.sendDataPublicFields=''
                 this.extraField.status='未开始';
                 this.extraField.gradeState='三级';
                 this.extraField.url='';
@@ -185,6 +193,7 @@
                 this.type.id = data.id;
                 console.log('查看操作',userIds);
                 console.log('内容',testContent,'额外字段',extraField,'所有信息',data)
+                this.extraField.sendDataPublicFields=extraField.sendDataPublicFields
                 this.testContent = testContent;
                 this.extraField.status = extraField.status;
                 this.extraField.url = extraField.url;
@@ -274,10 +283,11 @@
                 }*/
                 let menuId = this.dataContent.menuId;
                 let templateFieldId = this.dataContent.id;
+                let sendDataPublicFields=this.extraField.sendDataPublicFields
                 let formData = {
                     startTime:this.extraField.startTime.format('yyyy-MM-dd hh:mm:ss'),
                     endTime:this.extraField.endTime.format('yyyy-MM-dd hh:mm:ss'),
-                    taskType:this.taskType,menuId,templateFieldId,userIds,templateData:JSON.stringify(data)
+                    taskType:this.taskType,menuId,templateFieldId,userIds,sendDataPublicFields,templateData:JSON.stringify(data)
 
                 };
 
